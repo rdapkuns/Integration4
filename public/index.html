@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script>
+
+  <!-- <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/ar.js@3.4.2/aframe/build/aframe-ar.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+
+  <!-- for animation-mixer -->
+
+  <title>WebRTC</title>
+  <style>
+    #myCamera {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <a-scene embedded arjs>
+    <a-marker preset="hiro" smooth="true" smoothCount="7" smoothTolerance="0.01" smoothThreshold="10">>
+      <!-- <a-box position="0 0.5 0" color="red"></a-box> -->
+      <!-- <a-entity id="videoPlane" geometry="primitive: plane; height: 2; width: 2" position="0 0 -2" rotation="-90 0 0"
+        look-at="[camera]" material="shader: chromakey; src: #greenscreen; color: 0 1 0"></a-entity> -->
+      <a-plane src="ui.jpg" height="2" width="2" position="0 0 -2" rotation="-90 0 0">
+      </a-plane>
+    </a-marker>
+    <a-entity camera></a-entity>
+    <!-- <video id="greenscreen" src="abby-green.mp4" autoplay loop muted playsinline crossorigin="anonymous"
+      style="display: none;"></video> -->
+  </a-scene>
+  <!-- <video id="myCamera" playsinline></video> -->
+
+  <!-- <a-scene embedded arjs>
+    <a-marker preset="hiro" smooth="true" smoothCount="7" smoothTolerance="0.01" smoothThreshold="10">
+      <a-entity gltf-model="triangle-2.glb" position="0 2 0" rotation="90 0 180" scale="1 1 1" animation-mixer>
+      </a-entity>
+
+    </a-marker>
+    <a-entity camera></a-entity>
+  </a-scene> -->
+
+
+
+
+  <script>
+
+
+    document.querySelector('a-scene').addEventListener('loaded', () => {
+      const video = document.querySelector('#greenscreen');
+      if (video && video.readyState >= 2) {
+        video.play();
+      } else {
+        video.addEventListener('canplay', () => video.play());
+      }
+    });
+
+
+
+
+    AFRAME.registerShader('chromakey', {
+      schema: {
+        src: { type: 'map' },
+        color: { type: 'color', default: '#00ff00' },
+        similarity: { type: 'number', default: 0.4 },
+        smoothness: { type: 'number', default: 0.1 }
+      },
+
+      vertexShader: `
+          varying vec2 vUV;
+          void main() {
+            vUV = uv;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+          }
+        `,
+
+      fragmentShader: `
+          uniform sampler2D src;
+          uniform vec3 color;
+          uniform float similarity;
+          uniform float smoothness;
+          varying vec2 vUV;
+      
+          void main() {
+            vec4 videoColor = texture2D(src, vUV);
+            float Y1 = 0.2989 * videoColor.r + 0.5866 * videoColor.g + 0.1145 * videoColor.b;
+            float Cr1 = videoColor.r - Y1;
+            float Cb1 = videoColor.b - Y1;
+      
+            float Y2 = 0.2989 * color.r + 0.5866 * color.g + 0.1145 * color.b;
+            float Cr2 = color.r - Y2;
+            float Cb2 = color.b - Y2;
+      
+            float blend = smoothstep(similarity, similarity + smoothness, distance(vec2(Cr1, Cb1), vec2(Cr2, Cb2)));
+            gl_FragColor = vec4(videoColor.rgb, blend * videoColor.a);
+          }
+        `
+    });
+  </script>
+
+</body>
+
+</html>
