@@ -233,14 +233,22 @@ header {
     padding: var(--s-xs);
 }
 
-.event > p{
+.event>h3 {
+    padding-bottom: var(--s-xs);
+}
+
+.event>p {
     font-size: var(--fs);
 }
 
-.event > .link {
-font-weight: 500;
+.event>.link {
+    font-weight: 500;
+    padding-top: var(--s-xs);
 }
 
+hr {
+    color: var(--green);
+}
 
 .spaces {
     background-color: var(--blue);
