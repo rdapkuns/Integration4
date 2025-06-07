@@ -241,9 +241,12 @@ header {
     font-size: var(--fs);
 }
 
-.event>.link {
+.event>.link, .space_about>.link {
     font-weight: 500;
-    padding-top: var(--s-xs);
+    padding: var(--s-xs) 0;
+    display: flex;
+    align-items: center;
+    gap: var(--s-xs);
 }
 
 hr {
@@ -255,4 +258,49 @@ hr {
     margin-top: var(--s-m);
     padding: var(--s-xs);
     padding-top: var(--s-m);
+}
+
+.spaces_text {
+    padding: var(--s-s) 0;
+    max-width: 21rem;
+}
+
+.space_nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.space_nav>div {
+    display: flex;
+}
+
+.space_name,
+.space_icon {
+    background-color: var(--yellow);
+}
+
+.space_name {
+    padding: var(--s-s);
+}
+
+.space_icon {
+    padding: 0.17rem;
+}
+
+.space_btns {
+    padding: 0 var(--s-s);
+    gap: var(--s-s);
+}
+
+.space_description {
+    padding: var(--s-s) 0;
+}
+
+.people { 
+    padding-top: var(--s-l);
+}
+
+video{
+    max-width: 95vw;
 }

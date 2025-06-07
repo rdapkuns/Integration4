@@ -11,7 +11,7 @@
 
 <body>
     <header>
-        <img src="./assets/logo.png" alt="Abby logo" width="150">
+        <img src="./assets/img/logo.png" alt="Abby logo" width="150">
         <p>EN</p>
         <p>profile icon</p>
     </header>
@@ -66,19 +66,28 @@
             <div class="event">
                 <h3>Game night</h3>
                 <p>Cozy talks and new connections.</p>
-                <p class="link">Read more</p>
+                <div class="link">
+                    <img src="./assets/svg/arrow.svg">
+                    <p class="link_text">Read more</p>
+                </div>
             </div>
             <hr>
             <div class="event">
                 <h3>Dinner for one</h3>
                 <p>Simple recipes, shared kitchens.</p>
-                <p class="link">Read more</p>
+                <div class="link">
+                    <img src="./assets/svg/arrow.svg">
+                    <p class="link_text">Read more</p>
+                </div>
             </div>
             <hr>
             <div class="event">
                 <h3>Money? Let's Try</h3>
                 <p>What even is a tax return?</p>
-                <p class="link">Read more</p>
+                <div class="link">
+                    <img src="./assets/svg/arrow.svg">
+                    <p class="link_text">Read more</p>
+                </div>
             </div>
             <hr>
         </div>
@@ -90,25 +99,34 @@
     </section>
     <section class="spaces">
         <h2>Open spaces</h2>
-        <p>Welcome to my little world. Here’s my house..well, our house, really.</p>
+        <p class="spaces_text">Welcome to my little world. Here’s my house... Well, our house, really.</p>
         <div class="space">
-            <div>
-                <h3 class="space_name">The Living</h3>
-                <img src="./assets/svg/living.svg" class="space_icon"></img>
-                <button class="prev_btn">prev</button>
-                <button class="next_btn">next</button>
+            <div class="space_nav">
+                <div>
+                    <h3 class="space_name">The Living</h3>
+                    <img class="space_icon" src="./assets/svg/living.svg">
+                </div>
+                <div class="space_btns">
+                    <img class="prev_btn" src="./assets/svg/prev.svg">
+                    <img class="next_btn" src="./assets/svg/next.svg">
+                </div>
             </div>
             <div class="space_about">
-                <img src="./assets/img/atelier.jpeg" class="space_media"></img>
+                <video src="./assets/video/atelier.mp4" autoplay loop muted playsinline class="space_media">
+                </video>
+                <!-- <img src="./assets/video/atelier.mp4" class="space_media"> -->
                 <p class="space_description">We have the living room, where I toss down my groceries, plop myself
                     anywhere, and honestly just…
                     exist.</p>
-                <p class="link">Read more</p>
+                <div class="link">
+                    <img src="./assets/svg/arrow.svg">
+                    <p class="link_text">Read more</p>
+                </div>
             </div>
         </div>
         <button>Explore more</button>
     </section>
-    <section>
+    <section class="people">
         <h2>People Growing</h2>
         <div>
             <h3>Lisa</h3>
