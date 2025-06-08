@@ -209,7 +209,7 @@
         "example": "Blanket from my childhood",
         "extra": {
             "title": "Two Roman Dog Skulls",
-            "img": "",
+            "img": "./assets/img/living.jpeg",
             "description": "Two tiny Roman dog skulls sit casually on a shop shelf - once uncovered by archaeologists, now back guarding their old home."
         }
     },
@@ -222,7 +222,7 @@
         "example": "Birds sing",
         "extra": {
             "title": "Bird Ritual",
-            "img": "",
+            "img": "./assets/img/living.jpeg",
             "description": "What natural sounds do you associate with your solo-living experience?"
         }
     },
@@ -235,7 +235,7 @@
         "example": "Always tidying up before bed",
         "extra": {
             "title": "Cuckoo Ritual",
-            "img": "",
+            "img": "./assets/img/living.jpeg",
             "description": "Cuckoos leave their eggs in other nests. As adults, the chicks may cross paths and somehow recognise each other, reconnecting with a shared culture they never knew."
         }
     },
@@ -248,7 +248,7 @@
         "example": "Cook interesting meals",
         "extra": {
             "title": "Mirror of Perspectives",
-            "img": "",
+            "img": "./assets/img/living.jpeg",
             "description": "A mirror made of different materials, reflecting shifting views - just like us, always changing, always seeing the world (and ourselves) from new angles."
         }
     },
@@ -261,7 +261,7 @@
         "example": "Stacking pillows for my cloud ship",
         "extra": {
             "title": "Tent of Sheets",
-            "img": "",
+            "img": "./assets/img/living.jpeg",
             "description": "One artist built a tent from old sheets, just like in childhood, to prepare the space for their video. A playful, nostalgic touch inviting you to step inside and watch."
         }
     },
@@ -274,7 +274,7 @@
         "example": "Someone who dares to do things their own way",
         "extra": {
             "title": "Outsider Artists",
-            "img": "",
+            "img": "./assets/img/living.jpeg",
             "description": "Abby showcases outsider artists, creators beyond the traditional art world, sparking the question: What is art? Who gets to be called an artist?"
         }
     },
@@ -287,7 +287,7 @@
         "example": "Used to write before bed, now I leave voice notes",
         "extra": {
             "title": "Playing with Dimensions",
-            "img": "",
+            "img": "./assets/img/living.jpeg",
             "description": "A vanguard art movement once flattened 3D scenes into playful 2D space. At Abby, you’ll see this - in both past paintings and today’s artists still experimenting with that spirit."
         }
     },
@@ -300,7 +300,7 @@
         "example": "People say I’m confident, but I’m actually overthink a lot",
         "extra": {
             "title": "Mirrored Stories",
-            "img": "",
+            "img": "./assets/img/living.jpeg",
             "description": "One artist showed a mischievous gypsy woman; another, from a gypsy family, mirrored it with her own family simply playing cards revealing how stereotypes mask ordinary life."
         }
     },
