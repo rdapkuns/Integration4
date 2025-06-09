@@ -4,39 +4,390 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script>
-
+  
   <!-- <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/ar.js@3.4.2/aframe/build/aframe-ar.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
 
-  <!-- for animation-mixer -->
 
-  <title>WebRTC</title>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+
+  <title>AR</title>
   <style>
-    #myCamera {
+    html {
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden !important;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    body {
+      height: 100vh;
       max-width: 100%;
-      height: auto;
+      margin: 0 !important;
+      overflow: hidden !important;
+      /* background-color: grey; */
+      font-family: Helvetica, sans-serif;
+
+      /* width: 100vw;
+      height: 100vh;
+      max-width: 100%;
+      overflow-x: hidden;
+      position: relative; */
+
+
+    }
+
+    footer {
+      width: 100%;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+
+    .progress__container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .progress__container p {
+      width: 100%;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .progress__bars {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 0.1rem;
+    }
+
+    .progress__bar {
+      background-color: #DCEBFF;
+      width: 100%;
+      height: 0.5rem;
+    }
+
+    .progress__bar--filled {
+      background-color: #289bff;
+    }
+
+    .button__container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 0rem;
+      gap: 1rem;
+    }
+
+    .button--primary {
+      background-color: #FFBF50;
+      height: 3rem;
+      min-width: 3rem;
+      color: black;
+      font-size: 1.1rem;
+      border: none;
+    }
+
+    .button--secondary {
+      height: 3rem;
+      min-width: 3rem;
+      color: #FFBF50;
+      font-size: 1.1rem;
+      background-color: white;
+      border: 2px solid #FFBF50;
+    }
+
+    .button--inactive {
+      background-color: #ffe0aa;
+      height: 3rem;
+      min-width: 3rem;
+      color: rgb(167, 126, 68);
+      font-size: 1.1rem;
+      border: none;
+    }
+
+    .scene-map {
+      /* z-index: 10; */
+      background-color: white;
+      width: 100%;
+      height: 100%;
+    }
+
+    .map__wrapper {
+      width: 100%;
+      height: 100%;
+      color: black;
+      background-color: #289bff;
+      /* display: none; */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .map__wrapper img {
+      width: 80vw;
+    }
+
+    .map__button--container {
+      width: 100%;
+      justify-content: center;
+      gap: 1rem;
+      display: flex;
+    }
+
+    .map__header {
+      padding-bottom: 1rem;
+      margin-top: 6rem;
+    }
+
+    .floor__button {
+      background-color: transparent;
+      color: white;
+      border: none;
+      border-radius: 0;
+      font-size: 1rem;
+    }
+
+    .floor__button:first-child {
+      border-right: 2px solid white;
+      padding-right: 1rem;
+    }
+
+    .floor__button--inactive {
+      color: rgba(255, 255, 255, 0.488)
+    }
+
+    .floor__wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .floor-0 {
+      /* position: relative; */
+      pointer-events: none;
+      /* transform: translateY(50px); */
+    }
+
+    .floor-1 {
+      opacity: 0;
+      position: absolute;
+      pointer-events: none;
+
+    }
+
+    .task__point {
+      pointer-events: all;
+      width: 1.5rem;
+      height: 1.5rem;
+      position: absolute;
+      z-index: 10;
+    }
+
+    .task__selected::after {
+      content: "4 ppl";
+      /* Change this text as needed */
+      position: absolute;
+      bottom: 110%;
+      /* Show above the task */
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      padding: 0.8rem 1rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-size: 0.875rem;
+      opacity: 1;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 30;
+      /* transform: rotate(0deg); */
+
+    }
+
+    .task--complete {
+      filter: brightness(2) saturate(30%);
+    }
+
+    .task--complete::before {
+      content: "✓";
+      position: absolute;
+      top: 50%;
+      right: 10%;
+      transform: translateY(-50%);
+      color: white;
+      width: 20px;
+      height: 20px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .circle {
+      border-radius: 100px 100px;
+    }
+
+    .square {
+      /* transform: rotate(45deg); */
+      overflow: visible;
+      /* width: 1.8rem;
+      height: 1.8rem; */
+      /* clip-path: polygon(50% 0,100% 50%,50% 100%,0 50%); */
+    }
+
+    .green {
+      background-color: rgb(5, 180, 5);
+    }
+
+    .yellow {
+      background-color: rgb(253, 193, 27);
+    }
+
+    .magenta {
+      background-color: rgb(180, 5, 128);
+    }
+
+    #task__1 {
+      top: 59%;
+      left: 79%;
+    }
+
+    #task__2 {
+      top: 56%;
+      left: 37%;
+    }
+
+    #task__3 {
+      top: 53%;
+      left: 8%;
+    }
+
+    #task__4 {
+      top: 88%;
+      left: 4%;
+    }
+
+    #task__5 {
+      top: 40%;
+      left: 0%;
+    }
+
+    #task__6 {
+      top: 20%;
+      left: 24%;
+    }
+
+    #task__7 {
+      top: 27%;
+      left: 28%;
+    }
+
+    #task__8 {
+      top: 29%;
+      left: 70%;
+    }
+
+    #task__9 {
+      top: 3%;
+      left: 63%;
+    }
+
+    #task__10 {
+      top: 2%;
+      left: 38%;
+    }
+
+    .logo{
+      position: absolute;
+      left: 0;
+      top: 0;
     }
   </style>
 </head>
 
 <body>
 
-  <a-scene embedded arjs>
-    <a-marker preset="hiro" smooth="true" smoothCount="7" smoothTolerance="0.01" smoothThreshold="10">>
-      <!-- <a-box position="0 0.5 0" color="red"></a-box> -->
-      <!-- <a-entity id="videoPlane" geometry="primitive: plane; height: 2; width: 2" position="0 0 -2" rotation="-90 0 0"
+  <img src="abby-logo.svg" class="logo">
+
+  <!-- <div class="scene scene-game ar-wrapper"> -->
+    <a-scene embedded arjs class="scene scene-game">
+      <a-marker preset="hiro" smooth="true" smoothCount="7" smoothTolerance="0.01" smoothThreshold="10">
+        <a-plane src="abby-hi-3.png" transparent="true" height="4" width="2" position="-1 0 0"
+          rotation="-90 0 0"></a-plane>
+        <a-plane src="ui.jpg" height="2" width="2" position="1.1 0 -2" rotation="-90 0 0"></a-plane>
+      </a-marker>
+      <a-entity camera></a-entity>
+    </a-scene>
+  <!-- </div> -->
+
+
+  <!-- <a-box position="0 0.5 0" color="red"></a-box> -->
+  <!-- <a-entity id="videoPlane" geometry="primitive: plane; height: 2; width: 2" position="0 0 -2" rotation="-90 0 0"
         look-at="[camera]" material="shader: chromakey; src: #greenscreen; color: 0 1 0"></a-entity> -->
-      <a-plane src="ui.jpg" height="2" width="2" position="0 0 -2" rotation="-90 0 0">
-      </a-plane>
-    </a-marker>
-    <a-entity camera></a-entity>
-    <!-- <video id="greenscreen" src="abby-green.mp4" autoplay loop muted playsinline crossorigin="anonymous"
+
+  <!-- <a-marker type="pattern" url="marker-eye-blue.patt">
+        <a-box position="0 0.5 0" color="blue"></a-box>
+      </a-marker> -->
+
+
+  <!-- <video id="greenscreen" src="abby-green.mp4" autoplay loop muted playsinline crossorigin="anonymous"
       style="display: none;"></video> -->
-  </a-scene>
+
+
+
+
+
+  <div class="scene scene-map  visually-hidden">
+    <div class="map__wrapper">
+      <div class="map__header">
+        <div class="map__button--container">
+          <button class="floor__button floor__button--0">Ground floor</button>
+          <button class="floor__button floor__button--1 floor__button--inactive">1st floor</button>
+        </div>
+      </div>
+      <div class="map__body">
+        <div class="floor__wrapper floor-1">
+          <img src="floor-1.png">
+          <div id="task__7" class="task__point circle magenta"></div>
+          <div id="task__8" class="task__point circle magenta"></div>
+          <div id="task__9" class="task__point square yellow"></div>
+          <div id="task__10" class="task__point square yellow"></div>
+        </div>
+        <div class="floor__wrapper floor-0">
+          <img src="floor-0.png">
+          <div id="task__1" class="task__point circle green"></div>
+          <div id="task__2" class="task__point circle green"></div>
+          <div id="task__3" class="task__point square yellow"></div>
+          <div id="task__4" class="task__point square green"></div>
+          <div id="task__5" class="task__point square green"></div>
+          <div id="task__6" class="task__point circle magenta"></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- <video id="myCamera" playsinline></video> -->
 
   <!-- <a-scene embedded arjs>
@@ -48,21 +399,46 @@
     <a-entity camera></a-entity>
   </a-scene> -->
 
+  <footer>
+    <div class="progress__container">
+      <p>step 1 out of 10</p>
+      <div class="progress__bars">
+        <div class="progress__bar progress__bar--filled"></div>
+        <div class="progress__bar"></div>
+        <div class="progress__bar"></div>
+        <div class="progress__bar"></div>
+        <div class="progress__bar"></div>
+        <div class="progress__bar"></div>
+        <div class="progress__bar"></div>
+        <div class="progress__bar"></div>
+        <div class="progress__bar"></div>
+        <div class="progress__bar"></div>
+      </div>
+    </div>
+
+    <div class="scene scene-game button__container">
+      <button class="button__save button--secondary">Back to map</button>
+      <button class="button__complete button--primary">Complete task</button>
+    </div>
+
+    <div class="scene scene-map button__container visually-hidden">
+      <button class="button__back button--secondary">Back</button>
+      <button class="button__next__task button--inactive">Select next task</button>
+    </div>
+  </footer>
 
 
+  <!-- <script>
 
-  <script>
 
-
-    document.querySelector('a-scene').addEventListener('loaded', () => {
-      const video = document.querySelector('#greenscreen');
-      if (video && video.readyState >= 2) {
-        video.play();
-      } else {
-        video.addEventListener('canplay', () => video.play());
-      }
-    });
-
+    // document.querySelector('a-scene').addEventListener('loaded', () => {
+    //   const video = document.querySelector('#greenscreen');
+    //   if (video && video.readyState >= 2) {
+    //     video.play();
+    //   } else {
+    //     video.addEventListener('canplay', () => video.play());
+    //   }
+    // });
 
 
 
@@ -104,7 +480,8 @@
           }
         `
     });
-  </script>
+  </script> -->
+  <script src="game.js"></script>
 
 </body>
 
