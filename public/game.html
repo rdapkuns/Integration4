@@ -69,12 +69,7 @@
             </div>
         </section>
         <section class="map">
-            <div>
-                <p>img</p>
-                <p>You did introduction!<br>Now let’s start the game</p>
-            </div>
-        </section>
-        <section class="game">
+            <h2 class="hidden">Map</h2>
             <button data-mark="l1">living 1</button>
             <button data-mark="l1">living 2</button>
             <button data-mark="a1">atelier 1</button>
@@ -85,9 +80,22 @@
             <button data-mark="c2">cafe 2</button>
             <button data-mark="g1">garden 1</button>
             <button data-mark="g2">garden 2</button>
-            <div class="question">
-
-            </div>
+        </section>
+        <section class="prequestion">
+            <h2 class="hidden">Prequestion</h2>
+            <div class="abby_talk"></div>
+            <ul>
+                <li>Please wait here - another player/s will meet you on the mark.</li>
+                <li>When they arrive, say hello to them.</li>
+                <li>After you’ve said hello, click the button that says: “I found them.”</li>
+            </ul>
+            <button class="foundBtn">I found them!</button>
+        </section>
+        <section class="extra_info">
+            <h2 class="hidden">One phone</h2>
+        </section>
+        <section class="question">
+            <h2 class="hidden">Question</h2>
         </section>
     </main>
     <script type="module" src="./scripts/game.js"></script>
