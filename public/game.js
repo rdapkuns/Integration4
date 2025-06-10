@@ -17,14 +17,6 @@ function showSceneByClass(targetClass) {
         scene.classList.add("visually-hidden")
     });
 
-    // console.log(tagetClass)
-
-    // if (targetClass === "scene-game") {
-    //     startARScene()
-    // } else {
-    //     stopARScene()
-    // }
-
     const targetScenes = document.querySelectorAll(`.${targetClass}`);
     console.log(targetClass)
     targetScenes.forEach(scene => {
@@ -42,7 +34,9 @@ const $floor1 = document.querySelector(".floor-1");
 
 const duration = 0.5;
 
+
 document.querySelector(".floor__button--1").addEventListener("click", () => {
+
 
     $seeFloorOne.classList.remove("floor__button--inactive")
     $seeFloorZero.classList.add("floor__button--inactive")
@@ -81,6 +75,7 @@ document.querySelector(".floor__button--1").addEventListener("click", () => {
 });
 
 document.querySelector(".floor__button--0").addEventListener("click", () => {
+
 
     $seeFloorOne.classList.add("floor__button--inactive")
     $seeFloorZero.classList.remove("floor__button--inactive")
@@ -122,11 +117,13 @@ document.querySelector(".floor__button--0").addEventListener("click", () => {
 
 const handleNextTask = () => {
     if (nextTaskSelected === true) {
-        showSceneByClass("scene-game")
+        showSceneByClass("scene-walking")
+        // $nextTask.textContent = "We're ready, Let's begin"
     }
 }
 
 const goToGame = () => {
+    updateAR()
     showSceneByClass("scene-game")
 }
 
@@ -141,7 +138,7 @@ const handleTaskComplete = () => {
     $nextTask.textContent = "Select next task"
     $nextTask.classList.remove("button--primary")
 
-    
+
 
     if (!completedTasks.includes(selectedTask)) {
         completedTasks.push(selectedTask);
@@ -164,9 +161,15 @@ const handleTaskComplete = () => {
             })
         }
     }
+
+    if (taskCount > 8) {
+        const $lastTask = document.getElementById("task__10")
+        $lastTask.classList.remove("visually-hidden")
+    }
 }
 
 const handleProgressBar = () => {
+    const $progressCounter = document.querySelector(".progress__counter")
     const $progressBars = document.querySelectorAll(".progress__bar")
     for (let i = 0; i < 10; i++) {
         if (i < taskCount) {
@@ -176,6 +179,8 @@ const handleProgressBar = () => {
             console.log("more")
         }
     }
+
+    $progressCounter.textContent = taskCount
 }
 
 
@@ -193,20 +198,33 @@ const selectTask = (clickedTask) => {
     $nextTask.classList.add("button--primary")
 
     nextTaskSelected = true
-
-
 }
+
+let ARDisplayIndex = 0
+const updateAR = () => {
+    ARDisplayIndex++
+    $arMarker.innerHTML = `
+    <a-plane src="data/abbies/abby-${ARDisplayIndex}.png" transparent="true" height="5" width="5" position="0 0 -4"
+        rotation="0 0 0" class="game__task game__task--1"></a-plane>
+      <a-plane src="data/tasks/task-${ARDisplayIndex}.jpg" class="game__task game__task--1 visually-hidden" height="4" width="6" position="6 1 -4" rotation="0 0 0"></a-plane>
+    `
+}
+
+const $arMarker = document.querySelector(".ar__marker")
+const $arSwitch = document.querySelector(".ar__switch").addEventListener("click", updateAR)
 
 const $completeTaskButton = document.querySelector(".button__complete").addEventListener("click", handleTaskComplete)
 const $backButton = document.querySelector(".button__back").addEventListener("click", goToGame)
+const $backToMapFromGame = document.querySelector(".button__back--game").addEventListener("click", goToMap)
 const $taskPoints = document.querySelectorAll(".task__point");
 const $nextTask = document.querySelector(".button__next__task")
 $nextTask.addEventListener("click", handleNextTask)
+const $toGameButton = document.querySelector(".button__game--walking").addEventListener("click", goToGame)
 
 $taskPoints.forEach(task => {
     task.addEventListener('click', () => selectTask(task));
 });
-
+const $backToMap = document.querySelector(".button__back--walking").addEventListener('click', () => showSceneByClass("scene-map"));
 
 const init = () => {
     console.log("ff")
