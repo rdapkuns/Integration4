@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-    root: 'public', 
+    base: '/Integration4/',
+    root: 'public',
     build: {
         outDir: 'dist',
     },
