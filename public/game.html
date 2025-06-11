@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/reset.css">
-    <!-- <link rel="stylesheet" href="./css/home.css"> -->
+    <link rel="stylesheet" href="./css/game.css">
     <title>ABBY</title>
 </head>
 
@@ -18,57 +18,65 @@
     <main>
         <section class="introduction">
             <h1 class="hidden">Introduction</h1>
-            <div>
+            <div class="header">
                 <button>back</button>
-                <h2>Welcome!</h2>
-            </div>
-            <div class="step_one">
                 <div>
-                    <p>Purpose</p>
-                    <p>You’ve just started living on your own and so has Abby.
-                        <strong>Let’s grow, side by side.</strong>
-                    </p>
-                    <p>How</p>
-                    <p>You’ll find different activities on the map, each with its own icon. Explore freely.</p>
+                    <h2>Welcome!</h2>
+                    <p>1/4</p>
                 </div>
-                <div>
-                    <p>Visual Legend</p>
+            </div>
+            <div class="steps_bg">
+                <div class="hidden step step_one">
+                    <h2>How this works</h2>
+                    <div class="intro">
+                        <h3>Why</h3>
+                        <p>You’ve just started living on your own and so has Abby. Let’s grow side by side Abby and her
+                            friends</p>
+                        <h3>How</h3>
+                        <p>You’ll find <strong>10 activities</strong> on the <strong>map</strong>. Complete them all and
+                            explore freely.</p>
+                        <h3>Extra</h3>
+                        <p>Grab a pen or pencil at the entrance (you’ll need it for some activities!)</p>
+                    </div>
+                    <div class="info">
+                        <p>You can always get the info by tapping the <img src="./assets/svg/info.svg"
+                                alt="information icon"> icon on the right side of the screen!
+                        </p>
+                        <button>Got it!</button>
+                    </div>
+                </div>
+                <div class="step step_two">
+                    <div>
+                        <div class="speech_bg">
+                            <p class="speech">Hi, I'm Abby. Did you know if you mix up my name, it spells ‘baby’? I’ve
+                                always been about
+                                growing.</p>
+                        </div>
+                        <img class="abby_hi" src="./assets/img/abby-hi.png" alt="Abby character">
+                    </div>
+                    <p>What should I call my new friend?</p>
+                    <img src="./assets/svg/question.svg" alt="more info icon">
+                    <input type="text" placeholder="Max the Laundry Conqueror" />
+                </div>
+                <div class="hidden step step_three">
+                    <p>I just started living on my own and I love the freedom like checking art at my own space.
+                        What
+                        aboutyou?</p>
+                    <img class="abby_hi" src="./assets/img/abby-hi.png" alt="Abby character">
+                    <p>What’s something that really makes you smile when you think about living alone?</p>
                     <button>?</button>
-                    <p>Questions</p>
-                    <button>()</button>
-                    <p>Task</p>
-                    <button>-|-</button>
-                    <p>Colour depth</p>
+                    <textarea placeholder="Dancing in my pajamas at midnight"></textarea>
                 </div>
-            </div>
-            <div class="step_two">
-                <p>Hi, I'm Abby. Did you know if you mix up my name, it spells ‘baby’? I’ve always been about growing.
-                </p>
-                <p>image</p>
-                <p>What should I call my new friend?</p>
-                <button>?</button>
-                <input type="text" placeholder="Max the Laundry Conqueror" />
-            </div>
-            <div class="step_three">
-                <p>I just started living on my own and I love the freedom like checking art at my own space. What
-                    aboutyou?</p>
-                <p>image</p>
-                <p>What’s something that really makes you smile when you think about living alone?</p>
-                <button>?</button>
-                <textarea placeholder="Dancing in my pajamas at midnight"></textarea>
-            </div>
-            <div class="step_four">
-                <p>Although, I dream… and oops, I forget the time! But that’s part of the adventure.</p>
-                <p>And what’s been a little tricky for you about solo living?</p>
-                <button>?</button>
-                <textarea placeholder="Dancing in my pajamas at midnight"></textarea>
-            </div>
-            <div>
-                <p class="progress">1/4</p>
+                <div class=" hidden step step_four">
+                    <p>Although, I dream… and oops, I forget the time! But that’s part of the adventure.</p>
+                    <p>And what’s been a little tricky for you about solo living?</p>
+                    <button>?</button>
+                    <textarea placeholder="Dancing in my pajamas at midnight"></textarea>
+                </div>
                 <button class="next_btn">Next</button>
             </div>
         </section>
-        <section class="map">
+        <section class="hidden map">
             <h2 class="hidden">Map</h2>
             <button data-mark="l1">living 1</button>
             <button data-mark="l1">living 2</button>
@@ -81,7 +89,7 @@
             <button data-mark="g1">garden 1</button>
             <button data-mark="g2">garden 2</button>
         </section>
-        <section class="prequestion">
+        <section class="hidden prequestion">
             <h2 class="hidden">Prequestion</h2>
             <div class="abby_talk"></div>
             <ul>
@@ -91,10 +99,10 @@
             </ul>
             <button class="foundBtn">I found them!</button>
         </section>
-        <section class="extra_info">
+        <section class=" hidden extra_info">
             <h2 class="hidden">One phone</h2>
         </section>
-        <section class="question">
+        <section class=" hidden question">
             <h2 class="hidden">Question</h2>
         </section>
     </main>

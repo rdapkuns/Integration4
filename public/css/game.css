@@ -1,0 +1,196 @@
+html {
+    box-sizing: border-box;
+    max-height: 1vh;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+:root {
+    --yellow: #FFBF50;
+    --blue: #5F90FF;
+    --white: #fff;
+    --black: #000;
+    --green: #01A468;
+    --purple: #BB7CD2;
+    --grey: #848484;
+
+    --s-xs: 0.5rem;
+    --s-s: 1rem;
+    --s-m: 2rem;
+    --s-l: 3rem;
+
+    --fs: 1.2rem;
+    --fs-xs: 1.4rem;
+    --fs-s: 1.5rem;
+    --fs-m: 2rem;
+    --fs-l: 3.125rem;
+}
+
+.hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+img {
+    max-inline-size: 100%;
+    block-size: auto;
+}
+
+strong {
+    font-weight: 700;
+}
+
+body {
+    height: 100dvh;
+    font-family: "GT Walsheim";
+    font-size: var(--fs);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 110%;
+    letter-spacing: -0.506px;
+
+}
+
+button {
+    font-family: "GT Walsheim";
+    font-size: var(--fs);
+    font-weight: 500;
+    padding: 1rem;
+    background-color: var(--yellow);
+    border: none;
+}
+
+h1 {
+    font-family: "GT Walsheim";
+    font-size: var(--fs-l);
+    font-style: normal;
+    font-weight: 700;
+    line-height: 110%;
+    letter-spacing: -1.1px;
+}
+
+h2 {
+    font-family: "GT Walsheim";
+    font-size: var(--fs-m);
+    font-style: normal;
+    font-weight: 500;
+}
+
+h3 {
+    font-family: "GT Walsheim";
+    font-size: var(--fs-s);
+    font-style: normal;
+    font-weight: 400;
+}
+
+header {
+    display: flex;
+    align-items: end;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.header {
+    display: flex;
+    align-items: flex-start;
+    gap: 3.125rem;
+    padding: var(--s-s);
+}
+
+.header>div>p {
+    text-align: center;
+    padding-top: var(--s-m);
+}
+
+
+.steps_bg {
+    background-image:
+        linear-gradient(to bottom, #FFBF50 0 50%, #5F90FF 50% 100%),
+        url('./assets/pattern-a.svg');
+    /* ← your repeating SVG */
+    background-repeat: no-repeat, repeat-x;
+    background-position: top, bottom;
+    background-size: 100% auto, auto;
+    padding-top: var(--s-xs);
+}
+
+.step_one {
+    background-color: var(--white);
+    margin: var(--s-m);
+    display: flex;
+    flex-direction: column;
+    padding: var(--s-s);
+}
+
+.step_one h2 {
+    padding-top: var(--s-m);
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.intro {
+    padding-top: var(--s-l);
+    padding-bottom: var(--s-s);
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: var(--s-m);
+}
+
+.intro h3 {
+    padding-top: var(--s-xs);
+}
+
+.intro>h3 {
+    color: var(--blue);
+    font-weight: 500;
+}
+
+.info {
+    color: var(--grey);
+    text-align: center;
+    padding: var(--s-s);
+}
+
+.info>p {
+    padding: var(--s-s) 0;
+}
+
+.info img {
+    margin-bottom: -0.5rem;
+}
+
+
+.step_one>button {
+    margin: auto;
+}
+
+.step_two>div {
+    display: flex;
+    align-items: center;
+    margin-top: -5rem;
+    padding-left: 2rem;
+    overflow: hidden;
+}
+
+.abby_hi {
+    margin-right: -5rem;
+    padding-top: 5rem;
+    width: 17rem;
+    transform: scaleX(-1) rotate(12deg);
+    z-index: 2
+}
+
+.speech {
+    background: url('../assets/svg/speech.svg') no-repeat center / contain;
+    z-index: 1;
+}
