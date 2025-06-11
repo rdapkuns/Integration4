@@ -36,89 +36,97 @@ const abbyPretalk = [
     }
 ];
 
-const $question = document.querySelector(".question");
-const $markBtns = document.querySelectorAll(".map button");
-const $foundBtn = document.querySelector(".foundBtn");
-const $abbyTalk = document.querySelector(".abby_talk");
+// const $question = document.querySelector(".question");
+// const $markBtns = document.querySelectorAll(".map button");
+// const $foundBtn = document.querySelector(".foundBtn");
+// const $abbyTalk = document.querySelector(".abby_talk");
+const $steps = document.querySelectorAll(".step");
 
-let questions = [];
-let mark = null;
-let randomQuestion = null;
-let questionCounter = 0;
+
+// let questions = [];
+// let mark = null;
+// let randomQuestion = null;
+// let questionCounter = 0;
 
 const init = () => {
-    const savedCount = localStorage.getItem("questionCounter");
-    questionCounter = savedCount ? parseInt(savedCount) : 0;
-    getQuestions();
-    console.log($markBtns);
-    markButtons();
-}
-
-const getQuestions = async () => {
-    const url = './data/questions.json';
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Fetch failed: ${response.status}`);
-        }
-        questions = await response.json();
-        console.log(questions);
-    } catch (error) {
-        console.error('Error loading questions:', error.message);
-    }
-}
-
-const markButtons = () => {
-    $markBtns.forEach(button => {
-        button.addEventListener('click', () => {
-            mark = button.dataset.mark;
-            const pretalk = abbyPretalk.find(p => p.mark === mark);
-            const filtered = questions.filter(q => q.mark === mark);
-            randomQuestion = filtered[Math.floor(Math.random() * filtered.length)];
-            console.log(randomQuestion);
-
-            $abbyTalk.innerHTML = `
-            <h3>${pretalk.title || "Let's Begin!"}</h3>
-            <p>${pretalk.content || "Ready to dive in?"}</p>
-          `;
-        })
-    })
-    $foundBtn.addEventListener('click', () => {
-        questionCount();
-        if (!randomQuestion) return;
-
-        $question.innerHTML = `
-            ${randomQuestion.extra ? `
-                <div>
-                 <p>${randomQuestion.extra.title}</p>
-                  <img src="${randomQuestion.extra.img}" alt="${randomQuestion.extra.title}" />
-                  <p>${randomQuestion.extra.description}</p>
-                </div>` : ''}
-                <p class="type">${randomQuestion.type}</p>
-                ${randomQuestion.mark === "a1" ? `<p>Materials are next to the sink.</p>` : ''}
-                <p><strong>${randomQuestion.task}</strong></p>
-                <p>${randomQuestion.content}</p>
-                ${randomQuestion.example ?
-                `<div><hr>
-                    <p>Example: ${randomQuestion.example}</p>
-                    <hr></div>` : ''}
-              `;
-    });
-}
-
-const questionCount = () => {
-    questionCounter++;
-    localStorage.setItem("questionCounter", questionCounter);
-
-    // progress bar
-    // document.querySelector(".counter")?.textContent = `Completed: ${questionCounter}`;
+    // const savedCount = localStorage.getItem("questionCounter");
+    // questionCounter = savedCount ? parseInt(savedCount) : 0;
+    // getQuestions();
+    // console.log($markBtns);
+    // markButtons();
 }
 
 
-const resetProgress = () => {
-    questionCounter = 0;
-    localStorage.removeItem("questionCounter");
-    // document.querySelector(".counter")?.textContent = `Completed: ${questionCounter}`;
-};
+
+
+
+
+
+// const getQuestions = async () => {
+//     const url = './data/questions.json';
+//     try {
+//         const response = await fetch(url);
+//         if (!response.ok) {
+//             throw new Error(`Fetch failed: ${response.status}`);
+//         }
+//         questions = await response.json();
+//         console.log(questions);
+//     } catch (error) {
+//         console.error('Error loading questions:', error.message);
+//     }
+// }
+
+// const markButtons = () => {
+//     $markBtns.forEach(button => {
+//         button.addEventListener('click', () => {
+//             mark = button.dataset.mark;
+//             const pretalk = abbyPretalk.find(p => p.mark === mark);
+//             const filtered = questions.filter(q => q.mark === mark);
+//             randomQuestion = filtered[Math.floor(Math.random() * filtered.length)];
+//             console.log(randomQuestion);
+
+//             $abbyTalk.innerHTML = `
+//             <h3>${pretalk.title || "Let's Begin!"}</h3>
+//             <p>${pretalk.content || "Ready to dive in?"}</p>
+//           `;
+//         })
+//     })
+//     $foundBtn.addEventListener('click', () => {
+//         questionCount();
+//         if (!randomQuestion) return;
+
+//         $question.innerHTML = `
+//             ${randomQuestion.extra ? `
+//                 <div>
+//                  <p>${randomQuestion.extra.title}</p>
+//                   <img src="${randomQuestion.extra.img}" alt="${randomQuestion.extra.title}" />
+//                   <p>${randomQuestion.extra.description}</p>
+//                 </div>` : ''}
+//                 <p class="type">${randomQuestion.type}</p>
+//                 ${randomQuestion.mark === "a1" ? `<p>Materials are next to the sink.</p>` : ''}
+//                 <p><strong>${randomQuestion.task}</strong></p>
+//                 <p>${randomQuestion.content}</p>
+//                 ${randomQuestion.example ?
+//                 `<div><hr>
+//                     <p>Example: ${randomQuestion.example}</p>
+//                     <hr></div>` : ''}
+//               `;
+//     });
+// }
+
+// const questionCount = () => {
+//     questionCounter++;
+//     localStorage.setItem("questionCounter", questionCounter);
+
+//     // progress bar
+//     // document.querySelector(".counter")?.textContent = `Completed: ${questionCounter}`;
+// }
+
+
+// const resetProgress = () => {
+//     questionCounter = 0;
+//     localStorage.removeItem("questionCounter");
+//     // document.querySelector(".counter")?.textContent = `Completed: ${questionCounter}`;
+// };
 
 init();

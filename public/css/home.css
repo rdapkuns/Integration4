@@ -29,13 +29,36 @@ html {
     --fs-l: 3.125rem;
 }
 
+@font-face {
+    font-family: "GT-Walsheim";
+    src: url('../assets/fonts/GT-Walsheim-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "GT-Walsheim";
+    src: url('../assets/fonts/GT-Walsheim-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "GT-Walsheim";
+    src: url('../assets/fonts/GT-Walsheim-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+
 img {
     max-inline-size: 100%;
     block-size: auto;
 }
 
 body {
-    font-family: "GT Walsheim";
+    font-family: "GT-Walsheim";
     font-size: var(--fs);
     font-style: normal;
     font-weight: 400;
@@ -48,7 +71,7 @@ strong {
 }
 
 h1 {
-    font-family: "GT Walsheim";
+    font-family: "GT-Walsheim";
     font-size: var(--fs-l);
     font-style: normal;
     font-weight: 700;
@@ -57,21 +80,21 @@ h1 {
 }
 
 h2 {
-    font-family: "GT Walsheim";
+    font-family: "GT-Walsheim";
     font-size: var(--fs-m);
     font-style: normal;
     font-weight: 500;
 }
 
 h3 {
-    font-family: "GT Walsheim";
+    font-family: "GT-Walsheim";
     font-size: var(--fs-s);
     font-style: normal;
     font-weight: 400;
 }
 
 button {
-    font-family: "GT Walsheim";
+    font-family: "GT-Walsheim";
     font-size: var(--fs);
     font-weight: 500;
     padding: 1rem;
@@ -241,7 +264,8 @@ header {
     font-size: var(--fs);
 }
 
-.event>.link, .space_about>.link {
+.event>.link,
+.space_about>.link {
     font-weight: 500;
     padding: var(--s-xs) 0;
     display: flex;
@@ -297,10 +321,10 @@ hr {
     padding: var(--s-s) 0;
 }
 
-.people { 
+.people {
     padding-top: var(--s-l);
 }
 
-video{
+video {
     max-width: 95vw;
 }

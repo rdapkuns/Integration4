@@ -5,25 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/game.css">
+    <link rel="stylesheet" href="./css/intro.css">
     <title>ABBY</title>
 </head>
 
 <body>
     <header>
-        <img src="./assets/img/logo.png" alt="Abby logo" width="150">
-        <p>EN</p>
-        <p>profile icon</p>
+        <div class="logo">
+            <img src="./assets/img/logo.png" alt="Abby logo" width="130">
+            <p>Kortrijk</p>
+        </div>
+        <div class="lang_prof">
+            <p class="language">EN</p>
+            <img src="./assets/svg/profile.svg" alt="profile icon" width="46px" height="46px">
+        </div>
     </header>
     <main>
         <section class="introduction">
             <h1 class="hidden">Introduction</h1>
             <div class="header">
-                <button>back</button>
-                <div>
-                    <h2>Welcome!</h2>
-                    <p>1/4</p>
-                </div>
+                <h2>Welcome!</h2>
+                <p>1/4</p>
             </div>
             <div class="steps_bg">
                 <div class="hidden step step_one">
@@ -45,7 +47,7 @@
                         <button>Got it!</button>
                     </div>
                 </div>
-                <div class="step step_two">
+                <div class="hidden step step_two">
                     <div>
                         <div class="speech_bg">
                             <p class="speech">Hi, I'm Abby. Did you know if you mix up my name, it spells ‘baby’? I’ve
@@ -54,28 +56,50 @@
                         </div>
                         <img class="abby_hi" src="./assets/img/abby-hi.png" alt="Abby character">
                     </div>
-                    <p>What should I call my new friend?</p>
-                    <img src="./assets/svg/question.svg" alt="more info icon">
-                    <input type="text" placeholder="Max the Laundry Conqueror" />
+                    <div class="input">
+                        <p>What should I call my new friend?</p>
+                        <input class="name_input" type="text" placeholder="Max the Laundry Conqueror" />
+                    </div>
                 </div>
                 <div class="hidden step step_three">
-                    <p>I just started living on my own and I love the freedom like checking art at my own space.
-                        What
-                        aboutyou?</p>
-                    <img class="abby_hi" src="./assets/img/abby-hi.png" alt="Abby character">
-                    <p>What’s something that really makes you smile when you think about living alone?</p>
-                    <button>?</button>
-                    <textarea placeholder="Dancing in my pajamas at midnight"></textarea>
+                    <div>
+                        <p class="speech">I just started living on my own and I love the freedom like checking art at my
+                            own space.
+                            What
+                            about you?</p>
+                        <img class="abby_hi" src="./assets/img/abby-hi.png" alt="Abby character">
+                    </div>
+                    <div class="input">
+                        <p>What’s something that really makes you smile when you think about living alone?</p>
+                        <textarea class="answer_input" placeholder="Dancing in my pajamas at midnight"></textarea>
+                    </div>
                 </div>
-                <div class=" hidden step step_four">
-                    <p>Although, I dream… and oops, I forget the time! But that’s part of the adventure.</p>
-                    <p>And what’s been a little tricky for you about solo living?</p>
-                    <button>?</button>
-                    <textarea placeholder="Dancing in my pajamas at midnight"></textarea>
+                <div class="step step_four">
+                    <div>
+                        <p class="speech">Although, I dream… and oops, I forget the time! But that’s part of the
+                            adventure.</p>
+                        <img class="abby_hi" src="./assets/img/abby-hi.png" alt="Abby character">
+                    </div>
+                    <div class="input">
+                        <p>And what’s been a little tricky for you about living alone?</p>
+                        <textarea class="answer_input" placeholder="Dancing in my pajamas at midnight"></textarea>
+                    </div>
                 </div>
-                <button class="next_btn">Next</button>
+                <div class="step_buttons">
+                    <button class="back_btn"><img src="./assets/svg/arrow.svg">
+                        <p>Back</p>
+                    </button>
+                    <button class="next_btn">
+                        <p>Next</p> <img src="./assets/svg/arrow.svg">
+                    </button>
+                </div>
             </div>
         </section>
+
+
+
+
+
         <section class="hidden map">
             <h2 class="hidden">Map</h2>
             <button data-mark="l1">living 1</button>
@@ -106,7 +130,7 @@
             <h2 class="hidden">Question</h2>
         </section>
     </main>
-    <script type="module" src="./scripts/game.js"></script>
+    <script type="module" src="./scripts/intro.js"></script>
 </body>
 
 </html>
