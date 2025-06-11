@@ -204,9 +204,9 @@ let ARDisplayIndex = 0
 const updateAR = () => {
     ARDisplayIndex++
     $arMarker.innerHTML = `
-    <a-plane src="../data/abbies/abby-${ARDisplayIndex}.png" transparent="true" height="5" width="5" position="0 0 -4"
+    <a-plane src="./data/abbies/abby-${ARDisplayIndex}.png" transparent="true" height="5" width="5" position="0 0 -4"
         rotation="0 0 0" class="game__task game__task--1"></a-plane>
-      <a-plane src="../data/tasks/task-${ARDisplayIndex}.jpg" class="game__task game__task--1 visually-hidden" height="4" width="6" position="6 1 -4" rotation="0 0 0"></a-plane>
+      <a-plane src="./data/tasks/task-${ARDisplayIndex}.jpg" class="game__task game__task--1 visually-hidden" height="4" width="6" position="6 1 -4" rotation="0 0 0"></a-plane>
     `
 }
 
