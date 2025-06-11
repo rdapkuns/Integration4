@@ -1,124 +1,233 @@
-const abbyPretalk = [
-    {
-        mark: "l1",
-        title: "Here we are!",
-        content: "Now you’ll meet a friend of mine - they’re also on a little quest for connection."
-    },
-    {
-        mark: "a1",
-        title: "Sockrifice",
-        content: "I once invented a game where the loser had to fold socks. I lost. On purpose. I like folding socks."
-    },
-    {
-        mark: "s1",
-        title: "Sketchy Business",
-        content: "I once accidentally drew on the museum wall. Now it’s officially called ‘Abby’s First Mural’."
-    },
-    {
-        mark: "c1",
-        title: "Smells Like Trouble",
-        content: "I once lit five candles to feel calm… then panicked , I thought  something burning."
-    },
-    {
-        mark: "c2",
-        title: "Oops, I Did It",
-        content: "I overthought it for three days, did it in five seconds, and survived. Shocking."
-    },
-    {
-        mark: "g1",
-        title: "The Dirt Talk",
-        content: "I once came in the garden to think and ended up talking to a worm."
-    },
-    {
-        mark: "g2",
-        title: "Final Step",
-        content: "When I first arrived, I didn’t know what to grow. So I planted a wish... Now it’s your turn."
+
+
+
+let taskCount = 1
+let nextTaskSelected = false
+let selectedTask = 0
+let completedTasks = []
+
+
+
+
+function showSceneByClass(targetClass) {
+    const scenes = document.querySelectorAll('.scene');
+
+    scenes.forEach(scene => {
+        // scene.style.display = 'none';
+        scene.classList.add("visually-hidden")
+    });
+
+    const targetScenes = document.querySelectorAll(`.${targetClass}`);
+    console.log(targetClass)
+    targetScenes.forEach(scene => {
+        // scene.style.display = 'block';
+        scene.classList.remove("visually-hidden")
+    });
+
+}
+
+const $seeFloorOne = document.querySelector(".floor__button--1");
+const $seeFloorZero = document.querySelector(".floor__button--0");
+const $floor0 = document.querySelector(".floor-0");
+const $floor1 = document.querySelector(".floor-1");
+
+
+const duration = 0.5;
+
+
+document.querySelector(".floor__button--1").addEventListener("click", () => {
+
+
+    $seeFloorOne.classList.remove("floor__button--inactive")
+    $seeFloorZero.classList.add("floor__button--inactive")
+
+    gsap.fromTo($floor0,
+        {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+        },
+        {
+            y: 150,
+            opacity: 0,
+            scale: 0.5,
+            duration: duration,
+            ease: "power1.out"
+        }
+    );
+
+    gsap.fromTo($floor1,
+        {
+            y: 0,
+            x: -10,
+            opacity: 0,
+            scale: 1.5,
+        },
+        {
+            y: 0,
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            duration: duration,
+            ease: "power1.out"
+        }
+    );
+});
+
+document.querySelector(".floor__button--0").addEventListener("click", () => {
+
+
+    $seeFloorOne.classList.add("floor__button--inactive")
+    $seeFloorZero.classList.remove("floor__button--inactive")
+
+    gsap.fromTo($floor0,
+        {
+            y: 150,
+            opacity: 0,
+            scale: 0.5,
+        },
+        {
+            y: 0,
+            x: 0,
+            scale: 1,
+            opacity: 1,
+            duration: duration,
+            ease: "power1.out"
+        }
+    );
+
+    gsap.fromTo($floor1,
+        {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+        },
+        {
+            y: 0,
+            x: -10,
+            opacity: 0,
+            scale: 1.5,
+            duration: duration,
+            ease: "power1.out"
+        }
+    );
+});
+
+
+
+const handleNextTask = () => {
+    if (nextTaskSelected === true) {
+        showSceneByClass("scene-walking")
+        // $nextTask.textContent = "We're ready, Let's begin"
     }
-];
+}
 
-const $question = document.querySelector(".question");
-const $markBtns = document.querySelectorAll(".map button");
-const $foundBtn = document.querySelector(".foundBtn");
-const $abbyTalk = document.querySelector(".abby_talk");
+const goToGame = () => {
+    updateAR()
+    showSceneByClass("scene-game")
+}
 
-let questions = [];
-let mark = null;
-let randomQuestion = null;
-let questionCounter = 0;
+const goToMap = () => {
+    showSceneByClass("scene-map")
+}
+
+const handleTaskComplete = () => {
+    showSceneByClass("scene-map")
+
+    $nextTask.classList.add("button--inactive")
+    $nextTask.textContent = "Select next task"
+    $nextTask.classList.remove("button--primary")
+
+
+
+    if (!completedTasks.includes(selectedTask)) {
+        completedTasks.push(selectedTask);
+        taskCount++
+        // console.log(taskCount)
+        handleProgressBar()
+    }
+
+    console.log(completedTasks)
+
+    for (let i = 0; i < 10; i++) {
+        if (completedTasks.includes(i)) {
+
+            $taskPoints.forEach(task => {
+                const taskId = task.id;
+                const number = taskId.split("__")[1];
+                if (Number(number) === i) {
+                    task.classList.add("task--complete")
+                }
+            })
+        }
+    }
+
+    if (taskCount > 8) {
+        const $lastTask = document.getElementById("task__10")
+        $lastTask.classList.remove("visually-hidden")
+    }
+}
+
+const handleProgressBar = () => {
+    const $progressCounter = document.querySelector(".progress__counter")
+    const $progressBars = document.querySelectorAll(".progress__bar")
+    for (let i = 0; i < 10; i++) {
+        if (i < taskCount) {
+            console.log("less")
+            $progressBars[i].classList.add("progress__bar--filled")
+        } else {
+            console.log("more")
+        }
+    }
+
+    $progressCounter.textContent = taskCount
+}
+
+
+const selectTask = (clickedTask) => {
+    $taskPoints.forEach(task => task.classList.remove('task__selected'));
+    clickedTask.classList.add('task__selected');
+
+    const taskId = clickedTask.id;
+    const number = taskId.split("__")[1]; // "2" as a string
+    console.log(number)
+    selectedTask = Number(number)
+
+    $nextTask.classList.remove("button--inactive")
+    $nextTask.textContent = "Go to task 2"
+    $nextTask.classList.add("button--primary")
+
+    nextTaskSelected = true
+}
+
+let ARDisplayIndex = 0
+const updateAR = () => {
+    ARDisplayIndex++
+    $arMarker.innerHTML = `
+    <a-plane src="../data/abbies/abby-${ARDisplayIndex}.png" transparent="true" height="5" width="5" position="0 0 -4"
+        rotation="0 0 0" class="game__task game__task--1"></a-plane>
+      <a-plane src="../data/tasks/task-${ARDisplayIndex}.jpg" class="game__task game__task--1 visually-hidden" height="4" width="6" position="6 1 -4" rotation="0 0 0"></a-plane>
+    `
+}
+
+const $arMarker = document.querySelector(".ar__marker")
+const $arSwitch = document.querySelector(".ar__switch").addEventListener("click", updateAR)
+
+const $completeTaskButton = document.querySelector(".button__complete").addEventListener("click", handleTaskComplete)
+const $backButton = document.querySelector(".button__back").addEventListener("click", goToGame)
+const $backToMapFromGame = document.querySelector(".button__back--game").addEventListener("click", goToMap)
+const $taskPoints = document.querySelectorAll(".task__point");
+const $nextTask = document.querySelector(".button__next__task")
+$nextTask.addEventListener("click", handleNextTask)
+const $toGameButton = document.querySelector(".button__game--walking").addEventListener("click", goToGame)
+
+$taskPoints.forEach(task => {
+    task.addEventListener('click', () => selectTask(task));
+});
+const $backToMap = document.querySelector(".button__back--walking").addEventListener('click', () => showSceneByClass("scene-map"));
 
 const init = () => {
-    const savedCount = localStorage.getItem("questionCounter");
-    questionCounter = savedCount ? parseInt(savedCount) : 0;
-    getQuestions();
-    console.log($markBtns);
-    markButtons();
+    console.log("ff")
 }
-
-const getQuestions = async () => {
-    const url = './data/questions.json';
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Fetch failed: ${response.status}`);
-        }
-        questions = await response.json();
-        console.log(questions);
-    } catch (error) {
-        console.error('Error loading questions:', error.message);
-    }
-}
-
-const markButtons = () => {
-    $markBtns.forEach(button => {
-        button.addEventListener('click', () => {
-            mark = button.dataset.mark;
-            const pretalk = abbyPretalk.find(p => p.mark === mark);
-            const filtered = questions.filter(q => q.mark === mark);
-            randomQuestion = filtered[Math.floor(Math.random() * filtered.length)];
-            console.log(randomQuestion);
-
-            $abbyTalk.innerHTML = `
-            <h3>${pretalk.title || "Let's Begin!"}</h3>
-            <p>${pretalk.content || "Ready to dive in?"}</p>
-          `;
-        })
-    })
-    $foundBtn.addEventListener('click', () => {
-        questionCount();
-        if (!randomQuestion) return;
-
-        $question.innerHTML = `
-            ${randomQuestion.extra ? `
-                <div>
-                 <p>${randomQuestion.extra.title}</p>
-                  <img src="${randomQuestion.extra.img}" alt="${randomQuestion.extra.title}" />
-                  <p>${randomQuestion.extra.description}</p>
-                </div>` : ''}
-                <p class="type">${randomQuestion.type}</p>
-                ${randomQuestion.mark === "a1" ? `<p>Materials are next to the sink.</p>` : ''}
-                <p><strong>${randomQuestion.task}</strong></p>
-                <p>${randomQuestion.content}</p>
-                ${randomQuestion.example ?
-                `<div><hr>
-                    <p>Example: ${randomQuestion.example}</p>
-                    <hr></div>` : ''}
-              `;
-    });
-}
-
-const questionCount = () => {
-    questionCounter++;
-    localStorage.setItem("questionCounter", questionCounter);
-
-    // progress bar
-    // document.querySelector(".counter")?.textContent = `Completed: ${questionCounter}`;
-}
-
-
-const resetProgress = () => {
-    questionCounter = 0;
-    localStorage.removeItem("questionCounter");
-    // document.querySelector(".counter")?.textContent = `Completed: ${questionCounter}`;
-};
 
 init();
