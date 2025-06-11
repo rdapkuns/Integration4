@@ -6,7 +6,7 @@ export default defineConfig({
     base: '/Integration4/',
     root: 'public',
     build: {
-        outDir: '../dist', // Output goes one level up from 'public' to keep things clean
+        outDir: '../docs', // Output goes one level up from 'public' to keep things clean
         rollupOptions: {
             input: {
                 main: resolve(__dirname, 'public/index.html'),
