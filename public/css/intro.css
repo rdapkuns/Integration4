@@ -157,9 +157,6 @@ header {
 
 .header {
     text-align: center;
-    /* display: flex;
-flex-direction: column;
-    align-items: flex-start; */
     padding: var(--s-s);
 }
 
@@ -205,10 +202,16 @@ flex-direction: column;
 .step_buttons {
     bottom: 0;
     width: 100%;
-    padding: 1rem;
+    padding: var(--s-m);
     display: flex;
     justify-content: space-between;
+    align-items: end;
     z-index: 10;
+}
+ 
+.skip{
+    padding-bottom: 0.3px;
+    border-bottom: 1px var(--black) solid;
 }
 
 .step_one {
@@ -298,14 +301,14 @@ flex-direction: column;
 .name_input {
     min-width: 18rem;
     padding: var(--s-s) var(--s-m) var(--s-s) var(--s-xs);
-    border: 1px solid #000;
+    border: 1px solid var(--black);
     border-radius: 0;
 }
 
 .answer_input {
     min-width: 18rem;
     padding: var(--s-xs) var(--s-m) var(--s-m) var(--s-xs);
-    border: 1px solid #000;
+    border: 1px solid var(--black);
     border-radius: 0;
 }
 
