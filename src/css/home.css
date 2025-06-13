@@ -34,28 +34,28 @@ html {
 
 @font-face {
     font-family: "GT-Walsheim";
-    src: url('../assets/fonts/GT-Walsheim-Regular.otf') format('opentype');
+    src: url('../../public/assets/fonts/GT-Walsheim-Regular.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: "GT-Walsheim";
-    src: url('../assets/fonts/GT-Walsheim-Medium.otf') format('opentype');
+    src: url('../../public/assets/fonts/GT-Walsheim-Medium.otf') format('opentype');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: "GT-Walsheim";
-    src: url('../assets/fonts/GT-Walsheim-Bold.otf') format('opentype');
+    src: url('../../public/assets/fonts/GT-Walsheim-Bold.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
     font-family: "GT-Walsheim";
-    src: url('../assets/fonts/GT-Walsheim-Regular-Oblique.otf') format('opentype');
+    src: url('../../public/assets/fonts/GT-Walsheim-Regular-Oblique.otf') format('opentype');
     font-weight: 400;
     font-style: italic;
 }
