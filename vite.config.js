@@ -6,9 +6,8 @@ import path from 'path'
 
 export default defineConfig({
     base: '/Integration4/',
-    // root: 'public',
     build: {
-        outDir: '../docs', // Output goes one level up from 'public' to keep things clean
+        outDir: 'docs',
         rollupOptions: {
             input: {
                 main: resolve(__dirname, 'index.html'),
@@ -23,5 +22,5 @@ export default defineConfig({
             key: fs.readFileSync(path.resolve(__dirname, './localhost.key')),
             cert: fs.readFileSync(path.resolve(__dirname, './localhost.crt')),
         }
-      }
+    }
 });

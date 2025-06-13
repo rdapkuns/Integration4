@@ -4,49 +4,707 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="./src/css/intro.css"> -->
     <title>ABBY</title>
-  <script type="module" crossorigin src="/Integration4/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
-  <script type="module" crossorigin src="/Integration4/assets/game-C_eVZ_68.js"></script>
-  <link rel="stylesheet" crossorigin href="/Integration4/assets/intro-DfgzFQls.css">
-  <link rel="stylesheet" crossorigin href="/Integration4/assets/reset-D0fh3uF9.css">
+    <style>
+
+@font-face {
+      font-family: 'GT Walsheim';
+      /* src: url('/src/fonts/GT-Walsheim-Regular.otf') format('opentype'); */
+      src: url('/Integration4/src/assets/fonts/GT-Walsheim-Regular.otf') format('opentype');
+
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'GT Walsheim';
+      src: url('/Integration4/assets/GT-Walsheim-Bold-BF1FuAdG.otf') format('opentype');
+      font-weight: 600;
+      font-style: medium;
+    }
+
+    @font-face {
+      font-family: 'GT Walsheim';
+      src: url('/Integration4/assets/GT-Walsheim-Bold-BF1FuAdG.otf') format('opentype');
+      font-weight: 800;
+      font-style: bold;
+    }
+
+        html,
+        body,
+        div,
+        span,
+        applet,
+        object,
+        iframe,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        blockquote,
+        pre,
+        a,
+        abbr,
+        acronym,
+        address,
+        big,
+        cite,
+        code,
+        del,
+        dfn,
+        em,
+        img,
+        ins,
+        kbd,
+        q,
+        s,
+        samp,
+        small,
+        strike,
+        strong,
+        sub,
+        sup,
+        tt,
+        var,
+        b,
+        u,
+        i,
+        center,
+        dl,
+        dt,
+        dd,
+        ol,
+        ul,
+        li,
+        fieldset,
+        form,
+        label,
+        legend,
+        table,
+        caption,
+        tbody,
+        tfoot,
+        thead,
+        tr,
+        th,
+        td,
+        article,
+        aside,
+        canvas,
+        details,
+        embed,
+        figure,
+        figcaption,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        output,
+        ruby,
+        section,
+        summary,
+        time,
+        mark,
+        audio,
+        video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        section {
+            display: block;
+        }
+
+        body {
+            line-height: 1;
+        }
+
+        ol,
+        ul {
+            list-style: none;
+        }
+
+        blockquote,
+        q {
+            quotes: none;
+        }
+
+        blockquote:before,
+        blockquote:after,
+        q:before,
+        q:after {
+            content: '';
+            content: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        html {
+            box-sizing: border-box;
+            max-height: 1vh;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: inherit;
+        }
+
+        :root {
+            --yellow: #FFBF50;
+            --blue: #5F90FF;
+            --white: #fff;
+            --black: #000;
+            --green: #01A468;
+            --purple: #BB7CD2;
+            --grey: #848484;
+
+            --s-xs: 0.5rem;
+            --s-s: 1rem;
+            --s-m: 2rem;
+            --s-l: 3rem;
+
+            --fs-t: 0.8rem;
+            --fs: 1.2rem;
+            --fs-xs: 1.4rem;
+            --fs-s: 1.5rem;
+            --fs-m: 2rem;
+            --fs-l: 3.125rem;
+        }
+
+
+        @font-face {
+            font-family: "GT-Walsheim";
+            src: url('../assets/fonts/GT-Walsheim-Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+
+        .hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        img {
+            max-inline-size: 100%;
+            block-size: auto;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        body {
+            height: 100dvh;
+            font-family: "GT-Walsheim";
+            font-size: var(--fs);
+            font-style: normal;
+            font-weight: 400;
+            line-height: 110%;
+            letter-spacing: -0.506px;
+        }
+
+        button {
+            font-family: "GT-Walsheim";
+            font-size: var(--fs);
+            font-weight: 500;
+            padding: var(--s-s);
+            background-color: var(--yellow);
+            border: none;
+            text-decoration: none;
+            color: var(--black);
+        }
+
+        .language {
+            font-weight: 500;
+            padding: var(--s-s);
+            background-color: var(--yellow);
+        }
+
+        h1 {
+            font-family: "GT-Walsheim";
+            font-size: var(--fs-l);
+            font-style: normal;
+            font-weight: 700;
+            line-height: 110%;
+            letter-spacing: -1.1px;
+        }
+
+        h2 {
+            font-family: "GT-Walsheim";
+            font-size: var(--fs-m);
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        h3 {
+            font-family: "GT-Walsheim";
+            font-size: var(--fs-s);
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        a {
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--s-s);
+        }
+
+        .logo {
+            display: flex;
+            align-items: end;
+            font-weight: 500;
+        }
+
+        .lang_prof {
+            display: flex;
+            align-items: center;
+            gap: var(--s-s);
+        }
+
+        .logo>p {
+            margin-bottom: -0.3rem;
+        }
+
+
+        .header {
+            text-align: center;
+            padding: var(--s-s);
+            padding-top: 0;
+        }
+
+        .header>p {
+            padding-top: var(--s-xs);
+        }
+
+        .onboarding_bg {
+            position: relative;
+            height: 100%;
+            background: linear-gradient(to bottom, #FFBF50 0 50%, #5F90FF 50% 100%);
+            padding: var(--s-m);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .onboarding_bg>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .onboarding_bg::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background-image: url('../assets/svg/A.svg');
+            background-repeat: repeat;
+            background-size: 44px 44px;
+            animation: scroll-diagonal 8s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes scroll-diagonal {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: -88px 88px;
+            }
+        }
+
+        .onboarding_intro,
+        .board {
+            background-color: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .onboarding_intro h2,
+        .board h2 {
+            color: var(--blue);
+            font-size: var(--fs-m);
+            padding: var(--s-s) 0;
+        }
+
+        .skip_to {
+            text-align: center;
+            margin: auto;
+            text-decoration: underline;
+            padding: var(--s-s);
+        }
+
+        .exit {
+            padding: var(--s-xs);
+            position: relative;
+            left: 80%;
+        }
+
+        .intro_exit {
+            padding: var(--s-xs);
+            position: relative;
+            left: 80%;
+        }
+
+        .onboarding_intro button {
+            margin: var(--s-m) 0;
+        }
+
+        .onboarding_intro p {
+            padding: var(--s-xs) var(--s-s);
+        }
+
+        .show_around {
+            font-weight: 500;
+        }
+
+        .boards {
+            background-color: var(--white);
+        }
+
+        .board p {
+            padding: var(--s-xs) var(--s-s);
+        }
+
+        .onboarding_btns {
+            padding: var(--s-s);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .progress {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.3rem;
+        }
+
+        .progress__bar {
+            background-color: #DCEBFF;
+            width: 100%;
+            height: 0.5rem;
+        }
+
+        .progress__bar--filled {
+            background-color: #289bff;
+        }
+
+        .progress_count {
+            text-align: center;
+        }
+
+        .progress_count span {
+            font-weight: 700;
+        }
+
+
+
+
+        .prev_btn>img {
+            transform: scaleX(-1);
+        }
+
+        .steps_bg {
+            position: relative;
+            height: 100%;
+            background: linear-gradient(to bottom, #FFBF50 0 50%, #5F90FF 50% 100%);
+            padding-top: var(--s-xs);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .steps_bg::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background-image: url('../assets/svg/A.svg');
+            background-repeat: repeat;
+            background-size: 44px 44px;
+            animation: scroll-diagonal 8s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes scroll-diagonal {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: -88px 88px;
+            }
+        }
+
+        .step_buttons {
+            bottom: 0;
+            width: 100%;
+            padding: var(--s-m);
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            z-index: 10;
+        }
+
+        .skip {
+            padding-bottom: 0.3px;
+            border-bottom: 1px var(--black) solid;
+        }
+
+        .step_one {
+            background-color: var(--white);
+            margin: var(--s-m);
+            display: flex;
+            flex-direction: column;
+            padding: var(--s-s);
+        }
+
+        .step_one h2 {
+            padding-top: var(--s-m);
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .intro {
+            padding-top: var(--s-l);
+            padding-bottom: var(--s-s);
+            display: grid;
+            grid-template-columns: 1fr 4fr;
+            gap: var(--s-m);
+        }
+
+        .intro h3 {
+            padding-top: var(--s-xs);
+        }
+
+        .intro>h3 {
+            color: var(--blue);
+            font-weight: 500;
+        }
+
+        .info {
+            color: var(--grey);
+            text-align: center;
+            padding: var(--s-s);
+        }
+
+        .info>p {
+            padding: var(--s-s) 0;
+        }
+
+        .info img {
+            margin-bottom: -0.5rem;
+        }
+
+        .step_two>div,
+        .step_three>div,
+        .step_four>div {
+            display: flex;
+            align-items: center;
+            margin-top: -5rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .abby_hi {
+            margin-right: -3rem;
+            padding-top: 5rem;
+            height: 20rem;
+            transform: scaleX(-1) rotate(12deg);
+            z-index: 1;
+        }
+
+        .speech {
+            margin-left: var(--s-s);
+            /* aspect-ratio: 3/2; */
+            background: url('/Integration4/assets/svg/speech.svg') no-repeat center / cover;
+            padding: var(--s-xs);
+            font-weight: 400;
+        }
+
+        .input {
+            margin: var(--s-m);
+            padding: var(--s-s);
+            background-color: var(--white);
+            display: flex;
+            flex-direction: column;
+            z-index: 3;
+        }
+
+        .input>p {
+            padding-bottom: var(--s-s);
+        }
+
+        .name_input {
+            min-width: 18rem;
+            padding: var(--s-s) var(--s-m) var(--s-s) var(--s-xs);
+            border: 1px solid var(--black);
+            border-radius: 0;
+        }
+
+        .answer_input {
+            min-width: 18rem;
+            padding: var(--s-xs) var(--s-m) var(--s-m) var(--s-xs);
+            border: 1px solid var(--black);
+            border-radius: 0;
+        }
+
+        .name_input::placeholder,
+        .answer_input::placeholder {
+            color: var(--grey);
+            font-style: italic;
+            opacity: 1;
+            font-size: var(--fs-t);
+        }
+
+        .next_btn,
+        .back_btn {
+            display: flex;
+            gap: var(--s-xs);
+            align-items: center;
+        }
+
+        .prev_btn,
+        .back_btn {
+            background-color: transparent;
+            border: 4px solid var(--yellow);
+        }
+
+        .next_btn>img,
+        .back_btn>img {
+            margin-bottom: -0.1rem;
+        }
+
+        .back_btn>img {
+            transform: scaleX(-1);
+        }
+    </style>
+  <script type="module" crossorigin src="/Integration4/assets/intro-CdQ1B0jO.js"></script>
+  <link rel="modulepreload" crossorigin href="/Integration4/assets/modulepreload-polyfill-B5Qt9EMX.js">
 </head>
 
 <body>
     <header>
-        <img src="/Integration4/assets/logo-D9Q_ggUt.png" alt="Abby logo" width="150">
-        <p>EN</p>
-        <p>profile icon</p>
+        <div class="logo">
+            <img src="./assets/img/logo.png" alt="Abby logo" width="130">
+            <p>Kortrijk</p>
+        </div>
+        <div class="lang_prof">
+            <p class="language">EN</p>
+            <img src="./assets/svg/profile.svg" alt="profile icon" width="46px" height="46px">
+        </div>
     </header>
     <main>
-        <section class="introduction">
-            <h1 class="hidden">Introduction</h1>
-            <div class="header">
-                <button>back</button>
-                <div>
-                    <h2>Welcome!</h2>
-                    <p>1/4</p>
+        <section class="onboarding">
+            <h1 class="hidden">Onboarding</h1>
+            <a href="./index.html">
+                <img class="exit" src="./assets/svg/x.svg" alt="exit icon">
+            </a>
+            <div class="onboarding_bg">
+                <div class="onboarding_intro">
+                    <img src="./assets/img/board1.png">
+                    <h2>How this works</h2>
+                    <p>You’re about to start something made just for people like you: growing, figuring things out,
+                        living
+                        on your own (but not
+                        alone).</p>
+                    <p class="show_around">Let’s take a moment to show
+                        you around.</p>
+                    <button>Continue <img src="./assets/svg/arrow.svg"></button>
                 </div>
+                <div class="boards">
+                    <div class="hidden board borad_one">
+                        <img src="./assets/img/board2.png">
+                        <h2>Why</h2>
+                        <p>Abby wants to bring people who’ve just started living on their own together - to grow and
+                            connect.
+                        </p>
+
+                    </div>
+                    <div class="hidden board borad_two">
+                        <img src="./assets/img/board3.png">
+                        <h2>How</h2>
+                        <p>You’ll find <strong>10</strong> activities on the <strong>map.</strong> Complete them all and
+                            explore freely.
+                        </p>
+
+                    </div>
+                    <div class="hidden board borad_three">
+                        <img src="./assets/img/board4.png">
+                        <h2>Extra</h2>
+                        <p>Grab a pen or pencil at the entrance (you’ll need it for some activities!)
+                        </p>
+
+                    </div>
+                    <div>
+                        <p class="progress_count"><span>1</span> out of <span>3</span></p>
+                        <div class="progress">
+                            <div class="progress__bar progress__bar--filled"></div>
+                            <div class="progress__bar"></div>
+                            <div class="progress__bar"></div>
+                        </div>
+                    </div>
+                    <div class="onboarding_btns">
+                        <button class="prev_btn"><img src="./assets/svg/arrow.svg"> Back</button>
+                        <button class="forw_btn">Next <img src="./assets/svg/arrow.svg"></button>
+                    </div>
+                </div>
+                <p class="skip_to">Skip</p>
+            </div>
+        </section>
+        <section class="hidden introduction">
+            <h1 class="hidden">Introduction</h1>
+            <a href="./index.html">
+                <img class="intro_exit" src="./assets/svg/x.svg" alt="exit icon">
+            </a>
+            <div class="header">
+                <h2>Welcome!</h2>
+                <p class="steps_count">1/3</p>
             </div>
             <div class="steps_bg">
-                <div class="hidden step step_one">
-                    <h2>How this works</h2>
-                    <div class="intro">
-                        <h3>Why</h3>
-                        <p>You’ve just started living on your own and so has Abby. Let’s grow side by side Abby and her
-                            friends</p>
-                        <h3>How</h3>
-                        <p>You’ll find <strong>10 activities</strong> on the <strong>map</strong>. Complete them all and
-                            explore freely.</p>
-                        <h3>Extra</h3>
-                        <p>Grab a pen or pencil at the entrance (you’ll need it for some activities!)</p>
-                    </div>
-                    <div class="info">
-                        <p>You can always get the info by tapping the <img src="data:image/svg+xml,%3csvg%20width='26'%20height='26'%20viewBox='0%200%2026%2026'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M13%202.84375C7.39984%202.84375%202.84375%207.39984%202.84375%2013C2.84375%2018.6002%207.39984%2023.1562%2013%2023.1562C18.6002%2023.1562%2023.1562%2018.6002%2023.1562%2013C23.1562%207.39984%2018.6002%202.84375%2013%202.84375ZM13%207.00781C13.2611%207.00781%2013.5164%207.08525%2013.7335%207.23033C13.9507%207.3754%2014.1199%207.58161%2014.2198%207.82286C14.3197%208.06412%2014.3459%208.32959%2014.2949%208.5857C14.244%208.84182%2014.1183%209.07708%2013.9336%209.26173C13.749%209.44638%2013.5137%209.57212%2013.2576%209.62307C13.0015%209.67401%2012.736%209.64787%2012.4947%209.54794C12.2535%209.448%2012.0473%209.27878%2011.9022%209.06165C11.7571%208.84453%2011.6797%208.58926%2011.6797%208.32812C11.6797%207.97796%2011.8188%207.64213%2012.0664%207.39452C12.314%207.14692%2012.6498%207.00781%2013%207.00781ZM16.25%2018.4844H10.1562V16.8594H12.3906V12.3906H10.7656V10.7656H14.0156V16.8594H16.25V18.4844Z'%20fill='%235F90FF'/%3e%3c/svg%3e"
-                                alt="information icon"> icon on the right side of the screen!
-                        </p>
-                        <button>Got it!</button>
-                    </div>
-                </div>
                 <div class="step step_two">
                     <div>
                         <div class="speech_bg">
@@ -54,58 +712,49 @@
                                 always been about
                                 growing.</p>
                         </div>
-                        <img class="abby_hi" src="/Integration4/assets/abby-hi-htmg70vI.png" alt="Abby character">
+                        <img class="abby_hi" src="./assets/img/abby-hi.png" alt="Abby character">
                     </div>
-                    <p>What should I call my new friend?</p>
-                    <img src="data:image/svg+xml,%3csvg%20width='18'%20height='23'%20viewBox='0%200%2018%2023'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20cx='9'%20cy='11.5'%20r='8.5'%20fill='white'%20stroke='black'/%3e%3cpath%20d='M7.873%2013.658C7.873%2013.0913%207.94667%2012.638%208.094%2012.298C8.24133%2011.958%208.536%2011.6293%208.978%2011.312L9.845%2010.7C10.219%2010.428%2010.5023%2010.1277%2010.695%209.799C10.8877%209.459%2010.984%209.051%2010.984%208.575C10.984%208.00833%2010.8027%207.54933%2010.44%207.198C10.0887%206.84667%209.607%206.671%208.995%206.671C8.29233%206.671%207.73133%206.88067%207.312%207.3C6.904%207.71933%206.7%208.32%206.7%209.102H5.153C5.153%207.912%205.49867%206.98267%206.19%206.314C6.89267%205.64533%207.85033%205.311%209.063%205.311C10.1737%205.311%2011.035%205.61133%2011.647%206.212C12.2703%206.80133%2012.582%207.572%2012.582%208.524C12.582%209.204%2012.4347%209.782%2012.14%2010.258C11.8453%2010.7227%2011.426%2011.1647%2010.882%2011.584L10.151%2012.111C9.83367%2012.349%209.61833%2012.5757%209.505%2012.791C9.39167%2012.995%209.335%2013.2783%209.335%2013.641V13.93H7.873V13.658ZM8.604%2017.619C8.25267%2017.619%207.958%2017.5%207.72%2017.262C7.482%2017.0127%207.363%2016.718%207.363%2016.378C7.363%2016.038%207.482%2015.749%207.72%2015.511C7.958%2015.2617%208.25267%2015.137%208.604%2015.137C8.944%2015.137%209.233%2015.2617%209.471%2015.511C9.72033%2015.749%209.845%2016.038%209.845%2016.378C9.845%2016.718%209.72033%2017.0127%209.471%2017.262C9.233%2017.5%208.944%2017.619%208.604%2017.619Z'%20fill='black'/%3e%3c/svg%3e" alt="more info icon">
-                    <input type="text" placeholder="Max the Laundry Conqueror" />
+                    <div class="input">
+                        <p>What should I call my new friend?</p>
+                        <input class="name_input" type="text" placeholder="Max the Laundry Conqueror" />
+                    </div>
                 </div>
                 <div class="hidden step step_three">
-                    <p>I just started living on my own and I love the freedom like checking art at my own space.
-                        What
-                        aboutyou?</p>
-                    <img class="abby_hi" src="/Integration4/assets/abby-hi-htmg70vI.png" alt="Abby character">
-                    <p>What’s something that really makes you smile when you think about living alone?</p>
-                    <button>?</button>
-                    <textarea placeholder="Dancing in my pajamas at midnight"></textarea>
+                    <div>
+                        <p class="speech">I just started living on my own and I love the freedom like checking art at my
+                            own space.
+                            What
+                            about you?</p>
+                        <img class="abby_hi" src="./assets/img/abby-hi.png" alt="Abby character">
+                    </div>
+                    <div class="input">
+                        <p>What’s something that really makes you smile when you think about living alone?</p>
+                        <textarea class="answer_input" placeholder="Dancing in my pajamas at midnight"></textarea>
+                    </div>
                 </div>
-                <div class=" hidden step step_four">
-                    <p>Although, I dream… and oops, I forget the time! But that’s part of the adventure.</p>
-                    <p>And what’s been a little tricky for you about solo living?</p>
-                    <button>?</button>
-                    <textarea placeholder="Dancing in my pajamas at midnight"></textarea>
+                <div class="hidden step step_four">
+                    <div>
+                        <p class="speech">Although, I dream… and oops, I forget the time! But that’s part of the
+                            adventure.</p>
+                        <img class="abby_hi" src="./assets/img/abby-hi.png" alt="Abby character">
+                    </div>
+                    <div class="input">
+                        <p>And what’s been a little tricky for you about living alone?</p>
+                        <textarea class="answer_input" placeholder="Dancing in my pajamas at midnight"></textarea>
+                    </div>
                 </div>
-                <button class="next_btn">Next</button>
+                <div class="step_buttons">
+                    <button class="back_btn"><img src="./assets/svg/arrow.svg">
+                        <p>Back</p>
+                    </button>
+                    <a href="./game.html">
+                        <p class="skip">Skip</p>
+                    </a>
+                    <button class="next_btn">
+                        <p>Next</p> <img src="./assets/svg/arrow.svg">
+                    </button>
+                </div>
             </div>
-        </section>
-        <section class="hidden map">
-            <h2 class="hidden">Map</h2>
-            <button data-mark="l1">living 1</button>
-            <button data-mark="l1">living 2</button>
-            <button data-mark="a1">atelier 1</button>
-            <button data-mark="a1">atelier 2</button>
-            <button data-mark="s1">salon 1</button>
-            <button data-mark="s1">salon 2</button>
-            <button data-mark="c1">cafe 1</button>
-            <button data-mark="c2">cafe 2</button>
-            <button data-mark="g1">garden 1</button>
-            <button data-mark="g2">garden 2</button>
-        </section>
-        <section class="hidden prequestion">
-            <h2 class="hidden">Prequestion</h2>
-            <div class="abby_talk"></div>
-            <ul>
-                <li>Please wait here - another player/s will meet you on the mark.</li>
-                <li>When they arrive, say hello to them.</li>
-                <li>After you’ve said hello, click the button that says: “I found them.”</li>
-            </ul>
-            <button class="foundBtn">I found them!</button>
-        </section>
-        <section class=" hidden extra_info">
-            <h2 class="hidden">One phone</h2>
-        </section>
-        <section class=" hidden question">
-            <h2 class="hidden">Question</h2>
         </section>
     </main>
 </body>

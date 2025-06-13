@@ -18,6 +18,27 @@
 
   <title>Abby - game</title>
   <style>
+    @font-face {
+      font-family: 'GT Walsheim';
+      src: url('/Integration4/assets/GT-Walsheim-Regular-DUWoHrf1.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'GT Walsheim';
+      src: url('/Integration4/assets/GT-Walsheim-Bold-BF1FuAdG.otf') format('opentype');
+      font-weight: 600;
+      font-style: medium;
+    }
+
+    @font-face {
+      font-family: 'GT Walsheim';
+      src: url('/Integration4/assets/GT-Walsheim-Bold-BF1FuAdG.otf') format('opentype');
+      font-weight: 800;
+      font-style: bold;
+    }
+
     :root {
       --blue: #5F90FF
     }
@@ -26,6 +47,7 @@
       height: 100vh;
       width: 100vw;
       overflow: hidden !important;
+      font-family: "GT Walsheim";
     }
 
     .visually-hidden {
@@ -43,13 +65,17 @@
       margin: 0;
     }
 
+    * {
+      font-family: "GT Walsheim" !important;
+    }
+
     body {
       height: 100vh;
       max-width: 100%;
       margin: 0 !important;
       overflow: hidden !important;
       /* background-color: grey; */
-      font-family: Helvetica, sans-serif;
+      font-family: "GT Walsheim";
 
       /* width: 100vw;
       height: 100vh;
@@ -483,7 +509,7 @@
     .scrolling__BG {
       background-color: var(--blue);
       margin: 0;
-      background-image: url("data:image/svg+xml,%3csvg%20width='44'%20height='44'%20viewBox='0%200%2044%2044'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M21.6648%2011.0057L16.5583%2038.6839H7L17.3439%205H26.1166L36.5915%2038.6839H26.7713L21.6648%2011.0057Z'%20fill='%235689FF'/%3e%3c/svg%3e");
+      background-image: url('./assets/svg/A.svg');
       background-repeat: repeat;
       background-size: 44px 44px;
       animation: scroll-diagonal 8s linear infinite;
@@ -680,16 +706,37 @@
       transform: translateY(50%) !important;
       opacity: 0 !important;
     }
+
+    #loading-screen.fade-out {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
   </style>
-  <script type="module" crossorigin src="/Integration4/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
-  <script type="module" crossorigin src="/Integration4/assets/game-C_eVZ_68.js"></script>
+  <script type="module" crossorigin src="/Integration4/assets/game-pBJrf1Vb.js"></script>
+  <link rel="modulepreload" crossorigin href="/Integration4/assets/modulepreload-polyfill-B5Qt9EMX.js">
 </head>
 
 <body>
 
   <a href="index.html" class="logo">
-    <img src="data:image/svg+xml,%3csvg%20width='159'%20height='156'%20viewBox='0%200%20159%20156'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20style='mix-blend-mode:multiply'%3e%3cpath%20d='M0%200H159L0%20156V0Z'%20fill='url(%23paint0_linear_1005_1412)'/%3e%3c/g%3e%3cpath%20d='M64.7198%2025C66.6966%2025.0001%2071.6558%2026.7133%2073.2853%2031.8525C74.6641%2036.2011%2072.8903%2039.6275%2071.8361%2040.9453C73.2418%2041.824%2076.0263%2044.6351%2075.921%2048.8516C75.7892%2054.1227%2072.0992%2058.999%2066.3009%2058.999H55.0997V25H64.7198ZM61.5568%2045.5576V52.4102H65.9054C67.7977%2052.4102%2069.3312%2050.8757%2069.3312%2048.9834C69.331%2047.0913%2067.7975%2045.5576%2065.9054%2045.5576H61.5568ZM61.6886%2038.4414H64.0607C65.9529%2038.4414%2067.4874%2036.9079%2067.4874%2035.0156C67.4874%2033.1234%2065.9529%2031.5889%2064.0607%2031.5889H61.6886V38.4414Z'%20fill='white'/%3e%3cpath%20d='M87.9126%2025C89.8894%2025.0001%2094.8485%2026.7133%2096.478%2031.8525C97.8568%2036.2011%2096.083%2039.6275%2095.0288%2040.9453C96.4345%2041.824%2099.219%2044.6352%2099.1138%2048.8516C98.982%2054.1227%2095.2919%2058.999%2089.4937%2058.999H78.2925V25H87.9126ZM84.7495%2045.5576V52.4102H89.0981C90.9904%2052.4102%2092.5249%2050.8757%2092.5249%2048.9834C92.5247%2047.0913%2090.9903%2045.5576%2089.0981%2045.5576H84.7495ZM84.8813%2038.4414H87.2534C89.1457%2038.4414%2090.6802%2036.9079%2090.6802%2035.0156C90.6802%2033.1234%2089.1457%2031.5889%2087.2534%2031.5889H84.8813V38.4414Z'%20fill='white'/%3e%3cpath%20d='M38.6648%2031.3201L33.5583%2058.9984H24L34.3439%2025.3145H43.1166L53.5915%2058.9984H43.7713L38.6648%2031.3201Z'%20fill='white'/%3e%3cpath%20d='M113.555%2047.9888V58.9984H106.145V47.9888L96.0899%2025.3145H105.748L109.85%2042.7462L114.084%2025.3145H123.478L113.555%2047.9888Z'%20fill='white'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_1005_1412'%20x1='80'%20y1='71'%20x2='6.75256'%20y2='-14.1597'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-opacity='0'/%3e%3cstop%20offset='1'%20stop-opacity='0.43'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e">
+    <img src="./assets/svg/abby-logo.svg">
   </a>
+
+
+
+  <div id="loading-screen" class="scrolling__BG" style="
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    color: white;
+    font-weight: 800;
+  ">
+    <p>Loading...</p>
+  </div>
 
   <!-- <div class="scene scene-game ar-wrapper"> -->
 
@@ -731,7 +778,7 @@
       </div>
       <div class="map__body">
         <div class="floor__wrapper floor-1">
-          <img src="/Integration4/assets/floor-1-BkgRzdms.png">
+          <img src="./assets/img/floor-1.png">
           <div id="task__7" data-location="S1" class="task__point">
             <div id="indicator__7" class="indicator"><span class="player__amount">4</span><span>ppl</span></div>
             <div class=" circle magenta"></div>
@@ -750,7 +797,7 @@
           </div>
         </div>
         <div class="floor__wrapper floor-0">
-          <img src="/Integration4/assets/floor-0-Css9JOPD.png">
+          <img src="./assets/img/floor-0.png">
           <div id="task__1" data-location="L2" class="task__point">
             <div id="indicator__1" class="indicator"><span class="player__amount">4</span><span>ppl</span></div>
             <div class="circle green"></div>
@@ -790,7 +837,7 @@
         <div class="walking__speech--body">Say “Hi” and when you're both ready - begin with the first question!</div>
       </div>
       <div class="walking__abby">
-        <img src="/Integration4/assets/abby-bubble-CMBiBapL.png">
+        <img src="./assets/img/abby-bubble.png">
         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 48L11 0H48L0 48Z" fill="white" />
         </svg>
@@ -799,7 +846,7 @@
   </div>
 
   <div class="scene scene-outro visually-hidden scrolling__BG">
-    <img src="/Integration4/assets/abby-bubble-CMBiBapL.png">
+    <img src="./assets/img/abby-bubble.png">
     <p>This is the end of the Demo,</p>
     <p>Thank you for participating!</p>
   </div>
@@ -815,7 +862,7 @@
   </a-scene> -->
 
   <div class="scene scene-game panel__info panel__info--hidden">
-    <img src="/Integration4/assets/info-C8RCj3RI.png">
+    <img src="./assets/img/info.png">
     <button class="panel__info--close">
       <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M26.9787 1.98544L1.98877 26.9853M26.9888 26.9852L1.99884 1.98532" stroke="white" stroke-width="3" />
@@ -906,8 +953,8 @@
   </div>
 
   <div class="scene scene-intro visually-hidden">
-    <img class="info__findmarker" src="/Integration4/assets/info-find-marker-DWdCfji9.png">
-    <button class="button--secondary">Back to map</button>
+    <img class="info__findmarker" src="./assets/img/info-find-marker.png">
+    <button class="button--secondary button__back--intro">Back to map</button>
 
     <!-- <div class="button__container button__container--hidden button__container--intro">
       <button class="button__back--intro button--secondary">Back to map</button>
