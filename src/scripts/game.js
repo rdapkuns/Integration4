@@ -2,10 +2,11 @@ import { supabase } from '/src/scripts/supabaseClient.js';
 
 
 
-let taskCount = 1
+let taskCount = 7
 let nextTaskSelected = false
 let selectedTask = 0
-let completedTasks = []
+// let completedTasks = []
+let completedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
 
 let isFirstRound = true
 let isDoingIntro = true
@@ -172,20 +173,27 @@ const goToGame = async () => {
     // $buttonContainer.classList.remove("button__container--hidden")
 
     let playersAtLocation = await loadLocations(selectedTask)
-    updateParticipantAmount(playersAtLocation, 1)
+    // updateParticipantAmount(playersAtLocation, 1)
     updateAR()
-    if (isDoingIntro) {
+    if (isDoingIntro === true) {
+        // playersAtLocation = await loadLocations(selectedTask)
+        // updateParticipantAmount(playersAtLocation, -1)
         showSceneByClass("scene-intro")
         const $footer = document.querySelector("footer")
         $footer.classList.add("visually-hidden")
         isDoingIntro = false
+        isDoingIntro = localStorage.setItem('isDoingIntro', 'false')
     } else {
+        updateParticipantAmount(playersAtLocation, 1)
         showSceneByClass("scene-game")
     }
 }
 
 const $allTasks = document.querySelectorAll(".task__point")
 const goToMap = async () => {
+    isDoingIntro = localStorage.getItem('isDoingIntro') ?? (localStorage.setItem('isDoingIntro', 'true'), true);
+    isFirstRound = localStorage.getItem('isFirstRound');
+    isFirstRound = isFirstRound === null ? true : isFirstRound === 'true';
     if (isFirstRound === true) {
         $allTasks.forEach(task => {
             let point = task.lastElementChild
@@ -195,11 +203,34 @@ const goToMap = async () => {
     showSceneByClass("scene-map")
 }
 
-const returnToMap = () => {
-    isDoingIntro = true
+const returnToMap = async (introStatus) => {
+    let playersAtLocation = await loadLocations(selectedTask)
+    updateParticipantAmount(playersAtLocation, -1)
+    isDoingIntro = introStatus
+    localStorage.setItem('isDoingIntro', introStatus),
     showSceneByClass("scene-map")
     const $footer = document.querySelector("footer")
     $footer.classList.remove("visually-hidden")
+}
+
+const loadMapPoints = () => {
+    for (let i = 0; i < 10; i++) {
+        if (completedTasks.includes(i)) {
+
+            $taskPoints.forEach(task => {
+                const taskId = task.id;
+                const number = taskId.split("__")[1];
+                if (Number(number) === i) {
+                    task.classList.add("task--complete")
+                }
+            })
+        }
+    }
+
+    if (taskCount > 8) {
+        const $lastTask = document.getElementById("task__10")
+        $lastTask.classList.remove("visually-hidden")
+    }
 }
 
 const handleTaskComplete = async () => {
@@ -209,6 +240,7 @@ const handleTaskComplete = async () => {
 
     if (isFirstRound === true) {
         isFirstRound = false
+        localStorage.setItem('isFirstRound', isFirstRound);
         $allTasks.forEach(task => {
             let point = task.lastElementChild
             point.classList.remove("task__icebreaker")
@@ -231,29 +263,32 @@ const handleTaskComplete = async () => {
     if (!completedTasks.includes(selectedTask)) {
         completedTasks.push(selectedTask);
         taskCount++
+        localStorage.setItem('taskProgress', taskCount);
         // console.log(taskCount)
+        localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
         handleProgressBar()
     }
 
     // console.log(completedTasks)
 
-    for (let i = 0; i < 10; i++) {
-        if (completedTasks.includes(i)) {
+    // for (let i = 0; i < 10; i++) {
+    //     if (completedTasks.includes(i)) {
 
-            $taskPoints.forEach(task => {
-                const taskId = task.id;
-                const number = taskId.split("__")[1];
-                if (Number(number) === i) {
-                    task.classList.add("task--complete")
-                }
-            })
-        }
-    }
+    //         $taskPoints.forEach(task => {
+    //             const taskId = task.id;
+    //             const number = taskId.split("__")[1];
+    //             if (Number(number) === i) {
+    //                 task.classList.add("task--complete")
+    //             }
+    //         })
+    //     }
+    // }
 
-    if (taskCount > 8) {
-        const $lastTask = document.getElementById("task__10")
-        $lastTask.classList.remove("visually-hidden")
-    }
+    // if (taskCount > 8) {
+    //     const $lastTask = document.getElementById("task__10")
+    //     $lastTask.classList.remove("visually-hidden")
+    // }
+    loadMapPoints()
 
     if (taskCount === 11) {
         showSceneByClass("scene-outro")
@@ -261,6 +296,9 @@ const handleTaskComplete = async () => {
 }
 
 const handleProgressBar = () => {
+    // taskCount = localStorage.getItem('taskProgress');
+    taskCount = Number(localStorage.getItem('taskProgress')) || 1;
+
     const $progressCounter = document.querySelector(".progress__counter")
     const $progressBars = document.querySelectorAll(".progress__bar")
     for (let i = 0; i < 10; i++) {
@@ -322,20 +360,39 @@ async function updateParticipantAmount(playersAtLocation, increment) {
         .from('Locations')
         .update({ amount: playersAtLocation.amount + increment })
         .eq('name', playersAtLocation.name);
+    console.log("new amount: ", playersAtLocation.amount)
 }
+
+AFRAME.registerComponent('true-billboard', {
+    tick: function () {
+        const camera = document.querySelector('#cam').object3D;
+        const object = this.el.object3D;
+
+        // Get world position of camera
+        const cameraWorldPos = new THREE.Vector3();
+        camera.getWorldPosition(cameraWorldPos);
+
+        // Get world position of the object
+        const objectWorldPos = new THREE.Vector3();
+        object.getWorldPosition(objectWorldPos);
+
+        // Look at camera (with local transformation retained)
+        object.lookAt(cameraWorldPos);
+    }
+});
 
 const updateAR = () => {
     let currentAbby = Math.ceil(taskCount / 2);
     $arMarker.innerHTML = `
     <a-plane src="${base}assets/abbies/abby-${currentAbby}.png" transparent="true" height="5" width="5" position="0 0 -4"
         rotation="0 0 0" class="game__task game__task--1"></a-plane>
-      <a-plane src="${base}assets/questions/${currentLocation}.png" transparent="true"  class="game__task game__task--1 visually-hidden" height="4" width="6" position="6 1 -4" rotation="0 0 0"></a-plane>
+      <a-plane src="${base}assets/questions/${currentLocation}.png" transparent="true" true-billboard class="game__task game__task--1 visually-hidden" height="4" width="6" position="6 1 -4" rotation="0 0 0"></a-plane>
     `
     if (isFirstRound === true) {
         $arMarker.innerHTML = `
     <a-plane src="${base}assets/abbies/abby-${currentAbby}.png" transparent="true" height="5" width="5" position="0 0 -4"
         rotation="0 0 0" class="game__task game__task--1"></a-plane>
-      <a-plane src="${base}assets/questions/Intro.png" transparent="true"  class="game__task game__task--1 visually-hidden" height="4" width="6" position="6 1 -4" rotation="0 0 0"></a-plane>
+      <a-plane src="${base}assets/questions/Intro.png" transparent="true" true-billboard class="game__task game__task--1 visually-hidden" height="4" width="6" position="6 1 -4" rotation="0 0 0"></a-plane>
     `
     }
 
@@ -419,13 +476,13 @@ const $marker = document.getElementById("marker").addEventListener('markerFound'
 
 const $completeTaskButton = document.querySelector(".button__complete").addEventListener("click", handleTaskComplete)
 const $backButton = document.querySelector(".button__back").addEventListener("click", goToGame)
-const $backToMapFromGame = document.querySelector(".button__back--game").addEventListener("click", goToMap)
+const $backToMapFromGame = document.querySelector(".button__back--game").addEventListener("click", () => returnToMap(false))
 const $taskPoints = document.querySelectorAll(".task__point");
 const $nextTask = document.querySelector(".button__next__task")
 $nextTask.addEventListener("click", handleNextTask)
 const $toGameButton = document.querySelector(".button__game--walking").addEventListener("click", goToGame)
 const $introToGameButton = document.querySelector(".button__next__intro").addEventListener("click", goToFirstQuestion)
-const $introToMapButton = document.querySelector(".button__back--intro").addEventListener('click', () => returnToMap());
+const $introToMapButton = document.querySelector(".button__back--intro").addEventListener('click', () => returnToMap(true));
 
 $taskPoints.forEach(taskPoint => {
     taskPoint.addEventListener('click', handleTaskPointClick);
@@ -434,7 +491,9 @@ const $backToMap = document.querySelector(".button__back--walking").addEventList
 
 const init = () => {
     // showSceneByClass("scene-intro")
+    loadMapPoints()
     goToMap()
+    handleProgressBar()
     // goToGame()
 }
 
