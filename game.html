@@ -246,7 +246,7 @@
       /* width: 1.5rem;
       height: 1.5rem; */
       position: absolute;
-      z-index: 10;
+      /* z-index: 10; */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -269,6 +269,7 @@
       bottom: 1.8rem;
       font-size: 1.2rem;
       pointer-events: none;
+      z-index: 2;
 
       opacity: 0;
       transform: translateY(10px);
@@ -315,9 +316,9 @@
       }
     }
 
-    .task--complete {
+    /* .task--complete {
       filter: brightness(2) saturate(30%);
-    }
+    } */
 
     .task--complete::before {
       content: "✓";
@@ -1001,14 +1002,14 @@
   <button class="ar__switch visually-hidden">Swich AR</button>
 
   <a-scene embedded arjs class="scene scene-game">
-    <a-marker id="marker" preset="hiro" class="ar__marker" smooth="true" smoothCount="7" smoothTolerance="0.01"
+    <a-marker id="marker" preset="hiro" class="ar__marker" smooth="true" smoothCount="2" smoothTolerance="0.01"
       smoothThreshold="3">
       <a-plane src="./assets/img/abby-hi-3.png" transparent="true" height="8" width="5" position="0 0 -4"
         rotation="0 0 0" class="game__task game__task--1"></a-plane>
       <a-plane src="./assets/ui-purple.png" transparent="true" class="game__task game__task--1" height="4" width="10"
-        position="8 1 -4" rotation="0 0 0"></a-plane>
+        position="8 1 -4" rotation="0 0 0" true-billboard></a-plane>
     </a-marker>
-    <a-entity camera></a-entity>
+    <a-entity id="cam" camera></a-entity>
   </a-scene>
 
   <!-- <script>
