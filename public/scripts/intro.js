@@ -1,124 +1,118 @@
-const abbyPretalk = [
-    {
-        mark: "l1",
-        title: "Here we are!",
-        content: "Now you’ll meet a friend of mine - they’re also on a little quest for connection."
-    },
-    {
-        mark: "a1",
-        title: "Sockrifice",
-        content: "I once invented a game where the loser had to fold socks. I lost. On purpose. I like folding socks."
-    },
-    {
-        mark: "s1",
-        title: "Sketchy Business",
-        content: "I once accidentally drew on the museum wall. Now it’s officially called ‘Abby’s First Mural’."
-    },
-    {
-        mark: "c1",
-        title: "Smells Like Trouble",
-        content: "I once lit five candles to feel calm… then panicked , I thought  something burning."
-    },
-    {
-        mark: "c2",
-        title: "Oops, I Did It",
-        content: "I overthought it for three days, did it in five seconds, and survived. Shocking."
-    },
-    {
-        mark: "g1",
-        title: "The Dirt Talk",
-        content: "I once came in the garden to think and ended up talking to a worm."
-    },
-    {
-        mark: "g2",
-        title: "Final Step",
-        content: "When I first arrived, I didn’t know what to grow. So I planted a wish... Now it’s your turn."
-    }
-];
+const $steps = document.querySelectorAll(".step");
+const $nextBtn = document.querySelector('.next_btn');
+const $backBtn = document.querySelector('.back_btn');
+const $skip = document.querySelector('.skip');
+const $stepCount = document.querySelector('.steps_count');
+const $introduction = document.querySelector('.introduction')
 
-const $question = document.querySelector(".question");
-const $markBtns = document.querySelectorAll(".map button");
-const $foundBtn = document.querySelector(".foundBtn");
-const $abbyTalk = document.querySelector(".abby_talk");
+const $intro = document.querySelector('.onboarding_intro');
+const $boards = document.querySelectorAll('.board');
+const $progressCount = document.querySelector('.progress_count span');
+const $progressBars = document.querySelectorAll('.progress__bar');
+const $progressContainer = document.querySelector('.progress_count').parentElement;
+const $buttonsContainer = document.querySelector('.onboarding_btns')
+const $forwBtn = document.querySelector('.forw_btn');
+const $prevBtn = document.querySelector('.prev_btn');
+const $continueBtn = document.querySelector('.onboarding_intro button');
+const $boardSkip = document.querySelector('.skip_to');
 
-let questions = [];
-let mark = null;
-let randomQuestion = null;
-let questionCounter = 0;
+let currentStep = 0;
+let currentBoard = 0;
 
 const init = () => {
-    const savedCount = localStorage.getItem("questionCounter");
-    questionCounter = savedCount ? parseInt(savedCount) : 0;
-    getQuestions();
-    console.log($markBtns);
-    markButtons();
-}
 
-const getQuestions = async () => {
-    const url = './data/questions.json';
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Fetch failed: ${response.status}`);
-        }
-        questions = await response.json();
-        console.log(questions);
-    } catch (error) {
-        console.error('Error loading questions:', error.message);
-    }
-}
+    showBoard(currentBoard);
+    console.log($steps);
 
-const markButtons = () => {
-    $markBtns.forEach(button => {
-        button.addEventListener('click', () => {
-            mark = button.dataset.mark;
-            const pretalk = abbyPretalk.find(p => p.mark === mark);
-            const filtered = questions.filter(q => q.mark === mark);
-            randomQuestion = filtered[Math.floor(Math.random() * filtered.length)];
-            console.log(randomQuestion);
+    $boards.forEach(board => board.classList.add('hidden'));
+    $progressContainer.style.display = 'none';
+    // $prevBtn.style.display = 'none';
+    // $forwBtn.style.display = 'none';
+    $buttonsContainer.classList.add('hidden');
+    $boardSkip.style.display = 'none';
 
-            $abbyTalk.innerHTML = `
-            <h3>${pretalk.title || "Let's Begin!"}</h3>
-            <p>${pretalk.content || "Ready to dive in?"}</p>
-          `;
-        })
-    })
-    $foundBtn.addEventListener('click', () => {
-        questionCount();
-        if (!randomQuestion) return;
-
-        $question.innerHTML = `
-            ${randomQuestion.extra ? `
-                <div>
-                 <p>${randomQuestion.extra.title}</p>
-                  <img src="${randomQuestion.extra.img}" alt="${randomQuestion.extra.title}" />
-                  <p>${randomQuestion.extra.description}</p>
-                </div>` : ''}
-                <p class="type">${randomQuestion.type}</p>
-                ${randomQuestion.mark === "a1" ? `<p>Materials are next to the sink.</p>` : ''}
-                <p><strong>${randomQuestion.task}</strong></p>
-                <p>${randomQuestion.content}</p>
-                ${randomQuestion.example ?
-                `<div><hr>
-                    <p>Example: ${randomQuestion.example}</p>
-                    <hr></div>` : ''}
-              `;
+    $continueBtn.addEventListener('click', () => {
+        $boardSkip.style.display = 'inline';
+        $intro.classList.add('hidden');
+        $progressContainer.style.display = 'block';
+        $buttonsContainer.classList.remove('hidden');
+        showBoard(currentBoard);
     });
+
+    $boardSkip.addEventListener('click', handleSkip);
 }
 
-const questionCount = () => {
-    questionCounter++;
-    localStorage.setItem("questionCounter", questionCounter);
+const handleSkip = () => {
+    document.querySelector('.onboarding').classList.add('hidden');
+    $introduction.classList.remove('hidden');
 
-    // progress bar
-    // document.querySelector(".counter")?.textContent = `Completed: ${questionCounter}`;
 }
+const showBoard = (index) => {
+    $boards.forEach((board, i) => {
+        board.classList.toggle('hidden', i !== index);
+    });
 
+    $progressCount.textContent = `${index + 1}`;
+    $progressBars.forEach((bar, i) => {
+        bar.classList.toggle('progress__bar--filled', i <= index);
+    });
 
-const resetProgress = () => {
-    questionCounter = 0;
-    localStorage.removeItem("questionCounter");
-    // document.querySelector(".counter")?.textContent = `Completed: ${questionCounter}`;
+    // $prevBtn.disabled = index === 0;
 };
+
+$forwBtn.addEventListener('click', () => {
+    if (currentBoard < $boards.length - 1) {
+        currentBoard++;
+        showBoard(currentBoard);
+    } else {
+        document.querySelector('.onboarding').classList.add('hidden');
+        $introduction.classList.remove('hidden');
+
+        showStep(0);
+    }
+});
+
+$prevBtn.addEventListener('click', () => {
+    if (currentBoard > 0) {
+        currentBoard--;
+        showBoard(currentBoard);
+    }
+});
+
+
+const showStep = (index) => {
+    console.log($steps.length);
+    $steps.forEach((step, i) => {
+        step.classList.toggle('hidden', i !== index);
+    });
+
+    $backBtn.disabled = index === 0;
+    $nextBtn.disabled = index === $steps.length;
+    updateProgress(index);
+};
+
+$nextBtn.addEventListener('click', () => {
+
+    console.log(currentStep);
+    console.log($steps.length);
+    if (currentStep < $steps.length - 1) {
+        currentStep++;
+        showStep(currentStep);
+    } else {
+        window.location.href = './game.html';
+    }
+});
+
+$backBtn.addEventListener('click', () => {
+    if (currentStep > 0) {
+        currentStep--;
+        showStep(currentStep);
+    }
+});
+
+const updateProgress = (stepIndex) => {
+    $stepCount.textContent = `${stepIndex + 1}/3`; // or use $steps.length instead of 3
+};
+
 
 init();

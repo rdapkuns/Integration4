@@ -25,6 +25,21 @@ const spaces = [
     }
 ];
 
+const thoughts = [
+    '(opens fridge) It echoes back.',
+    'Did laundry. Forgot it in machine. Twice.',
+    '27 mismatched socks. 2 feet. Math\'s off.',
+    'Showered. No towel. Just vibes.',
+    'Plant\'s fine. Just... a bit crunchy.',
+    'Set alarm. Slept through it anyway.',
+    'Fridge tour: mustard and old guilt.',
+    'Toothpaste out. Used travel one. Again.',
+    'Oil too hot. Chicken too black.',
+    'Washed one sock. Not the other.',
+    'Forgot garbage day. Again. Smells like it.',
+    'Put rice on. Became popcorn somehow.',
+]
+
 const $space = document.querySelector(".space");
 const $spName = document.querySelector(".space_name");
 const $spIcon = document.querySelector(".space_icon");
@@ -32,10 +47,12 @@ const $spMedia = document.querySelector(".space_media");
 const $spDescription = document.querySelector(".space_description");
 const $prevBtn = document.querySelector(".prev_btn");
 const $nextBtn = document.querySelector(".next_btn");
+const $thought = document.querySelector(".extra_thought");
 
 let currentIndex = 0;
 
 const init = () => {
+    randomThought();
     $nextBtn.addEventListener('click', () => {
         currentIndex = (currentIndex + 1) % spaces.length;
         updateSpace(currentIndex);
@@ -47,6 +64,7 @@ const init = () => {
     });
 
     updateSpace(currentIndex);
+    $spMedia.playbackRate = 1.25;
 }
 
 const updateSpace = (index) => {
@@ -57,6 +75,11 @@ const updateSpace = (index) => {
     $spMedia.src = space.media;
     $spMedia.alt = space.name;
     $spDescription.textContent = space.description;
+}
+
+const randomThought = () => {
+    const randomIndex = Math.floor(Math.random() * thoughts.length);
+    $thought.textContent = `“${thoughts[randomIndex]}”`;
 }
 
 init();
