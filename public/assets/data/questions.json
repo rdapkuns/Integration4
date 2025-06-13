@@ -1,0 +1,337 @@
+[
+    {
+        "id": 1,
+        "mark": "l1",
+        "type": "Icebreaker Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "What’s one little solo-living win you’d add to your solo living exhibition?",
+        "example": "Fixed WI-FI"
+    },
+    {
+        "id": 2,
+        "mark": "l1",
+        "type": "Icebreaker Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "What’s a skill or part of yourself you’d love to develop - maybe even through something at Abby?",
+        "example": "Drawing for fun"
+    },
+    {
+        "id": 3,
+        "mark": "l1",
+        "type": "Icebreaker Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "Your fave solo snack, worthy of the Abby gallery?",
+        "example": "Peanut butter on a spoon"
+    },
+    {
+        "id": 4,
+        "mark": "l1",
+        "type": "Icebreaker Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "What adulting win belongs in your solo story?",
+        "example": "Filing taxes on time"
+    },
+    {
+        "id": 5,
+        "mark": "l1",
+        "type": "Icebreaker Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "If procrastination was an art, what masterpiece would you contribute?",
+        "example": "The Overwatered Plant Still Life"
+    },
+    {
+        "id": 6,
+        "mark": "l1",
+        "type": "Icebreaker Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "If freedom had a snapshot in your solo-living exhibition, what moment would it show?",
+        "example": "Reading in bed past 2am"
+    },
+    {
+        "id": 7,
+        "mark": "l1",
+        "type": "Icebreaker Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "If comfort was an artwork, what little solo ritual would you frame?",
+        "example": "Drinking tea under a blanket"
+    },
+    {
+        "id": 8,
+        "mark": "l1",
+        "type": "Icebreaker Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "What’s one thing in your room or home that quietly says, ‘this is me’?",
+        "example": "A photo wall of friends and travels"
+    },
+    {
+        "id": 9,
+        "mark": "l1",
+        "type": "Icebreaker Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "What’s your solo-living soundtrack?",
+        "example": "Your all-time comfort album"
+    },
+    {
+        "id": 10,
+        "mark": "l1",
+        "type": "Icebreaker Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "What would you tuck into your solo living story - something you miss?",
+        "example": "Family meals"
+    },
+    {
+        "id": 11,
+        "mark": "l1",
+        "type": "Icebreaker Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "What silly or proud ‘adulting’ badge would you display in your Abby solo-living exhibition?",
+        "example": "Master of Matching Socks"
+    },
+    {
+        "id": 12,
+        "mark": "l1",
+        "type": "Icebreaker Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "If you could turn one thing in your home into a museum object, what would it be and why?",
+        "example": "My well-worn favourite mug"
+    },
+    {
+        "id": 13,
+        "mark": "l1",
+        "type": "Icebreaker Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "Have you ever had a moment in a museum that made you feel really seen or understood?",
+        "example": "Seeing an artwork about homesickness"
+    },
+    {
+        "id": 14,
+        "mark": "l1",
+        "type": "Icebreaker Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "What tiny trace of you would you leave in Abby?",
+        "example": "A tiny pressed flower"
+    },
+    {
+        "id": 15,
+        "mark": "l1",
+        "type": "Icebreaker Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "What’s a museum you’d love to visit one day, real or imaginary?",
+        "example": "A real-life Studio Ghibli museum"
+    },
+    {
+        "id": 16,
+        "mark": "a1",
+        "type": "Creative Task",
+        "task": "Guess the Corner",
+        "content": "Make the other one guess by sketching or acting out your favourite spot at Abby’s."
+    },
+    {
+        "id": 17,
+        "mark": "a1",
+        "type": "Creative Task",
+        "task": "Bomb Game",
+        "content": "Hit Start Timer, it’ll go off at a surprise moment.\nTake turns sharing small solo-living wins.\nWhen the bomb goes off, whoever’s turn it is… boom! The other person wins!"
+    },
+    {
+        "id": 18,
+        "mark": "a1",
+        "type": "Creative Task",
+        "task": "Charades",
+        "content": "Act out one small win or proud moment you had today inside Abby.",
+        "example": "Tried a workshop"
+    },
+    {
+        "id": 19,
+        "mark": "a1",
+        "type": "Creative Task",
+        "task": "Guess Solo Soundtrack",
+        "content": "Write a song lyric that fits your solo vibe, your teammate guesses the song."
+    },
+    {
+        "id": 20,
+        "mark": "a1",
+        "type": "Creative Task",
+        "task": "The “Un-Plan” Plan",
+        "content": "Together make an “un-plan” exhibition: list the things you’d love not to have to do again.",
+        "example": "Cleaning the bathroom"
+    },
+    {
+        "id": 21,
+        "mark": "a1",
+        "type": "Creative Task",
+        "task": "Mini Myth-Making",
+        "content": "You just became roomies in a imaginary building. Invent a fun backstory for your new home. Draw or write your shared myth.",
+        "example": "Why does the hallway smell like cinnamon?"
+    },
+    {
+        "id": 22,
+        "mark": "a1",
+        "type": "Creative Task",
+        "task": "Solo living anthem",
+        "content": "Together make your solo living anthem about chores you’re sick of. Then read it out loud together!",
+        "example": "I am the lone warrior of laundry…"
+    },
+    {
+        "id": 23,
+        "mark": "a1",
+        "type": "Creative Task",
+        "task": "Fake Tour",
+        "content": "Pick an object and give a confident, made-up tour.The other asks curious questions. Then switch!",
+        "example": "So this stool is 100 years old..."
+    },
+    {
+        "id": 24,
+        "mark": "a1",
+        "type": "Creative Task",
+        "task": "The “Oops” Generator",
+        "content": "Click the button to get a random item. Share a funny “oops” solo living moment involving it."
+    },
+    {
+        "id": 25,
+        "mark": "s1",
+        "type": "Art Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "What object in your home have you used in a way it wasn’t meant to be used?",
+        "example": "Mug as a flower pot",
+        "extra": {
+            "title": "The Living by Rinus Van de Velde",
+            "img": "./assets/img/living.jpeg",
+            "description": "Every chair, plant, and table is recreated in cardboard and paint. Abby invites you to step into Rinus Van de Velde’s world. Is it still art if you can touch and sit on it?"
+        }
+    },
+    {
+        "id": 26,
+        "mark": "s1",
+        "type": "Art Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "What’s something you brought with you from your “old home”?",
+        "example": "Blanket from my childhood",
+        "extra": {
+            "title": "Two Roman Dog Skulls",
+            "img": "./assets/img/living.jpeg",
+            "description": "Two tiny Roman dog skulls sit casually on a shop shelf - once uncovered by archaeologists, now back guarding their old home."
+        }
+    },
+    {
+        "id": 27,
+        "mark": "s1",
+        "type": "Art Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "What natural sounds do you associate with your solo-living experience?",
+        "example": "Birds sing",
+        "extra": {
+            "title": "Bird Ritual",
+            "img": "./assets/img/living.jpeg",
+            "description": "What natural sounds do you associate with your solo-living experience?"
+        }
+    },
+    {
+        "id": 28,
+        "mark": "s1",
+        "type": "Art Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "What’s a habit you took from the people you lived with?",
+        "example": "Always tidying up before bed",
+        "extra": {
+            "title": "Cuckoo Ritual",
+            "img": "./assets/img/living.jpeg",
+            "description": "Cuckoos leave their eggs in other nests. As adults, the chicks may cross paths and somehow recognise each other, reconnecting with a shared culture they never knew."
+        }
+    },
+    {
+        "id": 29,
+        "mark": "s1",
+        "type": "Art Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "What’s would you like to change in ur solo living routine?",
+        "example": "Cook interesting meals",
+        "extra": {
+            "title": "Mirror of Perspectives",
+            "img": "./assets/img/living.jpeg",
+            "description": "A mirror made of different materials, reflecting shifting views - just like us, always changing, always seeing the world (and ourselves) from new angles."
+        }
+    },
+    {
+        "id": 30,
+        "mark": "s1",
+        "type": "Art Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "Describe the fantasy spaces you used to diy as a kid?",
+        "example": "Stacking pillows for my cloud ship",
+        "extra": {
+            "title": "Tent of Sheets",
+            "img": "./assets/img/living.jpeg",
+            "description": "One artist built a tent from old sheets, just like in childhood, to prepare the space for their video. A playful, nostalgic touch inviting you to step inside and watch."
+        }
+    },
+    {
+        "id": 31,
+        "mark": "s1",
+        "type": "Art Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "What is an independent person for you?",
+        "example": "Someone who dares to do things their own way",
+        "extra": {
+            "title": "Outsider Artists",
+            "img": "./assets/img/living.jpeg",
+            "description": "Abby showcases outsider artists, creators beyond the traditional art world, sparking the question: What is art? Who gets to be called an artist?"
+        }
+    },
+    {
+        "id": 32,
+        "mark": "s1",
+        "type": "Art Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "How did you modify your old rituals?",
+        "example": "Used to write before bed, now I leave voice notes",
+        "extra": {
+            "title": "Playing with Dimensions",
+            "img": "./assets/img/living.jpeg",
+            "description": "A vanguard art movement once flattened 3D scenes into playful 2D space. At Abby, you’ll see this - in both past paintings and today’s artists still experimenting with that spirit."
+        }
+    },
+    {
+        "id": 33,
+        "mark": "s1",
+        "type": "Art Question",
+        "task": "Ask this question \nto your team mate:",
+        "content": "What’s the difference between how people perceive you? And who u truly are?",
+        "example": "People say I’m confident, but I’m actually overthink a lot",
+        "extra": {
+            "title": "Mirrored Stories",
+            "img": "./assets/img/living.jpeg",
+            "description": "One artist showed a mischievous gypsy woman; another, from a gypsy family, mirrored it with her own family simply playing cards revealing how stereotypes mask ordinary life."
+        }
+    },
+    {
+        "id": 34,
+        "mark": "c1",
+        "type": "Creative Task",
+        "task": "Abby’s Backpack",
+        "content": "Out of all these 10 items keep only 3 to help Abby solo live:"
+    },
+    {
+        "id": 35,
+        "mark": "c2",
+        "type": "Write Task",
+        "task": "Write a note",
+        "content": "Take a note from the jar. Leave one behind to cheer on the next solo-living explorer. Talk about the notes.",
+        "example": "Share a tiny tip that helped you on tough days"
+    },
+    {
+        "id": 36,
+        "mark": "g1",
+        "type": "Creative Task",
+        "task": "Exquisite Corpse",
+        "content": "Draw your “old self” together. Each person draws one body part (e.g., head) in a fold, without seeing the rest of the body. Unfold to reveal a weird, wonderful version of you."
+    },
+    {
+        "id": 37,
+        "mark": "g2",
+        "type": "Planting Growth",
+        "task": "Write and Plant",
+        "content": "Write a wish on the seed paper. Plant it in the garden with an Abby helper nearby.",
+        "example": "Keep finding small joys"
+    }
+]

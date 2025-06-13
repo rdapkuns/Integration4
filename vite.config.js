@@ -1,22 +1,26 @@
 // vite.config.js
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
+import fs from 'fs'
+import path from 'path'
 
 export default defineConfig({
-    server: {
-        host:true
-    },
- 
     base: '/Integration4/',
-    root: 'public',
     build: {
-        outDir: '../docs', // Output goes one level up from 'public' to keep things clean
+        outDir: 'docs',
         rollupOptions: {
             input: {
-                main: resolve(__dirname, 'public/index.html'),
-                intro: resolve(__dirname, 'public/intro.html'),
-                game: resolve(__dirname, 'public/game.html'),
+                main: resolve(__dirname, 'index.html'),
+                intro: resolve(__dirname, 'intro.html'),
+                game: resolve(__dirname, 'game.html'),
             }
+        }
+    },
+    server: {
+        host: true, // enables network access
+        https: {
+            key: fs.readFileSync(path.resolve(__dirname, './localhost.key')),
+            cert: fs.readFileSync(path.resolve(__dirname, './localhost.crt')),
         }
     }
 });
