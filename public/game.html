@@ -205,18 +205,54 @@
 
     .task__point {
       pointer-events: all;
-      width: 1.5rem;
-      height: 1.5rem;
+      /* width: 1.5rem;
+      height: 1.5rem; */
       position: absolute;
       z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    .task__selected::after {
+    .indicator {
+      text-align: center;
+      position: absolute;
+      background-color: #292933;
+      color: white;
+      padding: 0.7rem 1rem;
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 5px 5px;
+      bottom: 1.8rem;
+      font-size: 1.2rem;
+
+      opacity: 0;
+      transform: translateY(10px);
+      /* start slightly below */
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .indicator--visible {
+      opacity: 1;
+      transform: translateY(0);
+      /* move to normal position */
+      pointer-events: auto;
+    }
+
+    .indicator span {
+      font-size: 1rem;
+      width: max-content;
+    }
+
+    /* .task__selected::after {
       content: "4 ppl";
-      /* Change this text as needed */
       position: absolute;
       bottom: 110%;
-      /* Show above the task */
       left: 50%;
       transform: translateX(-50%);
       background-color: #333;
@@ -229,9 +265,7 @@
       pointer-events: none;
       transition: opacity 0.3s ease;
       z-index: 30;
-      /* transform: rotate(0deg); */
-
-    }
+    } */
 
     .task--complete {
       filter: brightness(2) saturate(30%);
@@ -255,13 +289,15 @@
 
     .circle {
       border-radius: 100px 100px;
+      width: 1.5rem;
+      height: 1.5rem;
     }
 
     .square {
       /* transform: rotate(45deg); */
       overflow: visible;
-      /* width: 1.8rem;
-      height: 1.8rem; */
+      width: 1.5rem;
+      height: 1.5rem;
       /* clip-path: polygon(50% 0,100% 50%,50% 100%,0 50%); */
     }
 
@@ -303,7 +339,7 @@
     }
 
     #task__6 {
-      
+
       top: 2%;
       left: 38%;
     }
@@ -437,13 +473,27 @@
       aspect-ratio: 1/1;
     }
 
-    .ar__switch{
+    .ar__switch {
       position: absolute;
       top: 8rem;
       left: 4rem;
       z-index: 40;
       height: 2rem;
       width: 5rem;
+    }
+
+    #locations {
+      position: absolute;
+      top: 15rem;
+      left: 15rem;
+      z-index: 40;
+    }
+
+    .random__ppl {
+      position: absolute;
+      top: 2rem;
+      left: 12rem;
+      z-index: 100;
     }
   </style>
 </head>
@@ -470,7 +520,8 @@
       style="display: none;"></video> -->
 
 
-
+  <!-- <button class="random__ppl">Random PPL</button> -->
+  <div class="visually-hidden" id="locations">Loading...</div>
 
 
   <div class="scene scene-map">
@@ -484,19 +535,49 @@
       <div class="map__body">
         <div class="floor__wrapper floor-1">
           <img src="./assets/img/floor-1.png">
-          <div id="task__7" class="task__point circle magenta"></div>
-          <div id="task__8" class="task__point circle magenta"></div>
-          <div id="task__9" class="task__point square yellow"></div>
-          <div id="task__6" class="task__point square yellow"></div>
+          <div id="task__7" data-location="S1" class="task__point">
+            <div id="indicator__7" class="indicator"><span class="player__amount">4</span><span>ppl</span></div>
+            <div class=" circle magenta"></div>
+          </div>
+          <div id="task__8" data-location="S2" class="task__point">
+            <div id="indicator__8" class="indicator"><span class="player__amount">4</span><span>ppl</span></div>
+            <div class=" circle magenta"></div>
+          </div>
+          <div id="task__9" data-location="A1" class="task__point">
+            <div id="indicator__9" class="indicator"><span class="player__amount">4</span><span>ppl</span></div>
+            <div class=" square yellow"></div>
+          </div>
+          <div id="task__6" data-location="A2" class="task__point">
+            <div id="indicator__6" class="indicator"><span class="player__amount">4</span><span>ppl</span></div>
+            <div class=" square yellow"></div>
+          </div>
         </div>
         <div class="floor__wrapper floor-0">
           <img src="./assets/img/floor-0.png">
-          <div id="task__1" class="task__point circle green"></div>
-          <div id="task__2" class="task__point circle green"></div>
-          <div id="task__3" class="task__point square yellow"></div>
-          <div id="task__4" class="task__point square green"></div>
-          <div id="task__5" class="task__point square green"></div>
-          <div id="task__10" class="task__point circle magenta visually-hidden"></div>
+          <div id="task__1" data-location="L2" class="task__point">
+            <div id="indicator__1" class="indicator"><span class="player__amount">4</span><span>ppl</span></div>
+            <div class="circle green"></div>
+          </div>
+          <div id="task__2" data-location="L1" class="task__point">
+            <div id="indicator__2" class="indicator"><span class="player__amount">4</span><span>ppl</span></div>
+            <div class="circle green"></div>
+          </div>
+          <div id="task__3" data-location="C1" class="task__point">
+            <div id="indicator__3" class="indicator"><span class="player__amount">4</span><span>ppl</span></div>
+            <div class=" square yellow"></div>
+          </div>
+          <div id="task__4" data-location="C2" class="task__point">
+            <div id="indicator__4" class="indicator"><span class="player__amount">4</span><span>ppl</span></div>
+            <div class=" square green"></div>
+          </div>
+          <div id="task__5" data-location="G1" class="task__point">
+            <div id="indicator__5" class="indicator"><span class="player__amount">4</span><span>ppl</span></div>
+            <div class=" square green"></div>
+          </div>
+          <div id="task__10" data-location="G2" class="task__point visually-hidden">
+            <div id="indicator__10" class="indicator"><span class="player__amount">4</span><span>ppl</span></div>
+            <div class="circle magenta"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -635,7 +716,8 @@
     <a-marker preset="hiro" class="ar__marker" smooth="true" smoothCount="7" smoothTolerance="0.01" smoothThreshold="3">
       <a-plane src="./assets/img/abby-hi-3.png" transparent="true" height="8" width="5" position="0 0 -4"
         rotation="0 0 0" class="game__task game__task--1"></a-plane>
-      <a-plane src="./assets/img/ui.jpg" class="game__task game__task--1 visually-hidden" height="4" width="6" position="6 1 -4" rotation="0 0 0"></a-plane>
+      <a-plane src="./assets/img/ui.jpg" class="game__task game__task--1 visually-hidden" height="4" width="6"
+        position="6 1 -4" rotation="0 0 0"></a-plane>
     </a-marker>
     <a-entity camera></a-entity>
   </a-scene>
@@ -693,7 +775,7 @@
         `
     });
   </script> -->
-  <script src="./scripts/game.js"></script>
+  <script type="module" src="./scripts/game.js"></script>
 
 </body>
 
