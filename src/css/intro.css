@@ -1,6 +1,7 @@
 html {
     box-sizing: border-box;
     max-height: 1vh;
+    font-family: "GT-Walsheim" !important;
 }
 
 *,
@@ -31,35 +32,32 @@ html {
     --fs-l: 3.125rem;
 }
 
-
 @font-face {
-    font-family: "GT-Walsheim";
-    src: url('/src/fonts/GT-Walsheim-Regular.otf') format('opentype');
+    font-family: 'GT-Walsheim';
+    src: url('/assets/fonts/GT-Walsheim-Regular.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
+    font-family: 'GT-Walsheim';
+    src: url('/assets/fonts/GT-Walsheim-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal; }
+
+@font-face {
     font-family: "GT-Walsheim";
-    src: url('/src/fonts/GT-Walsheim-Medium.otf') format('opentype');
+    src: url('/assets/fonts/GT-Walsheim-Medium.otf') format('opentype');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: "GT-Walsheim";
-    src: url('/src/fonts/GT-Walsheim-Bold.otf') format('opentype');
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "GT-Walsheim";
-    src: url('/src/fonts/GT-Walsheim-Regular-Oblique.otf') format('opentype');
+    src: url('/assets/fonts/GT-Walsheim-Regular-Oblique.otf') format('opentype');
     font-weight: 400;
     font-style: italic;
 }
-
 
 .hidden {
     position: absolute;

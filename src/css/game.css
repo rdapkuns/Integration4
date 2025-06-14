@@ -139,7 +139,6 @@ header {
     background-image:
         linear-gradient(to bottom, #FFBF50 0 50%, #5F90FF 50% 100%),
         url('/assets/svg/pattern-a.svg');
-    /* ← your repeating SVG */
     background-repeat: no-repeat, repeat-x;
     background-position: top, bottom;
     background-size: 100% auto, auto;
