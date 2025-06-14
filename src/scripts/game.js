@@ -1,4 +1,4 @@
-import { supabase } from '/src/scripts/supabaseClient.js';
+import { supabase } from './supabaseClient.js';
 
 
 

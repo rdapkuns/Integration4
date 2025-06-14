@@ -34,28 +34,28 @@ html {
 
 @font-face {
     font-family: "GT-Walsheim";
-    src: url('../../public/assets/fonts/GT-Walsheim-Regular.otf') format('opentype');
+    src: url('/src/fonts/GT-Walsheim-Regular.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: "GT-Walsheim";
-    src: url('../../public/assets/fonts/GT-Walsheim-Medium.otf') format('opentype');
+    src: url('/src/fonts/GT-Walsheim-Medium.otf') format('opentype');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: "GT-Walsheim";
-    src: url('../../public/assets/fonts/GT-Walsheim-Bold.otf') format('opentype');
+    src: url('/src/fonts/GT-Walsheim-Bold.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
     font-family: "GT-Walsheim";
-    src: url('../../public/assets/fonts/GT-Walsheim-Regular-Oblique.otf') format('opentype');
+    src: url('/src/fonts/GT-Walsheim-Regular-Oblique.otf') format('opentype');
     font-weight: 400;
     font-style: italic;
 }
@@ -185,7 +185,7 @@ header {
     display: flex;
     justify-content: space-between;
     background-color: var(--yellow);
-    background-image: url('../assets/svg/a-yellow.svg');
+    background-image: url('/assets/svg/a-yellow.svg');
     background-repeat: repeat;
     background-size: 44px 44px;
     animation: scroll-diagonal 8s linear infinite;
@@ -365,7 +365,7 @@ header {
     position: absolute;
     inset: 0;
     background-color: var(--white);
-    background-image: url('../assets/svg/event-patern.svg');
+    background-image: url('/assets/svg/event-patern.svg');
     background-repeat: repeat;
     background-size: 31px;
     opacity: 0.5;

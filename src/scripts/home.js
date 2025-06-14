@@ -1,3 +1,6 @@
+import "../css/reset.css";
+import "../css/home.css";
+
 const spaces = [
     {
         name: "The Living",

@@ -1,3 +1,6 @@
+import "../css/reset.css";
+import "../css/intro.css";
+
 const $steps = document.querySelectorAll(".step");
 const $nextBtn = document.querySelector('.next_btn');
 const $backBtn = document.querySelector('.back_btn');
@@ -56,9 +59,7 @@ const showBoard = (index) => {
     $progressBars.forEach((bar, i) => {
         bar.classList.toggle('progress__bar--filled', i <= index);
     });
-
-    // $prevBtn.disabled = index === 0;
-};
+}
 
 $forwBtn.addEventListener('click', () => {
     if (currentBoard < $boards.length - 1) {
@@ -108,11 +109,11 @@ $backBtn.addEventListener('click', () => {
         currentStep--;
         showStep(currentStep);
     }
-});
+})
 
 const updateProgress = (stepIndex) => {
-    $stepCount.textContent = `${stepIndex + 1}/3`; // or use $steps.length instead of 3
-};
+    $stepCount.textContent = `${stepIndex + 1}/3`;
+}
 
 
 init();
