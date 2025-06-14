@@ -1,0 +1,68 @@
+[
+    {
+        "id": 1,
+        "location": "L",
+        "title": "Welcome to the Living room",
+        "body": "We have the living room, where I toss down my groceries, plop myself anywhere, and honestly just… exist."
+    },
+    {
+        "id": 2,
+        "location": "S",
+        "title": "New Bench ",
+        "body": "I thought it was a fancy bench. Turns out... oops- it was part of the exhibit. Sorry, artist-friend."
+    },
+    {
+        "id": 3,
+        "location": "S",
+        "title": "Sketchy Business",
+        "body": "I once drew on the museum wall by accident. I thought it was a whiteboard. Now it’s officially called ‘Abby’s First Mural’ ”"
+    },
+    {
+        "id": 4,
+        "location": "S",
+        "title": "Folded Masterpiece",
+        "body": "I once framed a napkin. It had a coffee stain that looked like a horse. Or a croissant. Either way, it’s in my hallway as ‘Untitled #1’.”"
+    },
+    {
+        "id": 5,
+        "location": "C",
+        "title": "Talk Thirsty to Me",
+        "body": "I once adopted a plant for company. I talked to it so much I forgot to water it."
+    },
+    {
+        "id": 6,
+        "location": "C",
+        "title": "Flour Power",
+        "body": "I brought a to-do list, but ended up following my cravings instead. That’s how I discovered ‘midnight pancake therapy.’"
+    },
+    {
+        "id": 7,
+        "location": "C",
+        "title": "Smells like trouble",
+        "body": "I once lit five candles to feel calm… then panicked , I thought  something burning"
+    },
+    {
+        "id": 8,
+        "location": "G",
+        "title": "The Outfit Plot Twist",
+        "body": "Once I only wore ‘serious adult clothes.’ Now I own pants with ducks on them. The glow-up is real."
+    },
+    {
+        "id": 9,
+        "location": "G",
+        "title": "The Origam-me Phase",
+        "body": "Old me was trying so hard to fit in, I forgot how weird I actually am. Now I fold paper creatures at parties."
+    },
+    {
+        "id": 10,
+        "location": "G",
+        "title": "The Dirt Talk",
+        "body": "I once came in the garden to think and ended up talking to a worm. "
+    },
+    {
+        "id": 11,
+        "location": "F",
+        "title": "Final Step",
+        "body": "When I first arrived, I didn’t know what to grow. So I planted a wish... Now it’s your turn"
+    }
+]
