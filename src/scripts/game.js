@@ -1,5 +1,7 @@
 import { supabase } from '/src/scripts/supabaseClient.js';
-
+import comments from '../comments.json';
+import { gsap } from "gsap";
+import 'aframe-chromakey-material';
 
 
 let taskCount = 7
@@ -158,10 +160,32 @@ document.querySelector(".floor__button--0").addEventListener("click", () => {
 });
 
 
+const $speechHeader = document.querySelector(".walking__speech--header")
+const $speechBody = document.querySelector(".walking__speech--body")
 
 const handleNextTask = () => {
     if (nextTaskSelected === true) {
         showSceneByClass("scene-walking")
+        console.log(currentLocation)
+
+        if (isFirstRound === false) {
+            const filteredComments = comments.filter(comment => comment.location === currentLocation.charAt(0));
+            const randomComment = filteredComments[Math.floor(Math.random() * filteredComments.length)];
+            console.log(randomComment);
+
+            $speechHeader.textContent = randomComment.title
+            $speechBody.textContent = randomComment.body
+
+        }
+
+        if (currentLocation === "G2"){
+            const filteredComments = comments.filter(comment => comment.location === "F");
+            const randomComment = filteredComments[Math.floor(Math.random() * filteredComments.length)];
+            console.log(randomComment);
+
+            $speechHeader.textContent = randomComment.title
+            $speechBody.textContent = randomComment.body
+        }
         // $nextTask.textContent = "We're ready, Let's begin"
     }
 }
@@ -208,7 +232,7 @@ const returnToMap = async (introStatus) => {
     updateParticipantAmount(playersAtLocation, -1)
     isDoingIntro = introStatus
     localStorage.setItem('isDoingIntro', introStatus),
-    showSceneByClass("scene-map")
+        showSceneByClass("scene-map")
     const $footer = document.querySelector("footer")
     $footer.classList.remove("visually-hidden")
 }
@@ -416,6 +440,13 @@ const toggleSidePanel = (event) => {
 const toggleInfoPanel = () => {
     console.log("toggling")
     $panelInfo.classList.toggle("panel__info--hidden")
+    const $scenes = document.querySelectorAll(".scene")
+    $scenes.forEach(scene => {
+        scene.classList.toggle("fullscreen-overlay")
+        requestAnimationFrame(() => {
+            scene.classList.toggle('active'); // triggers opacity transition
+          });
+    })
 }
 
 const handleMarkerFound = () => {
@@ -470,7 +501,10 @@ const $arSwitch = document.querySelector(".ar__switch").addEventListener("click"
 
 const $panelInfo = document.querySelector(".panel__info")
 const $panelInfoClose = document.querySelector(".panel__info--close").addEventListener("click", toggleInfoPanel)
-const $panelInfoOpen = document.querySelector(".button__info").addEventListener("click", toggleInfoPanel)
+const $panelInfoOpen = document.querySelectorAll(".button__info")
+$panelInfoOpen.forEach(button => {
+    button.addEventListener("click", toggleInfoPanel)
+})
 
 const $marker = document.getElementById("marker").addEventListener('markerFound', handleMarkerFound)
 
