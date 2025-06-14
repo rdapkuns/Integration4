@@ -4,29 +4,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/ar.js@3.4.2/aframe/build/aframe-ar.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <!-- <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script> -->
+
   <title>Abby - game</title>
-
-
   <style>
     @font-face {
       font-family: 'GT Walsheim';
-      src: url('/src/fonts/GT-Walsheim-Regular.otf') format('opentype');
+      src: url('/Integration4/assets/GT-Walsheim-Regular-DUWoHrf1.otf') format('opentype');
       font-weight: 400;
       font-style: normal;
     }
 
     @font-face {
       font-family: 'GT Walsheim';
-      src: url('/src/fonts/GT-Walsheim-Bold.otf') format('opentype');
+      src: url('/Integration4/assets/GT-Walsheim-Bold-BF1FuAdG.otf') format('opentype');
       font-weight: 600;
       font-style: medium;
     }
 
     @font-face {
       font-family: 'GT Walsheim';
-      src: url('/src/fonts/GT-Walsheim-Bold.otf') format('opentype');
+      src: url('/Integration4/assets/GT-Walsheim-Bold-BF1FuAdG.otf') format('opentype');
       font-weight: 800;
       font-style: bold;
     }
@@ -613,54 +621,30 @@
 
     .panel__info {
       position: absolute;
-      width: 100vw;
-      height: 100vh;
-      background-color: transparent;
-      backdrop-filter: brightness(60%);
+      width: 90vw;
+      height: 75vh;
       z-index: 990;
       /* transform: translateX(-50%); */
       transform: translateX(-50%) translateY(0%);
       left: 50vw;
-      top: 0;
+      top: 2rem;
       /* transform: translateY(-50%); */
       transition: all 0.5s ease-out;
     }
-
-    /* .fullscreen-overlay::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      opacity: 0;
-      background: rgba(0, 0, 0, 0.5);
-      pointer-events: none;
-    }
-
-    .fullscreen-overlay.active::before {
-  opacity: 1;
-} */
 
     .panel__info--hidden {
       transform: translateX(-50%) translateY(200%);
     }
 
     .panel__info img {
-      /* width: 100%;
-      height: 100%; */
-      position: relative;
-      width: 90vw;
-      height: 75vh;
-      transform: translateX(-50%) translateY(0%);
-      left: 50vw;
-      top: 5rem;
+      width: 100%;
+      height: 100%;
     }
 
     .panel__info button {
       position: absolute;
-      right: 1.5rem;
-      top: 5.5rem;
+      right: 0.5rem;
+      top: 0.5rem;
       background-color: transparent;
       border: none;
     }
@@ -729,13 +713,9 @@
       transition: opacity 0.5s ease;
       pointer-events: none;
     }
-
-    .map__info--button {
-      position: absolute;
-      top: 0.5rem;
-      right: 0.5rem;
-    }
   </style>
+  <script type="module" crossorigin src="/Integration4/assets/game-ZzhqpVtV.js"></script>
+  <link rel="modulepreload" crossorigin href="/Integration4/assets/modulepreload-polyfill-B5Qt9EMX.js">
 </head>
 
 <body>
@@ -791,13 +771,6 @@
 
   <div class="scene scene-map visually-hidden">
     <div class="map__wrapper scrolling__BG">
-      <button class="side__panel--button map__info--button button__info">
-        <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M18.5 4.04688C10.5305 4.04688 4.04688 10.5305 4.04688 18.5C4.04688 26.4695 10.5305 32.9531 18.5 32.9531C26.4695 32.9531 32.9531 26.4695 32.9531 18.5C32.9531 10.5305 26.4695 4.04688 18.5 4.04688ZM18.5 9.97266C18.8716 9.97266 19.2349 10.0829 19.5439 10.2893C19.8528 10.4958 20.0937 10.7892 20.2359 11.1325C20.3781 11.4759 20.4153 11.8536 20.3428 12.2181C20.2703 12.5826 20.0914 12.9174 19.8286 13.1802C19.5658 13.4429 19.231 13.6219 18.8666 13.6944C18.5021 13.7669 18.1243 13.7297 17.781 13.5874C17.4376 13.4452 17.1442 13.2044 16.9377 12.8954C16.7313 12.5864 16.6211 12.2232 16.6211 11.8516C16.6211 11.3532 16.819 10.8753 17.1714 10.523C17.5238 10.1706 18.0017 9.97266 18.5 9.97266V9.97266ZM23.125 26.3047H14.4531V23.9922H17.6328V17.6328H15.3203V15.3203H19.9453V23.9922H23.125V26.3047Z"
-            fill="white" />
-        </svg>
-      </button>
       <div class="map__header">
         <div class="map__button--container">
           <button class="floor__button floor__button--0">Ground floor</button>
@@ -861,7 +834,8 @@
       <div class="walking__speech">
         <div class="walking__speech--header">Alright, Let's go!</div>
         <div class="walking__speech--body">When you arrive there you'll meet a friend of mine - they're also on a little
-          quest for connection. <br><br> Say “Hi” and when you're both ready - begin with the first question!</div>
+          quest for connection</div>
+        <div class="walking__speech--body">Say “Hi” and when you're both ready - begin with the first question!</div>
       </div>
       <div class="walking__abby">
         <img src="./assets/img/abby-bubble.png">
@@ -888,7 +862,7 @@
     <a-entity camera></a-entity>
   </a-scene> -->
 
-  <div class="scene scene-game scene-map panel__info panel__info--hidden">
+  <div class="scene scene-game panel__info panel__info--hidden">
     <img src="./assets/img/info.png">
     <button class="panel__info--close">
       <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1093,7 +1067,6 @@
         `
     });
   </script> -->
-  <script type="module" src="/src/scripts/game.js"></script>
 
 </body>
 
