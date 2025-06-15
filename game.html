@@ -7,7 +7,7 @@
   <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   <title>Abby - game</title>
-
+  <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png">
 
   <style>
     @font-face {
@@ -391,7 +391,7 @@
     }
 
     #task__8 {
-      top: 29%;
+      top: 27%;
       left: 70%;
     }
 
@@ -597,6 +597,17 @@
       width: 5rem;
     }
 
+    .button__language{
+      position: relative;
+    }
+
+    .language{
+      position: relative;
+      color: white;
+      font-weight: 800;
+      font-size: 1.3rem;
+    }
+
     #locations {
       position: absolute;
       top: 15rem;
@@ -735,6 +746,71 @@
       top: 0.5rem;
       right: 0.5rem;
     }
+
+
+    .popup {
+      position: fixed;
+      bottom: -300px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: white;
+      color: black;
+      /* padding: 1rem; */
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transition: all 0.5s ease;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 80vw;
+      overflow: hidden;
+    }
+
+    .popup.show {
+      bottom: 140px;
+      opacity: 1;
+    }
+
+    .hidden {
+      bottom: -300px;
+      opacity: 1;
+      /* display: none; */
+    }
+
+    .popup__icon{
+      background-color: #01A468;
+      padding: 1rem;
+    }
+
+    .popup__text{
+      /* background-color: white; */
+      padding: 1;
+    }
+
+    .bouncy-scale {
+  animation: bounce-scale 1s;
+}
+
+@keyframes bounce-scale {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(1.25);
+  }
+  30% {
+    transform: scale(0.95);
+  }
+  70% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
   </style>
 </head>
 
@@ -759,6 +835,28 @@
     <p>Loading...</p>
   </div>
 
+
+  <div id="popup" class="popup hidden">
+    <div class="popup__icon">
+      <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_1070_5858)">
+          <path
+            d="M24.25 15.5C24.25 16.8924 23.6969 18.2277 22.7123 19.2123C21.7277 20.1969 20.3924 20.75 19 20.75C17.6076 20.75 16.2723 20.1969 15.2877 19.2123C14.3031 18.2277 13.75 16.8924 13.75 15.5C13.75 14.1076 14.3031 12.7723 15.2877 11.7877C16.2723 10.8031 17.6076 10.25 19 10.25C20.3924 10.25 21.7277 10.8031 22.7123 11.7877C23.6969 12.7723 24.25 14.1076 24.25 15.5V15.5Z"
+            fill="white" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M5 19C5 15.287 6.475 11.726 9.10051 9.10051C11.726 6.475 15.287 5 19 5C22.713 5 26.274 6.475 28.8995 9.10051C31.525 11.726 33 15.287 33 19C33 22.713 31.525 26.274 28.8995 28.8995C26.274 31.525 22.713 33 19 33C15.287 33 11.726 31.525 9.10051 28.8995C6.475 26.274 5 22.713 5 19V19ZM19 6.75C16.6931 6.75012 14.4331 7.40163 12.4802 8.62955C10.5273 9.85746 8.96074 11.6119 7.96094 13.6908C6.96113 15.7698 6.56868 18.0888 6.82875 20.381C7.08882 22.6732 7.99084 24.8454 9.431 26.6475C10.6735 24.6455 13.4088 22.5 19 22.5C24.5912 22.5 27.3248 24.6437 28.569 26.6475C30.0092 24.8454 30.9112 22.6732 31.1713 20.381C31.4313 18.0888 31.0389 15.7698 30.0391 13.6908C29.0393 11.6119 27.4727 9.85746 25.5198 8.62955C23.5669 7.40163 21.3069 6.75012 19 6.75V6.75Z"
+            fill="white" />
+        </g>
+        <defs>
+          <clipPath id="clip0_1070_5858">
+            <rect width="28" height="28" fill="white" transform="translate(5 5)" />
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
+    <div class="popup__text">Profiles will be added in the next update!</div>
+  </div>
+
   <!-- <div class="scene scene-game ar-wrapper"> -->
 
   <!-- </div> -->
@@ -777,7 +875,7 @@
       style="display: none;"></video> -->
 
 
-  <!-- <button class="random__ppl">Random PPL</button> -->
+  <button class="random__ppl visually-hidden">Clear localhost</button>
   <div class="visually-hidden" id="locations">Loading...</div>
 
   <div class="info__select">
@@ -932,11 +1030,12 @@
         </svg>
       </button>
       <button class="side__panel--button button__language">
-        <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M16.0977 26H5.82569V9.2H16.0977V12.32H9.71369V16.136H16.0977V19.184H9.71369V22.88H16.0977V26ZM22.3536 26H18.6336V9.2H22.6176L28.4496 20.072V9.2H32.1696V26H28.1856L22.3536 15.128V26Z"
             fill="white" />
-        </svg>
+        </svg> -->
+        <div class="language">ENG</div>
       </button>
       <button class="side__panel--button button__info">
         <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
