@@ -8,7 +8,7 @@
     {
         "id": 2,
         "location": "S",
-        "title": "New Bench ",
+        "title": "New Bench",
         "body": "I thought it was a fancy bench. Turns out... oops- it was part of the exhibit. Sorry, artist-friend."
     },
     {
@@ -57,10 +57,28 @@
         "id": 10,
         "location": "G",
         "title": "The Dirt Talk",
-        "body": "I once came in the garden to think and ended up talking to a worm. "
+        "body": "I once came in the garden to think and ended up talking to a worm."
     },
     {
         "id": 11,
+        "location": "A",
+        "title": "Exhibit A(bby)",
+        "body": "My favourite game... pretending I’m a sculpture when visitors walk by. I’ve never broken character. ...Except for sneezes."
+    },
+    {
+        "id": 12,
+        "location": "A",
+        "title": "Dust Me?",
+        "body": "I tried to gamify cleaning by pretending the dust was ‘historic.’ Turns out, it actually was from 1870."
+    },
+    {
+        "id": 13,
+        "location": "A",
+        "title": "Sockrifice",
+        "body": "I once invented a game where the loser had to fold socks. I lost. On purpose. I like folding socks."
+    },
+    {
+        "id": 14,
         "location": "F",
         "title": "Final Step",
         "body": "When I first arrived, I didn’t know what to grow. So I planted a wish... Now it’s your turn"
