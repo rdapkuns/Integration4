@@ -317,6 +317,7 @@ const handleTaskComplete = async () => {
 
     if (taskCount === 11) {
         showSceneByClass("scene-outro")
+        $footer.classList.add("visually-hidden")
     }
 }
 
@@ -625,22 +626,26 @@ const updateAR = () => {
 
 
 const toggleSidePanel = (event) => {
-    console.log(event.currentTarget)
+    // console.log(event.currentTarget)
     $sideToggle.classList.toggle("side__panel--invisible")
     $sidePanel.classList.toggle("side__panel--visible")
 
 }
 
 const toggleInfoPanel = () => {
-    console.log("toggling")
+    // console.log("toggling")
     $panelInfo.classList.toggle("panel__info--hidden")
     const $scenes = document.querySelectorAll(".scene")
     $scenes.forEach(scene => {
-        scene.classList.toggle("fullscreen-overlay")
-        requestAnimationFrame(() => {
-            scene.classList.toggle('active'); // triggers opacity transition
-        });
+        scene.classList.toggle("dim")
+
+        // requestAnimationFrame(() => {
+        //     scene.classList.toggle('active'); // triggers opacity transition
+        // });
     })
+    // $footer.classList.toggle("dim")
+    const $progressContainer = document.querySelector(".progress__container")
+    $progressContainer.classList.toggle("dim")
 }
 
 const handleMarkerFound = () => {
@@ -660,7 +665,7 @@ const handleMarkerFound = () => {
 }
 
 const goToFirstQuestion = () => {
-    const $footer = document.querySelector("footer")
+
     const $buttonContainer = document.querySelector(".button__container--minimal")
     $footer.classList.remove("visually-hidden")
     $buttonContainer.classList.add("visually-hidden")
@@ -706,7 +711,16 @@ const animateTextChange = () => {
 
     return tl;
 }
-  
+
+const handleOutroPanel = () => {
+    $outro.classList.toggle("dim")
+    $outroPanel.classList.toggle("panel__outro--hidden")
+}
+
+const goToHomePage = () => {
+    localStorage.clear();
+}
+
 
 window.addEventListener('load', () => {
     const loadingScreen = document.getElementById('loading-screen');
@@ -758,9 +772,16 @@ const $buttonWrite = document.querySelector(".button__write").addEventListener("
 const $buttonBookmark = document.querySelector(".button__bookmark")
 $buttonBookmark.addEventListener("click", () => showPopup("bookmark"))
 const $language = document.querySelector(".language").addEventListener("click", () => animateTextChange())
+const $buttonKeepGrowing = document.querySelector(".button__keep").addEventListener("click", handleOutroPanel)
+const $outro = document.querySelector(".scene-outro")
+const $outroPanel = document.querySelector(".panel__outro")
+const $outroPanelClose = document.querySelector(".outro__panel--close").addEventListener("click", handleOutroPanel)
+const $footer = document.querySelector("footer")
+const $buttonToHome = document.querySelector(".button--home").addEventListener("click", goToHomePage)
 
 const init = () => {
-    // showSceneByClass("scene-intro")
+    // showSceneByClass("scene-outro")
+    // $footer.classList.add("visually-hidden")
     loadMapPoints()
     goToMap()
     handleProgressBar()
