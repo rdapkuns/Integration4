@@ -1,0 +1,186 @@
+html {
+    box-sizing: border-box;
+    font-family: "GT-Walsheim", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'GT-Walsheim';
+    src: url('/assets/fonts/GT-Walsheim-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT-Walsheim';
+    src: url('/assets/fonts/GT-Walsheim-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT-Walsheim';
+    src: url('/assets/fonts/GT-Walsheim-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT-Walsheim';
+    src: url('/assets/fonts/GT-Walsheim-Regular-Oblique.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+:root {
+    --yellow: #FFBF50;
+    --blue: #5F90FF;
+    --white: #fff;
+    --black: #000;
+    --green: #01A468;
+    --purple: #BB7CD2;
+    --orange: #FF5F00;
+    --red: #691F13;
+    --grey: #848484;
+
+
+    --s-xs: clamp(0.5rem, 0.44rem + 0.2387vw, 0.625rem);
+    --s-s: clamp(1rem, 0.8801rem + 0.4773vw, 1.25rem);
+    --s-m: clamp(2rem, 1.7601rem + 0.9547vw, 2.5rem);
+    --s-l: clamp(3rem, 2.6402rem + 1.432vw, 3.75rem);
+
+    /* --s-xs: 0.5rem;
+    --s-s: 1rem;
+    --s-m: 2rem;
+    --s-l: 3rem; */
+
+    --fs-t: clamp(0.8rem, 0.7041rem + 0.3819vw, 1rem);
+    --fs: clamp(1rem, 0.8801rem + 0.4773vw, 1.25rem);
+    --fs-xxs: clamp(1.2rem, 1.0261rem + 0.6921vw, 1.5625rem);
+    --fs-xs: clamp(1.3995rem, 1.1339rem + 1.0571vw, 1.9531rem);
+    --fs-s: clamp(1.5011rem, 1.0501rem + 1.7953vw, 2.4414rem);
+    --fs-m: clamp(1.9986rem, 1.4934rem + 2.0108vw, 3.0518rem);
+    --fs-l: clamp(3.1257rem, 2.7952rem + 1.3155vw, 3.8147rem);
+
+    /* --fs-t: 0.8rem;
+    --fs: 1rem;
+    --fs-xxs: 1.2rem;
+    --fs-xs: 1.4rem;
+    --fs-s: 1.5rem;
+    --fs-m: 2rem;
+    --fs-l: 3.125rem; */
+}
+
+body {
+    font-family: "GT-Walsheim", sans-serif;
+    font-size: var(--fs);
+    font-weight: 400;
+    line-height: 110%;
+    letter-spacing: -0.03px;
+    background-color: var(--white);
+}
+
+strong {
+    font-weight: 700;
+}
+
+h1,
+h2,
+h3 {
+    font-family: "GT-Walsheim", sans-serif;
+    font-style: normal;
+    line-height: 110%;
+}
+
+h1 {
+    font-size: var(--fs-l);
+    font-weight: 700;
+    letter-spacing: -1.1px;
+}
+
+h2 {
+    font-size: var(--fs-m);
+    font-weight: 500;
+}
+
+h3 {
+    font-size: var(--fs-s);
+    font-weight: 400;
+}
+
+button {
+    font-family: "GT-Walsheim";
+    font-size: var(--fs-xxs);
+    font-weight: 500;
+    padding: var(--s-s);
+    background-color: var(--yellow);
+    border: none;
+    color: var(--black);
+    cursor: pointer;
+}
+
+img {
+    max-inline-size: 100%;
+    block-size: auto;
+}
+
+a {
+    color: var(--black);
+    text-decoration: none;
+}
+
+.hidden,
+.visually-hidden {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+@keyframes scroll-diagonal {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: -88px 88px;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInOut {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    30%,
+    70% {
+        opacity: 1;
+    }
+}

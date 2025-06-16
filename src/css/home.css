@@ -1,107 +1,3 @@
-html {
-    box-sizing: border-box;
-    max-height: 1vh;
-    font-family: "GT-Walsheim" !important;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
-
-:root {
-    --yellow: #FFBF50;
-    --blue: #5F90FF;
-    --white: #fff;
-    --black: #000;
-    --green: #01A468;
-    --purple: #BB7CD2;
-    --orange: #FF5F00;
-    --red: #691F13;
-
-    --s-xs: 0.5rem;
-    --s-s: 1rem;
-    --s-m: 2rem;
-    --s-l: 3rem;
-
-    --fs: 1rem;
-    --fs-xxs: 1.2rem;
-    --fs-xs: 1.4rem;
-    --fs-s: 1.5rem;
-    --fs-m: 2rem;
-    --fs-l: 3.125rem;
-}
-
-@font-face {
-    font-family: 'GT-Walsheim';
-    src: url('/assets/fonts/GT-Walsheim-Rg.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'GT-Walsheim';
-    src: url('/assets/fonts/GT-Walsheim-Bd.woff2') format('woff2');
-    font-weight: 800;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "GT-Walsheim";
-    src: url('/assets/fonts/GT-Walsheim-Md.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "GT-Walsheim";
-    src: url('/assets/fonts/GT-Walsheim-RgOb.woff2') format('woff2');
-    font-weight: 400;
-    font-style: italic;
-}
-
-img {
-    max-inline-size: 100%;
-    block-size: auto;
-}
-
-body {
-    font-family: "GT-Walsheim";
-    font-size: var(--fs);
-    font-style: normal;
-    font-weight: 400;
-    line-height: 110%;
-    letter-spacing: -0.03px;
-}
-
-strong {
-    font-weight: 700;
-}
-
-h1 {
-    font-family: "GT-Walsheim";
-    font-size: var(--fs-l);
-    font-style: normal;
-    font-weight: 700;
-    line-height: 110%;
-    letter-spacing: -1.1px;
-}
-
-h2 {
-    font-family: "GT-Walsheim";
-    font-size: var(--fs-m);
-    font-style: normal;
-    font-weight: 500;
-}
-
-h3 {
-    font-family: "GT-Walsheim";
-    font-size: var(--fs-s);
-    font-style: normal;
-    font-weight: 400;
-}
-
 header {
     display: flex;
     align-items: center;
@@ -129,28 +25,6 @@ header {
     font-weight: 500;
     padding: var(--s-s);
     background-color: var(--yellow);
-}
-
-button {
-    font-family: "GT-Walsheim";
-    font-size: var(--fs);
-    font-weight: 500;
-    padding: 1rem;
-    margin: auto;
-    background-color: var(--yellow);
-    border: none;
-    color: var(--black);
-}
-
-.hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
 }
 
 .intro {
@@ -183,17 +57,6 @@ button {
     background-repeat: repeat;
     background-size: 44px 44px;
     animation: scroll-diagonal 8s linear infinite;
-
-}
-
-@keyframes scroll-diagonal {
-    0% {
-        background-position: 0 0;
-    }
-
-    100% {
-        background-position: -88px 88px;
-    }
 }
 
 .abby_hi {
@@ -218,6 +81,7 @@ button {
     padding: var(--s-m) var(--s-l);
     padding-bottom: var(--s-xs);
     gap: var(--s-s);
+
 }
 
 .cta button {
@@ -226,20 +90,17 @@ button {
     animation: pulse 2s ease-in-out infinite;
     font-weight: 700;
     letter-spacing: 0.01rem;
+
 }
 
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.08);
-    }
-
-    100% {
-        transform: scale(1);
-    }
+.fixed_btn {
+    background-color: var(--green);
+    color: var(--white);
+    position: fixed;
+    bottom: 4rem;
+    right: 1rem;
+    z-index: 100;
+    opacity: 0;
 }
 
 .intro_extra {
@@ -349,11 +210,10 @@ button {
     font-weight: 500;
     align-self: center;
     justify-self: center;
-    padding: 2.6rem 0;
+    padding: 2.9rem 0;
     z-index: 1;
     overflow: hidden;
 }
-
 
 .event_date::after {
     content: "";
@@ -403,6 +263,7 @@ button {
     font-size: var(--fs);
 }
 
+
 .event>.link,
 .space_about>.link {
     font-weight: 500;
@@ -443,7 +304,6 @@ button {
 .space_about>.link {
     padding: var(--s-xs) 0;
     color: var(--white);
-
 }
 
 .space_media {
@@ -501,7 +361,29 @@ button {
 
 .spaces>button {
     display: flex;
+    justify-self: center;
+    margin: auto;
     margin-top: var(--s-m);
+}
+
+.space_progress {
+    display: flex;
+    justify-content: center;
+    gap: 0.3rem;
+    margin-top: var(--s-s);
+}
+
+.space_dot {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 2px solid #bacfec;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.space_dot.active {
+    background-color: var(--blue);
 }
 
 .people {
@@ -521,7 +403,6 @@ button {
     background-color: #FFDB9D;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* gap: var(--s-xs); */
 }
 
 .dark_yellow {
@@ -621,21 +502,33 @@ footer h3 {
     padding-bottom: var(--s-xs);
 }
 
-.insta{ 
-    display:flex;
+.insta {
+    display: flex;
     align-items: center;
+}
+
+.newsletter {
+    position: relative;
 }
 
 .newsletter>img {
     padding-left: var(--s-s);
 }
 
-
 .email_input {
     min-width: 15rem;
     padding: var(--s-s) var(--s-m) var(--s-s) var(--s-xs);
     border: 1px solid var(--black);
     border-radius: 0;
+}
+
+.email_submit {
+    position: relative;
+    right: 2rem;
+    top: 0.3rem;
+    background: none;
+    border: none;
+    padding: 0;
 }
 
 .email_input::placeholder {
