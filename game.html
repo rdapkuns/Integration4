@@ -90,11 +90,33 @@
       z-index: 10;
     }
 
+    a:link {
+      text-decoration: none;
+      color: black;
+    }
+
+    a:visited {
+      text-decoration: none;
+      color: black;
+    }
+
+    a:hover {
+      text-decoration: none;
+      color: black;
+    }
+
+    a:active {
+      text-decoration: none;
+      color: black;
+    }
+
     .progress__container {
       display: flex;
       flex-direction: column;
       width: 100%;
-
+      filter: brightness(1);
+      transition: filter 0.4s ease;
+      background-color: white;
     }
 
     .progress__container p {
@@ -424,6 +446,11 @@
       width: 8rem;
     }
 
+    .scene{
+      filter: brightness(1);
+      transition: filter 0.4s ease;
+    }
+
     .scene-outro {
       width: 100%;
       height: 100%;
@@ -435,12 +462,60 @@
       align-items: center;
       justify-content: center;
       color: white;
+      /* filter: brightness(0.5); */
+      
+    }
+
+    .dim {
+      filter: brightness(0.5);
     }
 
     .scene-outro img {
-      scale: 0.7;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 85vw;
+      z-index: 0;
     }
 
+    .outro__button--container {
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding-top: 1rem;
+    }
+
+    .button__keep {
+      border: 2px solid white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .button__keep svg {
+      scale: 0.8;
+    }
+
+    .outro__text--container {
+      background-color: white;
+      color: var(--blue);
+      padding: 1.5rem;
+      height: 50vh;
+    }
+
+    .outro__text--container h2 {
+      text-align: center;
+      margin: 0;
+      padding-bottom: 1rem;
+    }
+
+    .outro__text--container p {
+      font-weight: 400;
+      font-size: 1.2rem;
+      color: black;
+    }
 
 
     .scene-walking {
@@ -508,6 +583,20 @@
       animation: scroll-diagonal 8s linear infinite;
     }
 
+    .scrolling__BG--yellow {
+      background-color: #FFBF50;
+      margin: 0;
+      /* width: 100vw; */
+      /* display: flex; */
+      /* justify-content: space-between; */
+      /* background-color: var(--yellow); */
+      background-image: url('./assets/svg/a-yellow.svg');
+      background-repeat: repeat;
+      background-size: 44px 44px;
+      animation: scroll-diagonal 8s linear infinite;
+
+    }
+
     .side__panel--wrapper {
       position: absolute;
       top: 0;
@@ -572,6 +661,7 @@
       place-content: center;
       transition: all 0.3s ease-out;
       pointer-events: none;
+      z-index: 999;
     }
 
     .kuce {
@@ -597,11 +687,11 @@
       width: 5rem;
     }
 
-    .button__language{
+    .button__language {
       position: relative;
     }
 
-    .language{
+    .language {
       position: relative;
       color: white;
       font-weight: 800;
@@ -627,7 +717,7 @@
       width: 100vw;
       height: 100vh;
       background-color: transparent;
-      backdrop-filter: brightness(60%);
+      /* backdrop-filter: brightness(60%); */
       z-index: 990;
       /* transform: translateX(-50%); */
       transform: translateX(-50%) translateY(0%);
@@ -662,7 +752,7 @@
       height: 100%; */
       position: relative;
       width: 90vw;
-      height: 75vh;
+      height: 65vh;
       transform: translateX(-50%) translateY(0%);
       left: 50vw;
       top: 5rem;
@@ -779,38 +869,88 @@
       /* display: none; */
     }
 
-    .popup__icon{
+    .popup__icon {
       background-color: #01A468;
       padding: 1rem;
     }
 
-    .popup__text{
+    .popup__text {
       /* background-color: white; */
       padding: 1;
     }
 
     .bouncy-scale {
-  animation: bounce-scale 1s;
-}
+      animation: bounce-scale 1s;
+    }
 
-@keyframes bounce-scale {
-  0% {
-    transform: scale(1);
-  }
-  10% {
-    transform: scale(1.25);
-  }
-  30% {
-    transform: scale(0.95);
-  }
-  70% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
+    @keyframes bounce-scale {
+      0% {
+        transform: scale(1);
+      }
 
+      10% {
+        transform: scale(1.25);
+      }
+
+      30% {
+        transform: scale(0.95);
+      }
+
+      70% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+
+
+    }
+
+    .panel__outro {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background-color: white;
+      width: 90vw;
+      transform: translate(-50%, -50%);
+      z-index: 99;
+      transition: all 0.5s ease-out;
+    }
+
+    .panel__outro--hidden {
+      transform: translate(-50%, 300%);
+    }
+
+    .panel__outro--header {
+      background-color: var(--blue);
+      color: white;
+      font-weight: 800;
+      text-align: center;
+      height: fit-content;
+      padding: 1rem 0rem;
+    }
+
+    .panel__outro--header svg {
+      position: absolute;
+      right: 0.5rem;
+      top: 0.5rem;
+      font-size: 1.5rem;
+    }
+
+    .panel__outro--body {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .panel__outro--buttons {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      padding-top: 1rem;
+    }
   </style>
 </head>
 
@@ -970,10 +1110,53 @@
     </div>
   </div>
 
-  <div class="scene scene-outro visually-hidden scrolling__BG">
-    <img src="./assets/img/abby-bubble.png">
-    <p>This is the end of the Demo,</p>
-    <p>Thank you for participating!</p>
+  <div class="scene scene-outro visually-hidden scrolling__BG--yellow">
+    <div class="outro__text--container">
+      <h2>Bye Friend!</h2>
+      <p>You’ve planted your seed. Now let it grow. And remember, Abby’s been growing with you all along and will always
+        be here
+        when you want to bloom again.</p>
+    </div>
+    <div class="outro__button--container">
+      <button class="button--primary button__keep">
+        <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M18.5 4.04688C10.5305 4.04688 4.04688 10.5305 4.04688 18.5C4.04688 26.4695 10.5305 32.9531 18.5 32.9531C26.4695 32.9531 32.9531 26.4695 32.9531 18.5C32.9531 10.5305 26.4695 4.04688 18.5 4.04688ZM18.5 9.97266C18.8716 9.97266 19.2349 10.0829 19.5439 10.2893C19.8528 10.4958 20.0937 10.7892 20.2359 11.1325C20.3781 11.4759 20.4153 11.8536 20.3428 12.2181C20.2703 12.5826 20.0914 12.9174 19.8286 13.1802C19.5658 13.4429 19.231 13.6219 18.8666 13.6944C18.5021 13.7669 18.1243 13.7297 17.781 13.5874C17.4376 13.4452 17.1442 13.2044 16.9377 12.8954C16.7313 12.5864 16.6211 12.2232 16.6211 11.8516C16.6211 11.3532 16.819 10.8753 17.1714 10.523C17.5238 10.1706 18.0017 9.97266 18.5 9.97266V9.97266ZM23.125 26.3047H14.4531V23.9922H17.6328V17.6328H15.3203V15.3203H19.9453V23.9922H23.125V26.3047Z"
+            fill="black" />
+        </svg>
+        Keep growing with Abby
+      </button>
+      <button class="button--secondary button--home">
+        <a href="home.html">
+          Back to Home page
+        </a>
+      </button>
+    </div>
+    <img src="./assets/img/abby-hi-2.png">
+  </div>
+
+  <div class="panel__outro panel__outro--hidden">
+    <div class="panel__outro--header scrolling__BG">
+      Grow with Abby
+      <svg class="outro__panel--close" width="29" height="29" viewBox="0 0 29 29" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path d="M26.9787 1.98544L1.98877 26.9853M26.9888 26.9852L1.99884 1.98532" stroke="white" stroke-width="3" />
+      </svg>
+    </div>
+    <div class="panel__outro--body">
+      <p>At Abby, we love growing together, through exhibitions, events, and all kinds of ideas.</p>
+      <p>Got something on your mind, like a finance workshop or even an exhibition on procrastination? Tell us</p>
+      <p>Your growth helps Abby grow too. That’s what makes this place feel alive.</p>
+      <div class="panel__outro--buttons">
+
+        <button class="button--secondary">
+          Get notified
+        </button>
+        <button class="button--primary">
+          Upcoming events
+        </button>
+      </div>
+    </div>
   </div>
   <!-- <video id="myCamera" playsinline></video> -->
 
@@ -986,8 +1169,8 @@
     <a-entity camera></a-entity>
   </a-scene> -->
 
-  <div class="scene scene-game scene-map panel__info panel__info--hidden">
-    <img src="./assets/img/info.png">
+  <div class="scene-game scene-map panel__info panel__info--hidden">
+    <img src="./assets/img/info-panel.jpg">
     <button class="panel__info--close">
       <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M26.9787 1.98544L1.98877 26.9853M26.9888 26.9852L1.99884 1.98532" stroke="white" stroke-width="3" />
@@ -1081,11 +1264,6 @@
   <div class="scene scene-intro visually-hidden">
     <img class="info__findmarker" src="./assets/img/info-find-marker.png">
     <button class="button--secondary button__back--intro">Back to map</button>
-
-    <!-- <div class="button__container button__container--hidden button__container--intro">
-      <button class="button__back--intro button--secondary">Back to map</button>
-      <button class="button__next__intro button--primary">First question</button>
-    </div> -->
   </div>
 
   <div class="button__container button__container--hidden button__container--minimal">
@@ -1125,11 +1303,10 @@
       <button class="button__game--walking button--primary">We're ready, Let's go!</button>
     </div>
   </footer>
-
   <button class="ar__switch visually-hidden">Swich AR</button>
 
   <a-scene embedded arjs class="scene scene-game">
-    <a-marker id="marker" preset="hiro" class="ar__marker" smooth="true" smoothCount="2" smoothTolerance="0.01"
+    <a-marker id="marker" type="pattern" url="/Integration4/assets/pattern-A.patt" class="ar__marker" smooth="true" smoothCount="2" smoothTolerance="0.01"
       smoothThreshold="3">
       <a-plane src="./assets/img/abby-hi-3.png" transparent="true" height="8" width="5" position="0 0 -4"
         rotation="0 0 0" class="game__task game__task--1"></a-plane>
