@@ -1,3 +1,7 @@
+import "../css/reset.css";
+import "../css/global.css";
+import "../css/home.css";
+
 const spaces = [
     {
         name: "The Living",
@@ -40,6 +44,8 @@ const thoughts = [
     'Put rice on. Became popcorn somehow.',
 ]
 
+const $progressContainer = document.querySelector(".space_progress");
+const fixedBtn = document.querySelector('.fixed_btn');
 const $space = document.querySelector(".space");
 const $spName = document.querySelector(".space_name");
 const $spIcon = document.querySelector(".space_icon");
@@ -50,8 +56,12 @@ const $nextBtn = document.querySelector(".next_btn");
 const $thought = document.querySelector(".extra_thought");
 
 let currentIndex = 0;
+let $dots = [];
 
 const init = () => {
+    gsap.registerPlugin(ScrollTrigger);
+    fixedButton();
+    createProgressDots();
     randomThought();
     $nextBtn.addEventListener('click', () => {
         currentIndex = (currentIndex + 1) % spaces.length;
@@ -67,6 +77,19 @@ const init = () => {
     $spMedia.playbackRate = 1.25;
 }
 
+const fixedButton = () => {
+    ScrollTrigger.create({
+        trigger: document.body,
+        start: "top -300px",
+        onEnter: () => {
+            gsap.to(fixedBtn, { opacity: 1, duration: 0.3 });
+        },
+        onLeaveBack: () => {
+            gsap.to(fixedBtn, { opacity: 0, duration: 0.3 });
+        }
+    });
+}
+
 const updateSpace = (index) => {
     const space = spaces[index];
     $spName.textContent = space.name;
@@ -75,11 +98,26 @@ const updateSpace = (index) => {
     $spMedia.src = space.media;
     $spMedia.alt = space.name;
     $spDescription.textContent = space.description;
+
+    $dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+    });
 }
 
 const randomThought = () => {
     const randomIndex = Math.floor(Math.random() * thoughts.length);
     $thought.textContent = `“${thoughts[randomIndex]}”`;
+}
+
+const createProgressDots = () => {
+    $progressContainer.innerHTML = "";
+    $dots = spaces.map((_, i) => {
+        const $dot = document.createElement("div");
+        $dot.classList.add("space_dot");
+        if (i === currentIndex) $dot.classList.add("active");
+        $progressContainer.appendChild($dot);
+        return $dot;
+    });
 }
 
 init();

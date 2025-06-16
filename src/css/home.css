@@ -1,106 +1,3 @@
-html {
-    box-sizing: border-box;
-    max-height: 1vh;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
-
-:root {
-    --yellow: #FFBF50;
-    --blue: #5F90FF;
-    --white: #fff;
-    --black: #000;
-    --green: #01A468;
-    --purple: #BB7CD2;
-    --orange: #FF5F00;
-    --red: #691F13;
-
-    --s-xs: 0.5rem;
-    --s-s: 1rem;
-    --s-m: 2rem;
-    --s-l: 3rem;
-
-    --fs: 1rem;
-    --fs-xxs: 1.2rem;
-    --fs-xs: 1.4rem;
-    --fs-s: 1.5rem;
-    --fs-m: 2rem;
-    --fs-l: 3.125rem;
-}
-
-@font-face {
-    font-family: "GT-Walsheim";
-    src: url('../../public/assets/fonts/GT-Walsheim-Regular.otf') format('opentype');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "GT-Walsheim";
-    src: url('../../public/assets/fonts/GT-Walsheim-Medium.otf') format('opentype');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "GT-Walsheim";
-    src: url('../../public/assets/fonts/GT-Walsheim-Bold.otf') format('opentype');
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "GT-Walsheim";
-    src: url('../../public/assets/fonts/GT-Walsheim-Regular-Oblique.otf') format('opentype');
-    font-weight: 400;
-    font-style: italic;
-}
-
-img {
-    max-inline-size: 100%;
-    block-size: auto;
-}
-
-body {
-    font-family: "GT-Walsheim";
-    font-size: var(--fs);
-    font-style: normal;
-    font-weight: 400;
-    line-height: 110%;
-    letter-spacing: -0.03px;
-}
-
-strong {
-    font-weight: 700;
-}
-
-h1 {
-    font-family: "GT-Walsheim";
-    font-size: var(--fs-l);
-    font-style: normal;
-    font-weight: 700;
-    line-height: 110%;
-    letter-spacing: -1.1px;
-}
-
-h2 {
-    font-family: "GT-Walsheim";
-    font-size: var(--fs-m);
-    font-style: normal;
-    font-weight: 500;
-}
-
-h3 {
-    font-family: "GT-Walsheim";
-    font-size: var(--fs-s);
-    font-style: normal;
-    font-weight: 400;
-}
-
 header {
     display: flex;
     align-items: center;
@@ -130,37 +27,8 @@ header {
     background-color: var(--yellow);
 }
 
-button {
-    font-family: "GT-Walsheim";
-    font-size: var(--fs);
-    font-weight: 500;
-    padding: 1rem;
-    margin: auto;
-    background-color: var(--yellow);
-    border: none;
-    color: var(--black);
-}
-
-.hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-}
-
-header {
-    display: flex;
-    align-items: end;
-    gap: 2rem;
-    padding: 1rem;
-}
-
 .intro {
-    padding-top: var(--s-l);
+    padding-top: var(--s-m);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -171,9 +39,9 @@ header {
 
 .intro_text {
     padding: var(--s-s) 0;
-    max-width: 20rem;
-    font-size: var(--fs-xs);
-    line-height: 130%;
+    max-width: 19rem;
+    font-size: var(--fs-xxs);
+    line-height: 110%;
 }
 
 .abby_name_color {
@@ -185,27 +53,16 @@ header {
     display: flex;
     justify-content: space-between;
     background-color: var(--yellow);
-    background-image: url('../assets/svg/a-yellow.svg');
+    background-image: url('/assets/svg/a-yellow.svg');
     background-repeat: repeat;
     background-size: 44px 44px;
     animation: scroll-diagonal 8s linear infinite;
-
-}
-
-@keyframes scroll-diagonal {
-    0% {
-        background-position: 0 0;
-    }
-
-    100% {
-        background-position: -88px 88px;
-    }
 }
 
 .abby_hi {
     margin-right: -8rem;
     padding-top: 0rem;
-    height: 30rem;
+    height: 26rem;
     transform: scaleX(-1) rotate(12deg);
 }
 
@@ -221,33 +78,29 @@ header {
     align-items: center;
     z-index: 2;
     margin-top: -9rem;
-    padding: var(--s-s) var(--s-m);
+    padding: var(--s-m) var(--s-l);
+    padding-bottom: var(--s-xs);
     gap: var(--s-s);
-}
 
-.cta p {
-    font-weight: 700;
-    font-size: 1.2rem;
 }
 
 .cta button {
     background-color: var(--green);
     color: var(--white);
     animation: pulse 2s ease-in-out infinite;
+    font-weight: 700;
+    letter-spacing: 0.01rem;
+
 }
 
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.08);
-    }
-
-    100% {
-        transform: scale(1);
-    }
+.fixed_btn {
+    background-color: var(--green);
+    color: var(--white);
+    position: fixed;
+    bottom: 4rem;
+    right: 1rem;
+    z-index: 100;
+    opacity: 0;
 }
 
 .intro_extra {
@@ -258,7 +111,8 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--s-s);
+    gap: var(--s-xs);
+    padding-bottom: var(--s-xs);
 }
 
 .extra_question {
@@ -317,9 +171,10 @@ header {
 .about>p {
     grid-column: span 2;
     text-align: center;
-    padding: var(--s-s);
-    font-size: var(--fs);
+    padding: var(--s-m) var(--s-xs);
+    font-size: var(--fs-xxs);
     max-width: 20rem;
+    line-height: 120%;
     margin: auto;
 }
 
@@ -355,7 +210,7 @@ header {
     font-weight: 500;
     align-self: center;
     justify-self: center;
-    padding: 2.5rem 0;
+    padding: 2.9rem 0;
     z-index: 1;
     overflow: hidden;
 }
@@ -365,10 +220,8 @@ header {
     position: absolute;
     inset: 0;
     background-color: var(--white);
-    background-image: url('../assets/svg/event-patern.svg');
     background-repeat: repeat;
-    background-size: 31px;
-    opacity: 0.5;
+    opacity: 0.4;
     z-index: 0;
 }
 
@@ -401,6 +254,7 @@ header {
 
 .event>h3 {
     font-size: var(--fs-xs);
+    padding-top: var(--s-xs);
     padding-bottom: var(--s-xs);
     font-weight: 500;
 }
@@ -409,10 +263,10 @@ header {
     font-size: var(--fs);
 }
 
+
 .event>.link,
 .space_about>.link {
     font-weight: 500;
-    padding: var(--s-xs) 0;
     display: flex;
     align-items: center;
     gap: var(--s-xs);
@@ -421,6 +275,7 @@ header {
 }
 
 .event>.link {
+    padding-top: var(--s-s);
     justify-content: end;
 }
 
@@ -447,6 +302,7 @@ header {
 }
 
 .space_about>.link {
+    padding: var(--s-xs) 0;
     color: var(--white);
 }
 
@@ -505,7 +361,29 @@ header {
 
 .spaces>button {
     display: flex;
+    justify-self: center;
+    margin: auto;
     margin-top: var(--s-m);
+}
+
+.space_progress {
+    display: flex;
+    justify-content: center;
+    gap: 0.3rem;
+    margin-top: var(--s-s);
+}
+
+.space_dot {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 2px solid #bacfec;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.space_dot.active {
+    background-color: var(--blue);
 }
 
 .people {
@@ -525,8 +403,6 @@ header {
     background-color: #FFDB9D;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border: 2px solid var(--black);
-    gap: var(--s-xs);
 }
 
 .dark_yellow {
@@ -538,38 +414,56 @@ header {
 .darker_yellow {
     position: relative;
     background-color: #FFBF50;
-    margin-top: -9rem;
+    margin-top: -10rem;
     z-index: 2;
 }
 
 .light_yellow {
     position: relative;
     z-index: 3;
-    margin-top: -9rem;
+    margin-top: -10rem;
 }
 
 .people_card>h3 {
-    padding-left: var(--s-m);
+    justify-self: center;
+    align-self: end;
+    padding-bottom: var(--s-xs);
 }
 
 .people_card button {
-    border: 1px solid var(--black);
+    background-color: var(--red);
+    color: var(--white);
+    font-weight: 400;
+    margin-top: var(--s-xs);
 }
 
 .profile_img {
     grid-column: 1;
     justify-self: center;
+    align-self: end;
+    border-radius: 10rem;
+    width: 85%;
+}
+
+.add {
+    padding: var(--s-s);
+    display: flex;
+    justify-content: center;
+}
+
+.add_yours {
+    background-color: var(--red);
 }
 
 .skils {
     grid-column: 2;
-    grid-row: 1 / span 3;
+    grid-row: 1 / span 2;
     justify-self: center;
     align-self: center;
 }
 
 .role__bar {
-    height: 1rem;
+    height: 0.7rem;
     background-color: #e4c89c;
     overflow: hidden;
     margin-bottom: var(--s-xs);
@@ -608,6 +502,15 @@ footer h3 {
     padding-bottom: var(--s-xs);
 }
 
+.insta {
+    display: flex;
+    align-items: center;
+}
+
+.newsletter {
+    position: relative;
+}
+
 .newsletter>img {
     padding-left: var(--s-s);
 }
@@ -617,6 +520,15 @@ footer h3 {
     padding: var(--s-s) var(--s-m) var(--s-s) var(--s-xs);
     border: 1px solid var(--black);
     border-radius: 0;
+}
+
+.email_submit {
+    position: relative;
+    right: 2rem;
+    top: 0.3rem;
+    background: none;
+    border: none;
+    padding: 0;
 }
 
 .email_input::placeholder {

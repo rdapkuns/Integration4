@@ -1,7 +1,4 @@
 import { supabase } from '/src/scripts/supabaseClient.js';
-import comments from '../comments.json';
-import { gsap } from "gsap";
-import 'aframe-chromakey-material';
 
 
 let taskCount = 7
