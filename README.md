@@ -4,13 +4,13 @@
 project deployed at: [rdapkuns.github.io/Integration4](https://rdapkuns.github.io/Integration4/)
 
 ## The team
-### Devine
+### Devine:
 - Arina Holodkova
 - Diana Moreno
 - Lina Kausch
 - Rūdolfs Dapkuns
 
-### CMD
+### CMD:
 - Ziggy Engel
 - Mikko Helin
 
