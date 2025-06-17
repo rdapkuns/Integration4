@@ -1,36 +1,32 @@
-When running locally, make sure to:
 
-1. Generate a localhost certificate:
+# Abby
 
+## The team
+- Arina Holodkova (ArinaHolodkova)
+- Diana Moreno (dianam0r)
+- Lina Kausch (LinaKausch)
+- Rūdolfs Dapkuns (rdapkuns)
+
+## To run the project locally
+1. Generate a key and certificate by pasting this command in terminal (only for the first install)
 ```
-openssl req -x509 -out localhost.crt -keyout localhost.key \
+  openssl req -x509 -out localhost.crt -keyout localhost.key \
   -newkey rsa:2048 -nodes -sha256 \
   -subj '/CN=localhost' -extensions EXT -config <( \
    printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
-```
+   ```
 
-2. Create an .env file in the root of this project where you sent NODE_ENV to development:
+2. Run `npm install` in terminal  (only for the first install)
+3. Run `npm run dev` for development or `npm run preview` for the current build
 
-```
-NODE_ENV=development
-```
+## System requirements
+- Built for Mobile
+- Internet connection required
+- Recommended browsers: Safari (for IOS) or Chrome (for Android)
+- The app might ask for camera permission on initial launch (accept to proceed)
 
-__
-
-# For this project
-
-## setup:
-1. generate the certificates
-2. add .env
-3. "npm start" the server
-4. go to https://ipadress
-5. happi
-
-
-## takeaways:
-1. we will need a pretty big marker if we want to project from distance
-2. the location based Ar can be 5 - 20 meters off so thats a no-go
-3. for ar.js to work we need to use HTTPS protocol (meaning we have to set up a local server)
-4. for 3d we use .glb
-5. all the AR stuff has to be wrapped in "<a-scene"> container
-6. for 2d to have transparency we have to use "greenscreen" with a chroma filter
+## Other files for this project
+- [Figma - Wireframes](https://www.figma.com/design/hpnZ5fIzVRzWYJl8CM4RLh/Wireframes?node-id=1342-2988&t=CVxaNPdlnV4cRkK8-1)
+- [Figjam - Planning, Analising](https://www.figma.com/design/hpnZ5fIzVRzWYJl8CM4RLh/Wireframes?node-id=1342-2988&t=CVxaNPdlnV4cRkK8-1)
+- [Figma - Microsite](https://www.figma.com/design/L1SZGLsLNkRkEeAQk5ssZJ/One-pager?node-id=0-1&t=e2ZHxqmCwE8D584l-1)
+- [Figma - Posters, instagram posts](https://www.figma.com/design/6v2Na32qft02xglW6y7fxn/Ads?node-id=0-1&t=VDGMwK52fISsp7Mq-1)

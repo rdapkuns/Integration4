@@ -2,11 +2,11 @@ import { supabase } from '/src/scripts/supabaseClient.js';
 import comments from '../comments.json';
 import { gsap } from "gsap";
 import 'aframe-chromakey-material';
+import "../css/game.css";
 
 let taskCount = 7
 let nextTaskSelected = false
 let selectedTask = 0
-// let completedTasks = []
 let completedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
 
 let isFirstRound = true
@@ -18,11 +18,7 @@ let isBookmarked = false
 const base = import.meta.env.BASE_URL
 
 
-
-
-async function loadLocations(id) {
-
-    // return
+const loadLocations = async (id) => {
 
     const { data, error } = await supabase
         .from('Locations')
@@ -35,55 +31,32 @@ async function loadLocations(id) {
 
     const item = data.find(obj => obj.id === id);
 
-    // console.log('Locations:', data);
-
-    // Display them (example if using basic HTML)
     const container = document.getElementById('locations');
     container.innerHTML = data
         .map(loc => `<div>${loc.name}: ${loc.amount}</div>`)
         .join('');
 
-
-    // console.log(data)
     return (item)
 }
 
-// loadLocations();
+const showSceneByClass = (targetClass) => {
+    const $scenes = document.querySelectorAll('.scene');
 
-
-const doSomething = () => {
-    console.log("DOING SOMETING")
-}
-
-
-function showSceneByClass(targetClass) {
-    const scenes = document.querySelectorAll('.scene');
-
-    scenes.forEach(scene => {
-        // scene.style.display = 'none';
+    $scenes.forEach(scene => {
         scene.classList.add("visually-hidden")
     });
 
-    const targetScenes = document.querySelectorAll(`.${targetClass}`);
+    const $targetScenes = document.querySelectorAll(`.${targetClass}`);
     console.log(targetClass)
-    targetScenes.forEach(scene => {
-        // scene.style.display = 'block';
+    $targetScenes.forEach(scene => {
         scene.classList.remove("visually-hidden")
     });
 
 }
 
-const $seeFloorOne = document.querySelector(".floor__button--1");
-const $seeFloorZero = document.querySelector(".floor__button--0");
-const $floor0 = document.querySelector(".floor-0");
-const $floor1 = document.querySelector(".floor-1");
-
-
 const duration = 0.5;
 
-
 document.querySelector(".floor__button--1").addEventListener("click", () => {
-
 
     $seeFloorOne.classList.remove("floor__button--inactive")
     $seeFloorZero.classList.add("floor__button--inactive")
@@ -160,10 +133,6 @@ document.querySelector(".floor__button--0").addEventListener("click", () => {
     );
 });
 
-
-const $speechHeader = document.querySelector(".walking__speech--header")
-const $speechBody = document.querySelector(".walking__speech--body")
-
 const handleNextTask = () => {
     if (nextTaskSelected === true) {
         showSceneByClass("scene-walking")
@@ -187,20 +156,14 @@ const handleNextTask = () => {
             $speechHeader.textContent = randomComment.title
             $speechBody.textContent = randomComment.body
         }
-        // $nextTask.textContent = "We're ready, Let's begin"
     }
 }
 
 const goToGame = async () => {
-    // const $footer = document.querySelector("footer")
-    // $footer.classList.remove("visually-hidden")
-    // const $buttonContainer = document.querySelector(".button__container--minimal")
-    // $buttonContainer.classList.remove("button__container--hidden")
-
     let playersAtLocation = await loadLocations(selectedTask)
-    // updateParticipantAmount(playersAtLocation, 1)
+    updateParticipantAmount(playersAtLocation, 1)
     updateAR()
-    // updataAR()
+
     if (isDoingIntro === true) {
         showSceneByClass("scene-intro")
         const $footer = document.querySelector("footer")
@@ -208,12 +171,17 @@ const goToGame = async () => {
         isDoingIntro = false
         isDoingIntro = localStorage.setItem('isDoingIntro', 'false')
     } else {
-        updateParticipantAmount(playersAtLocation, 1)
+        // updateParticipantAmount(playersAtLocation, 1)
         showSceneByClass("scene-game")
     }
 }
 
-const $allTasks = document.querySelectorAll(".task__point")
+const introToGame = () => {
+    updateAR()
+    showSceneByClass("scene-game")
+}
+
+
 const goToMap = async () => {
     isDoingIntro = localStorage.getItem('isDoingIntro') ?? (localStorage.setItem('isDoingIntro', 'true'), true);
     isFirstRound = localStorage.getItem('isFirstRound');
@@ -271,9 +239,6 @@ const handleTaskComplete = async () => {
         })
     }
 
-    showSceneByClass("scene-map")
-    // console.log(playersAtLocation.name)
-    // console.log("current Task was: ", selectedTask)
 
     let $activeIndicator = document.getElementById(`indicator__${selectedTask}`)
     $activeIndicator.innerHTML = `<span>You are<br>here<span>`
@@ -288,40 +253,43 @@ const handleTaskComplete = async () => {
         completedTasks.push(selectedTask);
         taskCount++
         localStorage.setItem('taskProgress', taskCount);
-        // console.log(taskCount)
         localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
         handleProgressBar()
     }
 
-    // console.log(completedTasks)
-
-    // for (let i = 0; i < 10; i++) {
-    //     if (completedTasks.includes(i)) {
-
-    //         $taskPoints.forEach(task => {
-    //             const taskId = task.id;
-    //             const number = taskId.split("__")[1];
-    //             if (Number(number) === i) {
-    //                 task.classList.add("task--complete")
-    //             }
-    //         })
-    //     }
-    // }
-
-    // if (taskCount > 8) {
-    //     const $lastTask = document.getElementById("task__10")
-    //     $lastTask.classList.remove("visually-hidden")
-    // }
     loadMapPoints()
 
     if (taskCount === 11) {
-        showSceneByClass("scene-outro")
-        $footer.classList.add("visually-hidden")
+        const iris = document.getElementById("iris");
+
+        iris.style.animation = "irisOut 1s forwards";
+
+        iris.addEventListener(
+            "animationend",
+            () => {
+                showSceneByClass("scene-outro")
+                $footer.classList.add("visually-hidden")
+
+                iris.style.animation = "irisIn 1s forwards";
+            },
+            { once: true }
+        );
+
+    } else {
+        const cover = document.getElementById("slide-cover");
+        cover.style.animation = "slideInRight 1s cubic-bezier(.13,.97,.28,.98) forwards";
+        cover.addEventListener(
+            "animationend",
+            () => {
+                showSceneByClass("scene-map")
+                cover.style.animation = "slideOutLeft 1s cubic-bezier(.13,.97,.28,.98) forwards";
+            },
+            { once: true }
+        );
     }
 }
 
 const handleProgressBar = () => {
-    // taskCount = localStorage.getItem('taskProgress');
     taskCount = Number(localStorage.getItem('taskProgress')) || 1;
 
     const $progressCounter = document.querySelector(".progress__counter")
@@ -337,11 +305,10 @@ const handleProgressBar = () => {
 
 
 
-async function handleTaskPointClick(event) {
+const handleTaskPointClick = async (event) => {
     const $infoSelect = document.querySelector(".info__select")
     $infoSelect.classList.add("visually-hidden")
     const taskPoint = event.currentTarget;
-    // console.log("current target is:", taskPoint.dataset.location)
 
     document.querySelectorAll('.indicator').forEach(indicator => {
         indicator.classList.remove('indicator--visible');
@@ -351,8 +318,7 @@ async function handleTaskPointClick(event) {
     const indicator = clickedTaskPoint.querySelector('.indicator');
 
     const taskId = taskPoint.id;
-    const number = taskId.split("__")[1]; // "2" as a string
-    // console.log(number)
+    const number = taskId.split("__")[1];
     selectedTask = Number(number)
 
     $nextTask.classList.remove("button--inactive")
@@ -363,7 +329,6 @@ async function handleTaskPointClick(event) {
     currentLocation = taskPoint.dataset.location
 
     let playersAtLocation = await loadLocations(selectedTask)
-    // console.log(playersAtLocation)
     if (indicator) {
         void indicator.offsetWidth;
         indicator.classList.add('indicator--visible');
@@ -465,17 +430,26 @@ const showPopup = (type) => {
     }, 5000);
 }
 
-
-
-
 const debug = () => {
-    localStorage.clear();
+    // localStorage.clear();
+    const cover = document.getElementById("slide-cover");
+    cover.style.animation = "slideInRight 1s cubic-bezier(.13,.97,.28,.98) forwards";
+    cover.addEventListener(
+        "animationend",
+        () => {
+            showSceneByClass("scene-outro")
+
+            // Slide out to the left
+            cover.style.animation = "slideOutLeft 1s cubic-bezier(.13,.97,.28,.98) forwards";
+        },
+        { once: true }
+    );
+
 }
 
 const randomPPL = document.querySelector(".random__ppl").addEventListener("click", debug)
 
-async function updateParticipantAmount(playersAtLocation, increment) {
-    // let randomAmount = Math.floor(Math.random() * 20);
+const updateParticipantAmount = async (playersAtLocation, increment) => {
     console.log("name: ", playersAtLocation.name, "amount: ", playersAtLocation.amount)
     const { error } = await supabase
         .from('Locations')
@@ -489,43 +463,16 @@ AFRAME.registerComponent('true-billboard', {
         const camera = document.querySelector('#cam').object3D;
         const object = this.el.object3D;
 
-        // Get world position of camera
         const cameraWorldPos = new THREE.Vector3();
         camera.getWorldPosition(cameraWorldPos);
 
-        // Get world position of the object
         const objectWorldPos = new THREE.Vector3();
         object.getWorldPosition(objectWorldPos);
 
-        // Look at camera (with local transformation retained)
         object.lookAt(cameraWorldPos);
     }
 });
 
-const updateARold = () => {
-    let currentAbby = Math.ceil(taskCount / 2);
-    $arMarker.innerHTML = `
-    <a-plane src="${base}assets/abbies/abby-${currentAbby}.png" transparent="true" height="5" width="5" position="0 0 -4"
-        rotation="0 0 0" class="game__task game__task--1"></a-plane>
-      <a-plane src="${base}assets/questions/${currentLocation}.png" transparent="true" true-billboard class="game__task game__task--1 visually-hidden" height="4" width="6" position="6 1 -4" rotation="0 0 0"></a-plane>
-    `
-    if (isFirstRound === true) {
-        $arMarker.innerHTML = `
-    <a-plane src="${base}assets/abbies/abby-${currentAbby}.png" transparent="true" height="5" width="5" position="0 0 -4"
-        rotation="0 0 0" class="game__task game__task--1"></a-plane>
-      <a-plane src="${base}assets/questions/Intro.png" transparent="true" true-billboard class="game__task game__task--1 visually-hidden" height="4" width="6" position="6 1 -4" rotation="0 0 0"></a-plane>
-    `
-    }
-
-    if (currentLocation === "S1" || currentLocation === "S2") {
-        $arMarker.innerHTML = `
-    <a-plane src="${base}assets/abbies/abby-${currentAbby}.png" transparent="true" height="5" width="5" position="0 0 -4"
-        rotation="0 0 0" class="game__task game__task--1"></a-plane>
-      <a-plane src="${base}assets/questions/${currentLocation}.png" transparent="true"  class="game__task game__task--1 visually-hidden" height="4" width="6" position="6 1 -4" rotation="0 0 0"></a-plane>
-      <a-plane src="${base}assets/questions/${currentLocation}-extra.png" transparent="true"  class="game__task game__task--1 visually-hidden" height="4" width="6" position="-6 1 -4" rotation="0 0 0"></a-plane>
-    `
-    }
-}
 
 const imageCount = {
     A: 7,
@@ -537,7 +484,6 @@ const imageCount = {
     S: 6,
 };
 
-// Track shown images
 const usedImages = {
     A: new Set(),
     C1: new Set(),
@@ -552,7 +498,6 @@ const getRandomUnusedImage = (groupKey) => {
     const total = imageCount[groupKey];
     const used = usedImages[groupKey];
 
-    // If all used, reset
     if (used.size >= total) {
         usedImages[groupKey] = new Set();
     }
@@ -624,47 +569,37 @@ const updateAR = () => {
 };
 
 
-const toggleSidePanel = (event) => {
-    // console.log(event.currentTarget)
+const toggleSidePanel = () => {
     $sideToggle.classList.toggle("side__panel--invisible")
     $sidePanel.classList.toggle("side__panel--visible")
-
 }
 
 const toggleInfoPanel = () => {
-    // console.log("toggling")
     $panelInfo.classList.toggle("panel__info--hidden")
     const $scenes = document.querySelectorAll(".scene")
     $scenes.forEach(scene => {
         scene.classList.toggle("dim")
 
-        // requestAnimationFrame(() => {
-        //     scene.classList.toggle('active'); // triggers opacity transition
-        // });
     })
-    // $footer.classList.toggle("dim")
     const $progressContainer = document.querySelector(".progress__container")
     $progressContainer.classList.toggle("dim")
 }
 
 const handleMarkerFound = () => {
-    // console.log('Marker detected!');
     const $marker = document.getElementById("marker")
     $marker.removeEventListener('markerFound', handleMarkerFound);
     const $findMarker = document.querySelector(".info__findmarker")
     const $buttonContainer = document.querySelector(".button__container--minimal")
     $findMarker.classList.add("find__marker--hidden")
-    // $buttonContainer.classList.remove("button__container--hidden")
 
-    // setTimeout(goToGame, 600);
     setTimeout(() => {
-        goToGame();
+        // goToGame();
+        introToGame()
         $buttonContainer.classList.remove("button__container--hidden")
     }, 600);
 }
 
 const goToFirstQuestion = () => {
-
     const $buttonContainer = document.querySelector(".button__container--minimal")
     $footer.classList.remove("visually-hidden")
     $buttonContainer.classList.add("visually-hidden")
@@ -677,7 +612,9 @@ const goToFirstQuestion = () => {
         <a-plane src="${base}assets/questions/L/${randomIndex}.png" transparent="true"  class="game__task game__task--1 visually-hidden" height="3" width="5" position="0 1 -4" rotation="0 0 0" true-billboard></a-plane>
     `
 }
+
 let languageIndex = 0;
+
 const animateTextChange = () => {
 
     const textOptions = ["ENG", "NL", "FR"]
@@ -697,7 +634,7 @@ const animateTextChange = () => {
         ease: "power2.in",
         onComplete: () => {
             element.textContent = newText;
-            gsap.set(element, { x: -distance }); // Move to left, still invisible
+            gsap.set(element, { x: -distance });
         }
     });
 
@@ -720,14 +657,13 @@ const goToHomePage = () => {
     localStorage.clear();
 }
 
-
 window.addEventListener('load', () => {
     const loadingScreen = document.getElementById('loading-screen');
     if (loadingScreen) {
         loadingScreen.classList.add('fade-out');
         setTimeout(() => {
             loadingScreen.style.display = 'none';
-        }, 500); // match the CSS transition duration
+        }, 500);
     }
 });
 
@@ -760,7 +696,6 @@ $nextTask.addEventListener("click", handleNextTask)
 const $toGameButton = document.querySelector(".button__game--walking").addEventListener("click", goToGame)
 const $introToGameButton = document.querySelector(".button__next__intro").addEventListener("click", goToFirstQuestion)
 const $introToMapButton = document.querySelector(".button__back--intro").addEventListener('click', () => returnToMap(true));
-
 $taskPoints.forEach(taskPoint => {
     taskPoint.addEventListener('click', handleTaskPointClick);
 });
@@ -778,13 +713,19 @@ const $outroPanelClose = document.querySelector(".outro__panel--close").addEvent
 const $footer = document.querySelector("footer")
 const $buttonToHome = document.querySelector(".button--home").addEventListener("click", goToHomePage)
 
+const $seeFloorOne = document.querySelector(".floor__button--1");
+const $seeFloorZero = document.querySelector(".floor__button--0");
+const $floor0 = document.querySelector(".floor-0");
+const $floor1 = document.querySelector(".floor-1");
+
+const $speechHeader = document.querySelector(".walking__speech--header")
+const $speechBody = document.querySelector(".walking__speech--body")
+const $allTasks = document.querySelectorAll(".task__point")
+
 const init = () => {
-    // showSceneByClass("scene-outro")
-    // $footer.classList.add("visually-hidden")
     loadMapPoints()
     goToMap()
     handleProgressBar()
-    // goToGame()
 }
 
 init();
