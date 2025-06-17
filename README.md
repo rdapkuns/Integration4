@@ -1,11 +1,18 @@
 
 # Abby
 
+project deployed at: [rdapkuns.github.io/Integration4](https://rdapkuns.github.io/Integration4/)
+
 ## The team
-- Arina Holodkova (ArinaHolodkova)
-- Diana Moreno (dianam0r)
-- Lina Kausch (LinaKausch)
-- Rūdolfs Dapkuns (rdapkuns)
+### Devine
+- Arina Holodkova
+- Diana Moreno
+- Lina Kausch
+- Rūdolfs Dapkuns
+
+### CMD
+- Ziggy Engel
+- Mikko Helin
 
 ## To run the project locally
 1. Generate a key and certificate by pasting this command in terminal (only for the first install)
